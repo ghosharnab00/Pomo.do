@@ -1,20 +1,28 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect,useRef} from 'react'
 
 export default function Pomodoro() {
-    let [ss, setss] = useState(10)
+    let Ref = useRef(0);
+
+    let [ss, setss] = useState(20)
     let [click, setClick] = useState(null)
     //setting the Usestates
 
     let clickHandler = (event) =>{
         let clicked = event.target.value;
-       console.log(clicked)
-       setClick(clicked)
+
+       setClick(clicked);
        runTimer()
+       e.preventDefault()
     }
-   let  runTimer = (event)=>{
-       while (ss!==0){
-        setInterval(setss(ss-1),10000);
-    }
+   
+
+   let runTimer = ()=>{
+       while (ss>0){
+           setInterval(
+            setss(ss+1)
+           , 1000);
+    
+}
    }
 
    
@@ -23,7 +31,7 @@ export default function Pomodoro() {
     <div>
       <h1>{ss}</h1>
       <button onClick={clickHandler}>Start Countdown</button>
-
+      <h2>check render:{ref.current} </h2>
     </div>
   )
 }
