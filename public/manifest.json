@@ -1,25 +1,15 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+    "name": "Pomo.do",
+    "description": "Focus with all your heart!",
+    "version": "1.0",
+    "manifest_version": 3,
+    "icons": {
+      "16": "favicon16.ico",
+      "48": "favicon 48.ico",
+      "128": "favicon 128.ico" 
     },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "index.html"
+  }
 }
