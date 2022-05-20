@@ -1,12 +1,12 @@
 import "./app.css"
-import Pomodoro from "./components/pomodoro"
+import Stopwatch from "./components/stopwatch"
+//import CountDownTimer from "./components/demotim";
 function App() {
   return (
     <div className="App">
 
-     <Pomodoro/>
-
-     
+     <Stopwatch/>
+    
     </div>
   );
 }
