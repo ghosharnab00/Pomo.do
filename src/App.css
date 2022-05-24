@@ -1,5 +1,27 @@
-.App{
-    background-color: aqua;
-    width: 600px;
- height: 400px;
+body{
+    margin:2px;
+    display: block;
+    
+    
+
+}
+.left{
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    width: 20%;
+    z-index: 10;
+    background-color: var(--color3);
+}
+.right{
+    padding-left: 20%;
+    height: 100vh;
+    background-color: var(--color1);
+
 }

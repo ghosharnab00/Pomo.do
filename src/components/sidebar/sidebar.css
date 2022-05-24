@@ -1,0 +1,37 @@
+.logo{
+    font-family: 'Smooch', cursive;
+    font-size: 51px;
+    font-weight: 200;
+    letter-spacing: 5px;
+    margin-bottom: 19px;
+}
+
+.sidebar-inner{
+    height: auto;
+}
+.logo-wrapper{
+    margin-bottom: 20px;
+}
+.h-6{
+    width: 20PX;
+    padding-right: 5px;
+}
+.listitem{
+    display: flex;
+    padding-top:20px;
+    padding-bottom:20px;
+    margin: auto;
+    justify-content: center;
+}
+.list{
+    word-wrap: break-word;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: .5px;
+    line-height: 30px;
+    padding: 20px 0;
+}
+
+ul{
+    list-style-type: none;
+}
