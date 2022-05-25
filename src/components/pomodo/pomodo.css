@@ -1,9 +1,28 @@
+
 .timer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    vertical-align: center;
     width: 300px;
-    margin:auto;
+    margin:0 auto;
+    text-align: center;
+    flex-direction: column;
 }
 
-.w-5{
-    width:80px;
-    padding-top:50px ;
+button{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.icon{
+    color: aliceblue;
+    width: 40px;
+    height: 40px;
+}
+
+.btnwrap{
+    padding: 20px 0;
 }

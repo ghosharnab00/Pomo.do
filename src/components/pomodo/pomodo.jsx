@@ -2,33 +2,33 @@ import React, {useState, useEffect ,useRef} from 'react'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import "./pomodo.css"
-import Pausebutton from '../pausebutton';
-import Playbutton from '../playbutton';
+import { FaPlayCircle, FaPause } from "react-icons/fa";
+
 
 
 export default function Pomodoro() {
  
  
-
-  
-  
-
   
     return (
-      <div className=''>
         <div className='timer'>
           <CircularProgressbar styles={buildStyles({
-            textColor: '#160C28',
-            trailColor: '#160C28',
+            textColor: '#ffff',
+            trailColor: '#fffff',
             backgroundColor: '#E1EFE6',
-            pathColor: `rgba(443, 1, 123, ${60 / 100})`
-          })} value={60} text={`${60}%`} />
-        
-          <Playbutton/>
-          <Pausebutton/>
+            pathColor: `#4e61fd`
+          })} value={10} text={`${10}%`} />
+
+          <div className="btnwrap">
+          <button className='button'>
+              <FaPlayCircle  className='icon'/>
+          </button>
+          <button className='button'>
+              <FaPause className='icon'/>
+          </button>
+          </div>
 
 
-        </div>
         </div>
     )
 }

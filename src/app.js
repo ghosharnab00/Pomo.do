@@ -3,7 +3,7 @@ import "./global.css"
 import Pomodoro from "./components/pomodo/pomodo";
 import Sidebar from "./components/sidebar/sidebar";
 import States from "./components/state/state";
-import Setting from "./components/settings/states/settings";
+import Setting from "./components/settings/setting.jsx";
 import {
   BrowserRouter as Router,Routes,
   Route
@@ -13,7 +13,7 @@ import {
 function App() {
   return (
     <div className="App">
-       
+       <Router>
        <div className="left">
       <Sidebar/>
        </div>
@@ -24,11 +24,11 @@ function App() {
           <Route exact path="/state" element={<States/>}></Route>
           <Route exact path="/setting" element={<Setting/>}></Route>
           
-        </Routes>
+          </Routes>
       
    
     </div>
-    
+    </Router>
     </div>
   );
 }
