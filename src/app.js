@@ -6,8 +6,7 @@ import States from "./components/state/state";
 import Setting from "./components/settings/states/settings";
 import {
   BrowserRouter as Router,Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 //import CountDownTimer from "./components/demotim";
@@ -19,15 +18,16 @@ function App() {
       <Sidebar/>
        </div>
        <div className="right"> 
-       <Router>
+       
         <Routes>
-          <Route exact path="/" element={<Pomodoro/>}/>
-          <Route exact path="/state" element={<States/>}/>
-          <Route exact path="/setting" element={<Setting/>}/>
+          <Route exact path="/" element={<Pomodoro/>}></Route>
+          <Route exact path="/state" element={<States/>}></Route>
+          <Route exact path="/setting" element={<Setting/>}></Route>
           
         </Routes>
       
-    </Router></div>
+   
+    </div>
     
     </div>
   );
