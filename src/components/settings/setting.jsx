@@ -62,13 +62,13 @@ let newRounds= (e) =>{
 <p className= "leble">Short Brake duration</p>
 <div className="sliderwrap">
       <div className="startend">
-  <p className='start'>5 m.</p>
+  <p className='start'>1 m.</p>
   <p className='end'>15 m.</p>
 </div>
       <ReactSlider
     className="slider"
     markClassName="mark"
-    min={5}
+    min={1}
     max={15}
     value={settingsInfo.shortbrktime}
     thumbClassName="thumb"
