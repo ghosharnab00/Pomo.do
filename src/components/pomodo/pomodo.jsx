@@ -32,7 +32,7 @@ let Tick = (e)=>{
  timer.current = setInterval(()=>{
 e--;
 setSecondsleft(e);
- },1000)
+ },10)
  }
 
 
@@ -45,7 +45,7 @@ setSecondsleft(e);
             trailColor: '#fffff',
             backgroundColor: '#E1EFE6',
             pathColor: `#4e61fd`
-          })} value={secondsleft} text={`${parseInt(secondsleft/60)}:${secondsleft}`} />
+          })} value={secondsleft/60} text={`${parseInt(secondsleft/60)}:${secondsleft}`} />
 
           <div className="btnwrap">
             {!ispaused ? <button className='button' onClick={initTicker}>
