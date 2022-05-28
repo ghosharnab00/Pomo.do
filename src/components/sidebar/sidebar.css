@@ -19,7 +19,7 @@
     height: auto;
 }
 .logo-wrapper{
-    margin: 125px 0;
+    margin: 100px 0;
     height: auto;
 }
 .h-6{
@@ -32,11 +32,14 @@
     display: flex;
     margin: auto;
     justify-content: left;
+    padding: 0 AUTO;
+    border-radius: 50px;
     
 }
 .listitem:hover {
     background-color: var(--color4);
-    border-radius: 50px;
+   padding: 0 AUTO;
+    
     }
 
 
@@ -46,7 +49,7 @@
     font-weight: 500;
     letter-spacing: .5px;
     line-height: 30px;
-    padding: 5px 0;
+    padding: 0px 0;
 }
 
 ul{
@@ -60,8 +63,8 @@ ul{
     
     display: flex;
     align-items: center;
-    margin: 20px 0;
-    padding: 0 50px;
+    margin: 0px 0;
+    padding: 0 20px;
 
 }
 

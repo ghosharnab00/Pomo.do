@@ -8,27 +8,49 @@ import {
   BrowserRouter as Router,Routes,
   Route
 } from "react-router-dom";
+import SettingContext from "./components/settings/settingcontext";
+import { useState } from "react";
 
-//import CountDownTimer from "./components/demotim";
 function App() {
+  const [worktime, setWorktime] = useState(25);
+  let [shortbrktime, setShortbrktime] = useState(5);
+  let [longbrktime, setLongbrktime] = useState(20);
+  let [rounds, setRounds] = useState(3);
+
   return (
     <div className="App">
+      <SettingContext.Provider value={{
+         worktime,
+         shortbrktime,
+         longbrktime,
+         rounds,
+         setWorktime,
+         setShortbrktime,
+         setLongbrktime,
+         setRounds
+        
+        } }>
        <Router>
        <div className="left">
       <Sidebar/>
        </div>
        <div className="right"> 
+       <Routes>
        
-        <Routes>
-          <Route exact path="/" element={<Pomodoro/>}></Route>
+
+       <Route exact path="/" element={<Pomodoro/>}></Route>
           <Route exact path="/state" element={<States/>}></Route>
           <Route exact path="/setting" element={<Setting/>}></Route>
-          
-          </Routes>
+
+       
+       </Routes>
+       
+         
       
    
     </div>
     </Router>
+    </SettingContext.Provider>
     </div>
   );
 }
