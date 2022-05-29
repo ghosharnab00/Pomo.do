@@ -80,14 +80,15 @@ let newRounds= (e) =>{
 <p className= "leble">Rounds</p>
 <div className="sliderwrap">
       <div className="startend">
-  <p className='start'>2</p>
-  <p className='end'>12</p>
+  <p className='start'>1</p>
+  <p className='end'>13</p>
 </div>
       <ReactSlider
     className="slider"
     markClassName="mark"
-    min={2}
-    max={12}
+    min={1}
+    max={13}
+    step={2}
     value={settingsInfo.rounds}
     thumbClassName="thumb"
     trackClassName="track"

@@ -12,10 +12,10 @@ import SettingContext from "./components/settings/settingcontext";
 import { useState } from "react";
 
 function App() {
-  const [worktime, setWorktime] = useState(25);
+  const [worktime, setWorktime] = useState(30);
   let [shortbrktime, setShortbrktime] = useState(5);
   let [longbrktime, setLongbrktime] = useState(20);
-  let [rounds, setRounds] = useState(3);
+  let [rounds, setRounds] = useState(4);
 
   return (
     <div className="App">
