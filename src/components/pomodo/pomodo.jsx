@@ -5,6 +5,8 @@ import "./pomodo.css"
 import { FaPlayCircle, FaPause } from "react-icons/fa";
 import SettingContext from '../settings/settingcontext';
 import { BsBootstrapReboot } from "react-icons/bs";
+import Player from './playmusic';
+import {Howl, Howler} from 'howler';
 
 export default function Pomodoro() {
   
@@ -19,10 +21,21 @@ let secondsleftRef = useRef(secondsleft)
 let modedRef = useRef(mode)
 let roundsRef = useRef (rounds);
 
+const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
+
 let Tick = ()=>{
   secondsleftRef.current--;
   setSecondsleft(secondsleftRef.current);
 }
+
+    
+var sound = new Howl({
+    src: soundSrc,
+    loop: true,
+    volume: 1,
+    html5: true,
+    preload:true
+  });
 
 
 
@@ -119,18 +132,18 @@ const percentage = Math.round(secondsleft / totalSeconds * 100);
             pathColor: `#4e61fd`
           })} value={percentage} text={`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.slice(-2)} />
 
-          <div className="btnwrap">
+          <div className="btnwrap" onClick={()=>{sound.playing() ? sound.pause() : sound.play();}}>
             <button className='button' onClick={resethndler}>
               <BsBootstrapReboot className='icon'/>
               </button>
-            {!ispaused ? <button className='button' onClick={()=>{initTicker();}}>
+            {!ispaused ? <button className='button' onClick={()=>{initTicker()}}>
               <FaPlayCircle  className='icon'/>
-          </button> : <button className='button' onClick={stopTicker}>
+          </button> : <button className='button' onClick={()=>{stopTicker()}}>
               <FaPause className='icon'/>
           </button> }
           
           </div>
-
+          <Player/>
 
         </div>
     )
