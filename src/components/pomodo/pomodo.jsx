@@ -6,13 +6,14 @@ import { FaPlayCircle, FaPause } from "react-icons/fa";
 import SettingContext from '../settings/settingcontext';
 import { BsBootstrapReboot } from "react-icons/bs";
 import {Howl, Howler} from 'howler';
+import { Tabtiles } from '../GeneralFunctions';
 
 const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
 
 var sound = new Howl({
   src: soundSrc,
   loop: true,
-  volume: 1.0,
+  volume: 1,
   html5: true,
   preload:true
 });
@@ -39,12 +40,10 @@ let Tick = ()=>{
 
     
 
-
-
-
 let initTicker= ()=>{
   setIspaused(true);
   ispausedRef.current = true;
+  
 }
 let stopTicker=()=>{
   setIspaused(false)
@@ -53,6 +52,7 @@ let stopTicker=()=>{
 }
 
 let resethndler = ()=>{
+  settingcontext.setStateswitch(false)
   setIspaused(false)
   ispausedRef.current = false;
   secondsleftRef.current = settingcontext.worktime*60;
@@ -113,7 +113,7 @@ if (secondsleftRef.current ===0){
   Tick();
 
 //console.log(secondsleftRef.current);
-  },10);
+  },1000);
   
   return ()=> clearInterval(interval);
   
@@ -127,6 +127,7 @@ const totalSeconds = mode === "work"
 :(settingcontext.shortbrktime*60);
 const percentage = Math.round(secondsleft / totalSeconds * 100);
 
+Tabtiles(`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.slice(-2) + " ⏳ | " + "Pomo.do" )
     return (
         <div className='timer'>
           <div>{rounds}{roundsRef.current}</div>
@@ -141,9 +142,9 @@ const percentage = Math.round(secondsleft / totalSeconds * 100);
             <button className='button' onClick={()=>{sound.stop();resethndler();}}>
               <BsBootstrapReboot className='icon'/>
               </button>
-            {!ispaused ? <button className='button' onClick={()=>{sound.play(); initTicker()}}>
+            {!ispaused ? <button className='button' onClick={()=>{sound.play(); initTicker(); settingcontext.setStateswitch(true)}}>
               <FaPlayCircle  className='icon'/>
-          </button> : <button className='button' onClick={()=>{sound.stop(); stopTicker()}}>
+          </button> : <button className='button' onClick={()=>{sound.stop(); stopTicker();}}>
               <FaPause className='icon'/>
           </button> }
           

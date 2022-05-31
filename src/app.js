@@ -16,6 +16,7 @@ function App() {
   let [shortbrktime, setShortbrktime] = useState(5);
   let [longbrktime, setLongbrktime] = useState(20);
   let [rounds, setRounds] = useState(4);
+  let [stateswitch, setStateswitch] = useState(false)
 
   return (
     <div className="App">
@@ -24,11 +25,12 @@ function App() {
          shortbrktime,
          longbrktime,
          rounds,
+         stateswitch,
          setWorktime,
          setShortbrktime,
          setLongbrktime,
-         setRounds
-        
+         setRounds,
+         setStateswitch
         } }>
        <Router>
        <div className="left">
