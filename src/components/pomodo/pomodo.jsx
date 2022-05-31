@@ -5,7 +5,6 @@ import "./pomodo.css"
 import { FaPlayCircle, FaPause } from "react-icons/fa";
 import SettingContext from '../settings/settingcontext';
 import { BsBootstrapReboot } from "react-icons/bs";
-import Player from './playmusic';
 import {Howl, Howler} from 'howler';
 
 const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
@@ -13,7 +12,7 @@ const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
 var sound = new Howl({
   src: soundSrc,
   loop: true,
-  volume: 1,
+  volume: 1.0,
   html5: true,
   preload:true
 });
@@ -82,6 +81,8 @@ useEffect(()=>{
     console.log("State is: ", nextmode);
     setSecondsleft(nextSesson);
     secondsleftRef.current = nextSesson;
+    
+    
   }
   let countRound = ()=>{
     //console.log("countrounds before ", roundsRef.current);
@@ -104,7 +105,7 @@ if (!ispausedRef.current){
 return;
 }
 if (secondsleftRef.current ===0){
-  
+  sound.playing()? sound.stop() : sound.play();
   countRound();
   switchMode();
   
@@ -112,7 +113,7 @@ if (secondsleftRef.current ===0){
   Tick();
 
 //console.log(secondsleftRef.current);
-  },1000);
+  },10);
   
   return ()=> clearInterval(interval);
   
@@ -136,18 +137,17 @@ const percentage = Math.round(secondsleft / totalSeconds * 100);
             pathColor: `#4e61fd`
           })} value={percentage} text={`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.slice(-2)} />
 
-          <div className="btnwrap" onClick={()=>{}}>
-            <button className='button' onClick={resethndler}>
+          <div className="btnwrap">
+            <button className='button' onClick={()=>{sound.stop();resethndler();}}>
               <BsBootstrapReboot className='icon'/>
               </button>
             {!ispaused ? <button className='button' onClick={()=>{sound.play(); initTicker()}}>
               <FaPlayCircle  className='icon'/>
-          </button> : <button className='button' onClick={()=>{sound.pause(); stopTicker()}}>
+          </button> : <button className='button' onClick={()=>{sound.stop(); stopTicker()}}>
               <FaPause className='icon'/>
           </button> }
           
           </div>
-          <Player/>
 
         </div>
     )
