@@ -3,11 +3,11 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import "./pomodo.css"
 import { FaPlayCircle, FaPause } from "react-icons/fa";
-import SettingContext from '../settings/settingcontext';
+import SettingContext from '../../settings/settingcontext';
 import { BsBootstrapReboot } from "react-icons/bs";
 import {Howl, Howler} from 'howler';
-import { Tabtiles } from '../GeneralFunctions';
-
+import { Tabtiles } from '../../GeneralFunctions';
+import Stopwatch from '../stopwatch/stopwatch';
 const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
 
 var sound = new Howl({
@@ -149,7 +149,7 @@ Tabtiles(`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.sli
           </button> }
           
           </div>
-
+<Stopwatch/>
         </div>
     )
 }

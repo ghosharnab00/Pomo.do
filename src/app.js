@@ -1,6 +1,5 @@
 import "./app.css"
 import "./global.css"
-import Pomodoro from "./components/pomodo/pomodo";
 import Sidebar from "./components/sidebar/sidebar";
 import States from "./components/state/state";
 import Setting from "./components/settings/setting.jsx";
@@ -10,6 +9,7 @@ import {
 } from "react-router-dom";
 import SettingContext from "./components/settings/settingcontext";
 import { useState } from "react";
+import Home from "./components/home/home";
 
 function App() {
   const [worktime, setWorktime] = useState(30);
@@ -40,7 +40,7 @@ function App() {
        <Routes>
        
 
-       <Route exact path="/" element={<Pomodoro/>}></Route>
+       <Route exact path="/" element={<Home/>}></Route>
           <Route exact path="/state" element={<States/>}></Route>
           <Route exact path="/setting" element={<Setting/>}></Route>
 
