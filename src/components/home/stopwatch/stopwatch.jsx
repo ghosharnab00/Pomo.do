@@ -4,6 +4,7 @@ import { Howl } from 'howler';
 import { FaPlayCircle, FaPause } from "react-icons/fa";
 import SettingContext from '../../settings/settingcontext';
 import { BsBootstrapReboot } from "react-icons/bs";
+import { Tabtiles } from '../../GeneralFunctions';
 import "./stopwatch.css"
 const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
 
@@ -18,6 +19,7 @@ var sound = new Howl({
 });
 
 export default function Stopwatch() {
+  let settingcontext = useContext(SettingContext);
     let [ispaused,setIspaused ] = useState(false);
     let [seconds, setSeconds] = useState (0);
 
@@ -28,6 +30,7 @@ export default function Stopwatch() {
     let Tick = ()=>{
         secondsref.current+=1;
         setSeconds(secondsref.current);
+        settingcontext.setTabseconds(secondsref.current);
 }
     
     let initTicker= ()=>{
@@ -46,6 +49,7 @@ export default function Stopwatch() {
         ispausedRef.current = false;
         secondsref.current=0;
         setSeconds(0);
+        settingcontext.setTabseconds(0);
         
       }
 
@@ -62,6 +66,7 @@ return () => clearInterval(watch.current)
 
 let percantage = ((seconds%60)/60)*100
 
+
   return (
     <div>
       <div className='stopwatch'>
@@ -75,10 +80,10 @@ let percantage = ((seconds%60)/60)*100
           })} value={percantage} text={`0${parseInt(seconds/60)}`.slice(-2)+ ":" +`0${seconds%60}`.slice(-2)} />
 
           <div className="btnwrap">
-            <button className='button' onClick={()=>{sound.stop();resethndler();}}>
+            <button className='button' onClick={()=>{sound.stop();resethndler(); settingcontext.setStateswitch(false)}}>
               <BsBootstrapReboot className='icon'/>
               </button>
-            {!ispaused ? <button className='button' onClick={()=>{sound.play(); initTicker(); }}>
+            {!ispaused ? <button className='button' onClick={()=>{sound.play(); initTicker();settingcontext.setStateswitch(true) }}>
               <FaPlayCircle  className='icon'/>
           </button> : <button className='button' onClick={()=>{sound.stop(); stopTicker();}}>
               <FaPause className='icon'/>

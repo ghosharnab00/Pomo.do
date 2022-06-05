@@ -1,10 +1,9 @@
 .stopwatch{
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    vertical-align: center;
-    width: 300px;
+    width: 250px;
     margin:0 auto;
     text-align: center;
     flex-direction: column;

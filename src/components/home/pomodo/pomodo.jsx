@@ -6,7 +6,7 @@ import { FaPlayCircle, FaPause } from "react-icons/fa";
 import SettingContext from '../../settings/settingcontext';
 import { BsBootstrapReboot } from "react-icons/bs";
 import {Howl, Howler} from 'howler';
-import { Tabtiles } from '../../GeneralFunctions';
+
 import Stopwatch from '../stopwatch/stopwatch';
 const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
 
@@ -29,7 +29,9 @@ export default function Pomodoro() {
 let ispausedRef = useRef(ispaused)
 let secondsleftRef = useRef(secondsleft)
 let modedRef = useRef(mode)
-let roundsRef = useRef (rounds);
+let roundsRef = useRef (rounds)
+
+
 
 
 
@@ -110,9 +112,9 @@ if (secondsleftRef.current ===0){
   switchMode();
   
 }
-  Tick();
-
-//console.log(secondsleftRef.current);
+  else{ 
+    Tick();
+    }
   },1000);
   
   return ()=> clearInterval(interval);
@@ -127,17 +129,15 @@ const totalSeconds = mode === "work"
 :(settingcontext.shortbrktime*60);
 const percentage = Math.round(secondsleft / totalSeconds * 100);
 
-Tabtiles(`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.slice(-2) + " ⏳ | " + "Pomo.do" )
     return (
         <div className='timer'>
-          <div>{rounds}{roundsRef.current}</div>
           <CircularProgressbar styles={buildStyles({
             textColor: '#ffff',
             trailColor: '#fffff',
             backgroundColor: '#E1EFE6',
             pathColor: `#4e61fd`
           })} value={percentage} text={`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.slice(-2)} />
-
+          
           <div className="btnwrap">
             <button className='button' onClick={()=>{sound.stop();resethndler();}}>
               <BsBootstrapReboot className='icon'/>
@@ -147,7 +147,7 @@ Tabtiles(`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.sli
           </button> : <button className='button' onClick={()=>{sound.stop(); stopTicker();}}>
               <FaPause className='icon'/>
           </button> }
-          
+          <p className='roundname'>{Math.floor((rounds+1)/2)} of {settingcontext.rounds} sessions left</p>
           </div>
 <Stopwatch/>
         </div>

@@ -1,0 +1,151 @@
+  form {
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  form input,
+  form button {
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    background: white;
+    
+  }
+  form input{
+      border-top-left-radius:25px ;
+      border-bottom-left-radius:25px ;
+      width: 70%;
+  }
+  form button{
+    border-top-right-radius:25px ;
+    border-bottom-right-radius:25px ;
+  }
+
+  form button {
+    color: var(--color2);
+    background: var(--color1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  form button:hover {
+    background:var(--color2);
+    color: var(--color1);
+  }
+  .todo-container {
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .todo-container p{
+    color:white;
+    font-size: 12px;
+    padding: 0;
+}
+  
+  .todo-list {
+      display: flex;
+      padding: 0;
+      
+    min-width: 30%;
+    list-style: none;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .todo {
+    margin: 10px 0px;
+    width: 80%;
+    font-size: 18px;
+    border-radius: 25px;
+    background: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease;
+  }
+  .filter-todo {
+    padding: 1rem;
+  }
+  .todo li {
+    flex: 1;
+  }
+  
+  .trash-btn,
+  .complete-btn {
+    color: var(--color1);
+    background: var(--color3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 10PX;
+  }
+  
+  .trash-btn{
+    border-top-right-radius:25px ;
+    border-bottom-right-radius:25px ;
+  }
+  .todo-item {
+    padding: 0rem 0.5rem;
+  }
+  
+  .fa-trash,
+  .fa-check {
+    pointer-events: none;
+  }
+  
+  .fall {
+    transform: translateY(10rem) rotateZ(20deg);
+    opacity: 0;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+  
+  /*CUSTOM SELECTOR */
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background-image: none;
+  }
+  
+  /* Custom Select */
+  .select {
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  select {
+    color: #ff6f47;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    width: 12rem;
+  }
+  /* Arrow */
+  .select::after {
+    content: "\25BC";
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    background: #ff6f47;
+    cursor: pointer;
+    pointer-events: none;
+  }
+  /* Transition */
+  /*
+  .select:hover::after {
+    transform: scale(1.5);
+  }
+  */
+  

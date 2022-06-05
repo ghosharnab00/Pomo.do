@@ -13,7 +13,7 @@ export default function Sidebar() {
 
     <div className='sidebar'>
 
-<div className="logo-wrapper"> <span className="logo">Pomo.do</span></div>
+<div className="logo-wrapper"> <header ><h1 className="logo">Pomo.do</h1></header></div>
       
       
       <div className="sidebar-inner">
