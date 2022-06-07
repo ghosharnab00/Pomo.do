@@ -8,11 +8,9 @@
 
 .logo{
     display: block;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 5px;
     text-align: center;
+    color: var(--liteblack);
+
 }
 
 .sidebar-inner{
@@ -26,7 +24,6 @@
     height: 30px;
     width: 30px;
     padding-right: 5px;
-    color: #000;
 }
 .listitem{
     display: flex;
@@ -37,7 +34,7 @@
     
 }
 .listitem:hover {
-    background-color: var(--color4);
+    background-color: var(--offwhite);
    padding: 0 AUTO;
     
     }
@@ -58,19 +55,29 @@ ul{
 }
 .navlink{
     text-decoration: none;
+    
 }
+
+.active .ico{
+    color: var(--black);
+    
+}
+
+.active p{
+    font-weight: 700;
+}
+
+
 .ico{
     
     display: flex;
     align-items: center;
     margin: 0px 0;
     padding: 0 20px;
-
+    color: var(--grey);
 }
 
-p{
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    color: #000;
-    font-size: 20px;
+.ico:hover{
+    color: var(--black);
 }
+

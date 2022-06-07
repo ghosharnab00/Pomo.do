@@ -13,11 +13,11 @@ body{
     height: 100%;
     left: 0;
     top: 0;
-    background-color: var(--color3);
+    background-color: var(--white);
+    box-shadow: 2em 0em 3em -1.5em var(--offwhite);
 }
 .right{
     padding-left: 17.7%;
     height: 100vh;
-    background-color: var(--color5);
-   
+    background-color: var(--white);
 }

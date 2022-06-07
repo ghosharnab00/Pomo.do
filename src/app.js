@@ -13,6 +13,7 @@ import Home from "./components/home/home";
 import Pomodoro from "./components/home/pomodo/pomodo";
 import Stopwatch from "./components/home/stopwatch/stopwatch";
 import { Tabtiles } from "./components/GeneralFunctions";
+import { Grid, Divider } from "@mui/material";
 function App() {
   const [worktime, setWorktime] = useState(30);
   let [shortbrktime, setShortbrktime] = useState(5);
@@ -39,10 +40,13 @@ Tabtiles(`0${parseInt(tabseconds/60)}`.slice(-2)+ ":" +`0${tabseconds%60}`.slice
          setTabseconds
         } }>
        <Router>
-       <div className="left">
+       <Grid container>
+       <Grid item xs className="left">
       <Sidebar/>
-       </div>
-       <div className="right"> 
+      
+       </Grid>
+       <Grid item xs className="right"> 
+       
        <Routes>
        
 
@@ -55,10 +59,11 @@ Tabtiles(`0${parseInt(tabseconds/60)}`.slice(-2)+ ":" +`0${tabseconds%60}`.slice
        
        </Routes>
        
-         
+       
       
    
-    </div>
+    </Grid>
+    </Grid>
     </Router>
     </SettingContext.Provider>
     </div>

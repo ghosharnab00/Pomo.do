@@ -1,71 +1,75 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './sidebar.css';
-import {BsGearFill, BsBarChartLine, BsClock} from 'react-icons/bs'
+import { BsGearFill, BsBarChartLine, BsClock } from 'react-icons/bs'
 import { useContext } from 'react';
 import SettingContext from '../settings/settingcontext';
+import { Typography } from '@mui/material';
 export default function Sidebar() {
 
-  let settingcontext =  useContext(SettingContext);
+  let settingcontext = useContext(SettingContext);
 
 
   return (
 
     <div className='sidebar'>
+      <div className="logo-wrapper"> <header ><Typography variant='h4' component="h1" className="logo">Pomo.do</Typography></header></div>
+      
 
-<div className="logo-wrapper"> <header ><h1 className="logo">Pomo.do</h1></header></div>
-      
-      
+
       <div className="sidebar-inner">
-        
+      
         <div className="menulist">
 
           <ul className="list">
             <li className='listitem'>
-              <Link to="/" className='navlink' >
+              <NavLink to="/" className='navlink' >
 
                 <div className='ico'>
-                <BsClock className='h-6'  />
-                  <p>Timer</p>
-
+                  <BsClock className='h-6' />
+                  <Typography>Timer</Typography>
+                  
+  
                 </div>
-              </Link>
+              </NavLink>
 
             </li>
-            
-            { 
-      (settingcontext.stateswitch)
-      ? <li className='listitem' style={{backgroundColor: "var(--color3)50" }}> <Link to="/state" className='navlink' style={{pointerEvents: 'none'}}>
-      <div className='ico'>
-      <BsBarChartLine className='h-6' style={{color: "var(--color4)" }}/>
-        <p style={{color: "var(--color4)" }}>States</p>
-      </div>
-    </Link></li>
-      :  <li className='listitem' ><Link to="/state" className='navlink'>
-      <div className='ico'>
-      <BsBarChartLine className='h-6'/>
-        <p>States</p>
-      </div>
-    </Link></li>
-    }
-              { 
-      (settingcontext.stateswitch)
-      ? <li className='listitem' style={{backgroundColor: "var(--color3)50" }}> <Link to="/setting" className='navlink' style={{pointerEvents: 'none'}}>
-      <div className='ico'>
-      <BsGearFill className='h-6' style={{color: "var(--color4)" }}/>
-        <p style={{color: "var(--color4)" }}>Settings</p>
-      </div>
-    </Link></li>
-      :  <li className='listitem' ><Link to="/setting" className='navlink'>
-      <div className='ico'>
-      <BsGearFill className='h-6'/>
-        <p>Settings</p>
-      </div>
-    </Link></li>
-    }
+
+            {
+              (settingcontext.stateswitch)
+                ? <li className='listitem' style={{ backgroundColor: "var(--color3)50" }}> <NavLink to="/state" className='navlink' style={{ pointerEvents: 'none' }}>
+                  <div className='ico'>
+                    <BsBarChartLine className='h-6' style={{ color: "var(--offwhite)" }} />
+                    <Typography style={{ color: "var(--offwhite)" }}>States</Typography>
+                  </div>
+                </NavLink></li>
+                : <li className='listitem' ><NavLink to="/state" className='navlink'>
+                  <div className='ico'>
+                    <BsBarChartLine className='h-6' />
+                    <Typography>States</Typography>
+                  </div>
+                </NavLink></li>
+            }
+            {
+              (settingcontext.stateswitch)
+                ? <li className='listitem' style={{ backgroundColor: "var(--color3)50" }}> <NavLink to="/setting" className='navlink' style={{ pointerEvents: 'none' }}>
+                  <div className='ico'>
+                    <BsGearFill className='h-6' style={{ color: "var(--offwhite)" }} />
+                    <Typography style={{ color: "var(--offwhite)" }}>Settings</Typography>
+                  </div>
+                </NavLink></li>
+                : <li className='listitem' ><NavLink to="/setting" className='navlink' >
+                  <div className='ico'>
+                    <BsGearFill className='h-6' />
+                    <Typography>Settings</Typography>
+                  </div>
+                </NavLink></li>
+            }
           </ul>
         </div>
+        
       </div>
+       
     </div>
   )
 }

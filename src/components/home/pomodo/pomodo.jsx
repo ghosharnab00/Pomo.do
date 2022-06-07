@@ -1,5 +1,6 @@
 import React, {useState, useEffect ,useRef, useContext} from 'react'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { CircularProgress } from '@mui/material';
 import 'react-circular-progressbar/dist/styles.css';
 import "./pomodo.css"
 import { FaPlayCircle, FaPause } from "react-icons/fa";
@@ -131,6 +132,7 @@ const percentage = Math.round(secondsleft / totalSeconds * 100);
 
     return (
         <div className='timer'>
+          <CircularProgress value={percentage} variant="determinate"  />
           <CircularProgressbar styles={buildStyles({
             textColor: '#ffff',
             trailColor: '#fffff',
