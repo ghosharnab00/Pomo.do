@@ -1,16 +1,17 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Stopwatch from './stopwatch/stopwatch'
 import Todo from './todo/todo'
 import Form from './todo/form'
 import "./home.css"
 import Pomodoro from './pomodo/pomodo'
 import SettingContext from '../settings/settingcontext'
+import Todowrap from './todo/todowrap'
 
 export default function Home() {
     let settingcontext = useContext(SettingContext);
     const [toggleState, setToggleState] = useState(false);
     const [input, setInput] = useState("")
-    const [todolist, setTodolist] = useState([])
+    const [todolist, setTodolist] = useState(JSON.parse(localStorage.getItem('todos')))
     const [donelist, setDonelist] = useState([])
 
     const toggleSw= () => {
@@ -28,9 +29,6 @@ function todoIter(item){
         <Todo item={item} />
     )
 }
-
-
-
 
 
 
@@ -72,27 +70,8 @@ function todoIter(item){
             <div className="home_right">
                 <Form input ={input} setInput = {setInput} todolist = {todolist} setTodolist= {setTodolist}/>
                 <div className="todo-container">
-                    
-      <ul className="todo-list">
-          {
-              todolist.map((todo)=>{return(
-                <Todo todo={todo} key={todo.id} todolist = {todolist} setTodolist= {setTodolist} donelist={donelist} setDonelist={setDonelist}/>
-            )})
-          }
-
+                    <Todowrap todolist = {todolist} setTodolist= {setTodolist} donelist={donelist} setDonelist={setDonelist}/>
       
-        
-      </ul>
-      <ul className="todo-list">
-          {
-              donelist.map((todo)=>{return(
-                <Todo todo={todo} key={todo.id} todolist = {todolist} setTodolist= {setTodolist} donelist={donelist} setDonelist={setDonelist}/>
-            )})
-          }
-
-      
-        
-      </ul>
     </div>
             </div>
         </div>

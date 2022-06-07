@@ -1,9 +1,11 @@
-import React from 'react'
-import { useState, useContext } from 'react';
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 
 export default function Todo({todo, todolist, setTodolist, donelist, setDonelist} ) {
 
   let [tododone, setTododone] = useState(todo.complete)
+
+  
 let deleteHandler=()=>{
   setTodolist(todolist.filter(element=> element.id !==todo.id))
   setDonelist(donelist.filter(element=> element.id !==todo.id))
@@ -11,7 +13,6 @@ let deleteHandler=()=>{
 
 let doneHandler=()=>{
   if (donelist.length > 1){
-    console.log(donelist);
     setDonelist(donelist.shift())
   }
   setTodolist(todolist.filter(element=> element.id !==todo.id));
@@ -24,6 +25,8 @@ let doneHandler=()=>{
 let blankHandler = ()=>{
 return;
 }
+
+
   return (
       <div className={!tododone ? "todo" : "todo completed"}>
         <li className="todo-item">{todo.text}</li>
