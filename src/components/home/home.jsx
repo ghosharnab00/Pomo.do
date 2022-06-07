@@ -12,7 +12,7 @@ export default function Home() {
     const [toggleState, setToggleState] = useState(false);
     const [input, setInput] = useState("")
     const [todolist, setTodolist] = useState(JSON.parse(localStorage.getItem('todos')))
-    const [donelist, setDonelist] = useState([])
+    const [donelist, setDonelist] = useState(JSON.parse(localStorage.getItem('dones')))
 
     const toggleSw= () => {
         let state = true;

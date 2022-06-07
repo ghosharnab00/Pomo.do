@@ -17,8 +17,15 @@ export default function Todowrap({todolist,setTodolist,donelist, setDonelist}) {
       }
       
       }
+
+      let setLocaldone = ()=>{
+        localStorage.setItem("dones", JSON.stringify(donelist));
+      }
       
-      
+      useEffect(()=>{
+        setLocaldone();
+      },[donelist])
+
       useEffect(()=>{
         setLocalstorage();
       },[todolist])
