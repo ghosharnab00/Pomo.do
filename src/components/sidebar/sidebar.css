@@ -13,6 +13,9 @@
 
 }
 
+.sidebar p{
+    padding:30px 0;
+}
 .sidebar-inner{
     height: auto;
 }

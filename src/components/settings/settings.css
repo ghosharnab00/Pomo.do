@@ -57,7 +57,7 @@ display: block;
   }
 
 
-p{
+.settings p{
     padding:20px 0;
     font-size: 20px;
 }

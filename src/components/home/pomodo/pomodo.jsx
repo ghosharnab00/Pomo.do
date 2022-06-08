@@ -1,14 +1,14 @@
 import React, {useState, useEffect ,useRef, useContext} from 'react'
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Box, Typography } from '@mui/material';
+import Button from '@mui/material/Button';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import ReplayIcon from '@mui/icons-material/Replay';
+import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import 'react-circular-progressbar/dist/styles.css';
 import "./pomodo.css"
-import { FaPlayCircle, FaPause } from "react-icons/fa";
 import SettingContext from '../../settings/settingcontext';
-import { BsBootstrapReboot } from "react-icons/bs";
 import {Howl, Howler} from 'howler';
-
-import Stopwatch from '../stopwatch/stopwatch';
+import { Tabtiles } from '../../GeneralFunctions';
 const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
 
 var sound = new Howl({
@@ -36,9 +36,11 @@ let roundsRef = useRef (rounds)
 
 
 
+
 let Tick = ()=>{
   secondsleftRef.current--;
   setSecondsleft(secondsleftRef.current);
+  
 }
 
     
@@ -62,7 +64,7 @@ let resethndler = ()=>{
   setSecondsleft(settingcontext.worktime*60);
   setRounds(settingcontext.rounds*2-1);
       roundsRef.current= settingcontext.rounds*2-1;
-
+      settingcontext.setTabseconds(0);
 }
 
 
@@ -116,12 +118,16 @@ if (secondsleftRef.current ===0){
   else{ 
     Tick();
     }
-  },1000);
+  },10);
   
   return ()=> clearInterval(interval);
   
 
 },[settingcontext])
+
+useEffect(()=>{
+  
+},[secondsleft])
  
 const totalSeconds = mode === "work" 
 ? (settingcontext.worktime*60) 
@@ -130,28 +136,74 @@ const totalSeconds = mode === "work"
 :(settingcontext.shortbrktime*60);
 const percentage = Math.round(secondsleft / totalSeconds * 100);
 
+Tabtiles(`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.slice(-2) + " ⏳ | " + "Pomo.do" )
     return (
         <div className='timer'>
-          <CircularProgress value={percentage} variant="determinate"  />
-          <CircularProgressbar styles={buildStyles({
-            textColor: '#ffff',
-            trailColor: '#fffff',
-            backgroundColor: '#E1EFE6',
-            pathColor: `#4e61fd`
-          })} value={percentage} text={`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.slice(-2)} />
+          <Box position="relative" display="inline-flex">
+            
+      <CircularProgress variant="determinate" value={percentage}
+          style={{display: "flex",
+          height: "100%",
+          width: "250px"}} />
+      <Box
+        top={0}
+        left={0}
+        bottom={0}
+        right={0}
+        position="absolute"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+      >
+        <Typography
+          variant="caption"
+          component="div"
+          fontSize="40px"
+          fontWeight="800"
+          color="var(--black)"
+        >{`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.slice(-2)}</Typography>
+         <Typography
+          variant="caption"
+          component="div"
+          fontSize="20px"
+          fontWeight="800"
+          color="var(--black)"
+        >{ mode === "work" ? "Focus" : "Break"}</Typography>
+        <Typography color="var(--liteblack)" fontSize="12px" >Pomo.do</Typography>
+      </Box>
+    </Box>
+          
+         
           
           <div className="btnwrap">
-            <button className='button' onClick={()=>{sound.stop();resethndler();}}>
-              <BsBootstrapReboot className='icon'/>
-              </button>
-            {!ispaused ? <button className='button' onClick={()=>{sound.play(); initTicker(); settingcontext.setStateswitch(true)}}>
-              <FaPlayCircle  className='icon'/>
-          </button> : <button className='button' onClick={()=>{sound.stop(); stopTicker();}}>
-              <FaPause className='icon'/>
-          </button> }
-          <p className='roundname'>{Math.floor((rounds+1)/2)} of {settingcontext.rounds} sessions left</p>
+          <Button 
+          className='button' 
+          variant="outlined" 
+          startIcon={<ReplayIcon />} 
+          onClick={()=>{sound.stop();resethndler(); settingcontext.setStateswitch(false)}}
+          >
+            Reset
+          </Button>
+            {!ispaused ? 
+            <Button 
+            className='button' 
+            variant="contained" 
+            onClick={()=>{sound.play(); initTicker(); settingcontext.setStateswitch(true)}} 
+            endIcon={<PlayCircleOutlineIcon />}>
+            Start
+          </Button>
+            : <Button 
+            className='button' 
+            variant="contained" 
+            onClick={()=>{sound.stop(); stopTicker();}} 
+            endIcon={<PauseCircleOutlineIcon />}>
+            Pause
+          </Button>}
           </div>
-<Stopwatch/>
+          <Typography color="var(--liteblack)">{Math.floor((rounds+1)/2)} of {settingcontext.rounds} sessions left</Typography>
+          
+          
         </div>
     )
 }
