@@ -96,9 +96,9 @@ export default function Home() {
         
         </MenuItem>
         <MenuItem className="home_right">
-        <Form input ={input} setInput = {setInput} todolist = {todolist} setTodolist= {setTodolist}/>
-                <div className="todo-container">
-                    <Todowrap todolist = {todolist} setTodolist= {setTodolist} donelist={donelist} setDonelist={setDonelist}/>
+        <Form className="todo-container" input ={input} setInput = {setInput} todolist = {todolist} setTodolist= {setTodolist}/>
+                <div >
+                    <Todowrap className="todo-container" todolist = {todolist} setTodolist= {setTodolist} donelist={donelist} setDonelist={setDonelist}/>
       
     </div>
         </MenuItem>
