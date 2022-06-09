@@ -38,12 +38,6 @@
     justify-content: center;
     align-items: center;
   }
-
-  .todo-container p{
-    color:white;
-    font-size: 12px;
-    padding: 0;
-}
   
   .todo-list {
       display: flex;
@@ -73,15 +67,6 @@
   }
   .todo li {
     flex: 1;
-  }
-  
-  .trash-btn,
-  .complete-btn {
-    color: var(--color1);
-    background: var(--color3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 10PX;
   }
   
   .trash-btn{

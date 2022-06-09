@@ -2,11 +2,59 @@ import React, {useContext} from 'react'
 import "./settings.css"
 import ReactSlider from 'react-slider'
 import SettingContext from './settingcontext'
+import { Typography, Box, Slider } from '@mui/material'
+
+const workmarks = [
+  {
+    value: 5,
+    label: '5 mins',
+  },
+  {
+    value: 30,
+    label: '30 mins',
+  },
+  {
+    value: 60,
+    label: '60 mins',
+  },
+  {
+    value: 100,
+    label: '100°C',
+  },
+];
+
+const longbrkmarks = [
+  {
+    value: 1,
+    label: '1 min',
+  },
+  {
+    value: 5,
+    label: '5 mins',
+  },
+  {
+    value: 13,
+    label: '13 mins',
+  },
+  {
+    value: 15,
+    label: '15 mins',
+  },
+  {
+    value: 30,
+    label: '30 mins',
+  },
+  {
+    value: 20,
+    label: '20 mins',
+  }
+];
+
 function Setting() {
   let settingsInfo = useContext(SettingContext);
   
 let newWrokduration = (e) =>{
-  settingsInfo.setWorktime(e);
+  settingsInfo.setWorktime(e.target.value);
 }
 let newLongbrkduration= (e) =>{
   settingsInfo.setLongbrktime(e);
@@ -19,82 +67,77 @@ let newRounds= (e) =>{
 }
   return (
     <div className='settings'>
-      <p className= "leble">Work duration</p>
       <div className="sliderwrap">
-      <div className="startend">
-  <p className='start'>5 m.</p>
-  <p className='end'>60 m.</p>
-</div>
-      <ReactSlider
-    className="slider"
-    markClassName="mark"
-    min={5}
-    max={60}
-    value={settingsInfo.worktime}
-    thumbClassName="thumb"
-    trackClassName="track"
-    renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-    onChange={newWrokduration}
-    
-/>
+      <Box width={300} >
+      <Typography className= "leble" fontSize={20}>Work duration</Typography>
+      <Slider
+        size="small"
+        defaultValue={settingsInfo.worktime}
+        aria-label="Small"
+        valueLabelDisplay="auto"
+        min={5}
+        max={60}
+        onChange={newWrokduration}
+        marks={workmarks}
+        step={5}
+
+      />
+    </Box>
+     
 
       </div>
-      
-<p className= "leble">Long Brake duration</p>
 <div className="sliderwrap">
-      <div className="startend">
-  <p className='start'>15 m.</p>
-  <p className='end'>30 m.</p>
-</div>
-      <ReactSlider
-    className="slider"
-    markClassName="mark"
-    min={15}
-    max={30}
-    value={settingsInfo.longbrktime}
-    thumbClassName="thumb"
-    trackClassName="track"
-    renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-    onChange={newLongbrkduration}
-    
-/>
-</div>
-<p className= "leble">Short Brake duration</p>
+      <Box width={300} >
+      <Typography className= "leble" fontSize={20}>Long Brake duration</Typography>
+      <Slider
+        size="small"
+        defaultValue={settingsInfo.longbrktime}
+        aria-label="Small"
+        valueLabelDisplay="auto"
+        min={15}
+        max={30}
+        onChange={newLongbrkduration}
+        marks={longbrkmarks}
+        step={5}
+
+      />
+    </Box>
+     
+
+      </div>
 <div className="sliderwrap">
-      <div className="startend">
-  <p className='start'>1 m.</p>
-  <p className='end'>15 m.</p>
+<Box width={300} >
+      <Typography className= "leble" fontSize={20}>Short Brake duration</Typography>
+      <Slider
+        size="small"
+        defaultValue={settingsInfo.shortbrktime}
+        aria-label="Small"
+        valueLabelDisplay="auto"
+        min={1}
+        max={15}
+        onChange={newShortbrkduration}
+        marks={longbrkmarks}
+        step={1}
+
+      />
+    </Box>
 </div>
-      <ReactSlider
-    className="slider"
-    markClassName="mark"
-    min={1}
-    max={15}
-    value={settingsInfo.shortbrktime}
-    thumbClassName="thumb"
-    trackClassName="track"
-    renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-    onChange={newShortbrkduration}
-/>
-</div>
-<p className= "leble">Rounds</p>
 <div className="sliderwrap">
-      <div className="startend">
-  <p className='start'>1</p>
-  <p className='end'>13</p>
-</div>
-      <ReactSlider
-    className="slider"
-    markClassName="mark"
-    min={1}
-    max={13}
-    step={2}
-    value={settingsInfo.rounds}
-    thumbClassName="thumb"
-    trackClassName="track"
-    renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-    onChange={newRounds}
-/>
+<Box width={300} >
+      <Typography className= "leble" fontSize={20}>Rounds</Typography>
+      <Slider
+        size="small"
+        defaultValue={settingsInfo.rounds}
+        aria-label="Small"
+        valueLabelDisplay="auto"
+        min={1}
+        max={13}
+        onChange={newRounds}
+        marks={longbrkmarks}
+        step={1}
+
+      />
+    </Box>
 </div>
     </div>
   )

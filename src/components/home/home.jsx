@@ -6,8 +6,10 @@ import "./home.css"
 import Pomodoro from './pomodo/pomodo'
 import SettingContext from '../settings/settingcontext'
 import Todowrap from './todo/todowrap'
-import { Switch } from '@mui/material'
+import { Switch, Stack } from '@mui/material'
+import { MenuItem } from '@mui/material'
 import {styled}  from '@mui/material/styles'
+
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -76,9 +78,9 @@ export default function Home() {
 
 
     return (
-        <div className="home">
-            <div className="home_left">
-                <div className="bloc-tabs">
+          <Stack className="home" direction="row" spacing={2}>
+        <MenuItem className="home_left">
+        <div className="bloc-tabs">
 
                 <MaterialUISwitch sx={{ m: 1 }} onChange={togglestate} disabled={settingcontext.stateswitch ? true : false}/>           
                 </div>
@@ -91,15 +93,18 @@ export default function Home() {
 
                     </div>
                 </div>
-
-            </div>
-            <div className="home_right">
-                <Form input ={input} setInput = {setInput} todolist = {todolist} setTodolist= {setTodolist}/>
+        
+        </MenuItem>
+        <MenuItem className="home_right">
+        <Form input ={input} setInput = {setInput} todolist = {todolist} setTodolist= {setTodolist}/>
                 <div className="todo-container">
                     <Todowrap todolist = {todolist} setTodolist= {setTodolist} donelist={donelist} setDonelist={setDonelist}/>
       
     </div>
-            </div>
-        </div>
+        </MenuItem>
+      </Stack>
+        
+                
+        
     )
 }

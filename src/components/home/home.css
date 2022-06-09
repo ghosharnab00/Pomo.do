@@ -24,7 +24,6 @@
   flex-direction: column;
 }
 .home_right {
-    display: flex;
     margin-left: 20px;
     color:white;
     display: flex;
@@ -35,6 +34,8 @@
     width:600px;
   height: 400px;
   flex-direction: column;  
+  align-items: center;
+  
 }
 
 .bloc-tabs {
