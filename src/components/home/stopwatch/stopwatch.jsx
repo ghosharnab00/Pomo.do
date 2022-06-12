@@ -7,7 +7,7 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import ReplayIcon from '@mui/icons-material/Replay';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import "./stopwatch.css"
-const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
+const soundSrc = "https://www.mboxdrive.com/Clockk.mp3"
 
 
 

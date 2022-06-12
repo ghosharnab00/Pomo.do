@@ -56,8 +56,27 @@ export default function Home() {
     let settingcontext = useContext(SettingContext);
     const [toggleState, setToggleState] = useState(false);
     const [input, setInput] = useState("")
-    const [todolist, setTodolist] = useState([])
-    const [donelist, setDonelist] = useState([])
+
+
+    let settodolocalstorage = ()=>{
+      if (localStorage.length===0){
+        localStorage.setItem('todos', JSON.stringify([]));
+        localStorage.setItem('dones', JSON.stringify([]));
+        return JSON.parse(localStorage.getItem('todos'))
+      }
+      else{
+        return JSON.parse(localStorage.getItem('todos'));
+      }
+
+    }
+
+
+
+
+
+
+    const [todolist, setTodolist] = useState(settodolocalstorage)
+    const [donelist, setDonelist] = useState(JSON.parse(localStorage.getItem('dones')))
 
     // JSON.parse(localStorage.getItem('todos'))
     // JSON.parse(localStorage.getItem('dones'))
