@@ -1,5 +1,5 @@
 import React from 'react'
-import "./app.css"
+import "./App.css"
 import "./global.css"
 import Sidebar from "./components/sidebar/sidebar";
 import States from "./components/state/state";
