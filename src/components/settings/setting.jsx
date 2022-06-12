@@ -79,7 +79,7 @@ let newRounds= (e) =>{
         onChange={newWrokduration}
         marks={workmarks}
         step={5}
-
+        key={Math.random(0,100)}
       />
     </Box>
      
@@ -98,7 +98,7 @@ let newRounds= (e) =>{
         onChange={newLongbrkduration}
         marks={longbrkmarks}
         step={5}
-
+        key={Math.random(0,100)}
       />
     </Box>
      
@@ -117,6 +117,7 @@ let newRounds= (e) =>{
         onChange={newShortbrkduration}
         marks={longbrkmarks}
         step={1}
+        key={Math.random(0,100)}
 
       />
     </Box>
@@ -134,7 +135,7 @@ let newRounds= (e) =>{
         onChange={newRounds}
         marks={longbrkmarks}
         step={1}
-
+        key={Math.random(0,100)}
       />
     </Box>
 </div>
