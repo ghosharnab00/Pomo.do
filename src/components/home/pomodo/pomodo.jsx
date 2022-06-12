@@ -6,7 +6,7 @@ import ReplayIcon from '@mui/icons-material/Replay';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import "./pomodo.css"
 import SettingContext from '../../settings/settingcontext';
-import {Howl, Howler} from 'howler';
+import {Howl} from 'howler';
 import { Tabtiles } from '../../GeneralFunctions';
 const soundSrc = "https://www.mboxdrive.com/Clockk.mp3"
 
@@ -135,7 +135,7 @@ const totalSeconds = mode === "work"
 :(settingcontext.shortbrktime*60);
 const percentage = Math.round(secondsleft / totalSeconds * 100);
 
-Tabtiles(`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.slice(-2) + " ⏳ | " + "Pomo.do" )
+Tabtiles(`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.slice(-2) + ` ⏳ | ` + `Pomo.do` )
     return (
         <div className='timer'>
           <Box position="relative" display="inline-flex">

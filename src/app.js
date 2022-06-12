@@ -14,7 +14,7 @@ import Home from "./components/home/home";
 import Pomodoro from "./components/home/pomodo/pomodo";
 import Stopwatch from "./components/home/stopwatch/stopwatch";
 import { Tabtiles } from "./components/GeneralFunctions";
-import { Grid, Divider } from "@mui/material";
+import { Grid } from "@mui/material";
 
 
 function App() {
