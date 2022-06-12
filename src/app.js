@@ -1,15 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import React, { useEffect } from 'react'
+import React from 'react'
 import "./App.css"
-=======
-import React from 'react'
-import "./app.css"
->>>>>>> parent of f7cff65 (Update app.js)
-=======
-import React from 'react'
-import "./app.css"
->>>>>>> parent of f7cff65 (Update app.js)
 import "./global.css"
 import Sidebar from "./components/sidebar/sidebar";
 import States from "./components/state/state";
@@ -35,10 +25,7 @@ function App() {
   let [stateswitch, setStateswitch] = useState(false)
   let [tabseconds, setTabseconds] = useState(0)
 
-useEffect(()=>{
-  localStorage.setItem('todos',[]);
-  localStorage.setItem('dones',[]);
-},[])
+
   Tabtiles(`0${parseInt(tabseconds/60)}`.slice(-2)+ ":" +`0${tabseconds%60}`.slice(-2) + " ⏳ | " + "Pomo.do" )
   return (
     <div className="App">
