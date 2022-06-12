@@ -8,7 +8,7 @@ import "./pomodo.css"
 import SettingContext from '../../settings/settingcontext';
 import {Howl, Howler} from 'howler';
 import { Tabtiles } from '../../GeneralFunctions';
-const soundSrc = "../src/components/sounds/Clockk.mp3"
+const soundSrc = ".../public/sounds/Clockk.mp3"
 
 var sound = new Howl({
   src: soundSrc,
