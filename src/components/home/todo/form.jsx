@@ -31,6 +31,7 @@ export default function Form({ input, setInput, todolist, setTodolist }) {
 
   return (
     <form onSubmit={handleSubmit}>
+      {todolist.length}
       <Paper 
       elevation={5}
         sx={{
