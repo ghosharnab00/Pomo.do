@@ -1,3 +1,4 @@
+import React from 'react'
 import "./app.css"
 import "./global.css"
 import Sidebar from "./components/sidebar/sidebar";
@@ -14,6 +15,8 @@ import Pomodoro from "./components/home/pomodo/pomodo";
 import Stopwatch from "./components/home/stopwatch/stopwatch";
 import { Tabtiles } from "./components/GeneralFunctions";
 import { Grid, Divider } from "@mui/material";
+
+
 function App() {
   const [worktime, setWorktime] = useState(30);
   let [shortbrktime, setShortbrktime] = useState(5);
@@ -50,22 +53,19 @@ function App() {
        <Routes>
        
 
-       <Route exact path="/" element={<Home/>}></Route>
-       <Route exact path="/pomodoro" element={<Pomodoro/>}></Route>
-       <Route exact path="/stopwatch" element={<Stopwatch/>}></Route>
+        <Route exact path="/" element={<Home/>}></Route>
+        <Route exact path="/pomodoro" element={<Pomodoro/>}></Route>
+        <Route exact path="/stopwatch" element={<Stopwatch/>}></Route>
           <Route exact path="/state" element={<States/>}></Route>
           <Route exact path="/setting" element={<Setting/>}></Route>
 
        
-       </Routes>
-       
-       
-      
+          </Routes>
    
-    </Grid>
-    </Grid>
-    </Router>
-    </SettingContext.Provider>
+        </Grid>
+       </Grid>
+      </Router>
+     </SettingContext.Provider>
     </div>
   );
 }

@@ -79,7 +79,7 @@ export default function Home() {
 
     return (
           <Stack className="home" direction="row" spacing={2}>
-        <MenuItem className="home_left">
+        <div className="home_left">
         <div className="bloc-tabs">
 
                 <MaterialUISwitch sx={{ m: 1 }} onChange={togglestate} disabled={settingcontext.stateswitch ? true : false}/>           
@@ -94,14 +94,14 @@ export default function Home() {
                     </div>
                 </div>
         
-        </MenuItem>
-        <MenuItem className="home_right">
+        </div>
+        <div className="home_right">
         <Form className="todo-container" input ={input} setInput = {setInput} todolist = {todolist} setTodolist= {setTodolist}/>
                 <div >
                     <Todowrap className="todo-container" todolist = {todolist} setTodolist= {setTodolist} donelist={donelist} setDonelist={setDonelist}/>
       
     </div>
-        </MenuItem>
+        </div>
       </Stack>
         
                 

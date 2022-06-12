@@ -1,6 +1,5 @@
 import React, {useContext} from 'react'
 import "./settings.css"
-import ReactSlider from 'react-slider'
 import SettingContext from './settingcontext'
 import { Typography, Box, Slider } from '@mui/material'
 
@@ -57,13 +56,13 @@ let newWrokduration = (e) =>{
   settingsInfo.setWorktime(e.target.value);
 }
 let newLongbrkduration= (e) =>{
-  settingsInfo.setLongbrktime(e);
+  settingsInfo.setLongbrktime(e.target.value);
 }
 let newShortbrkduration= (e) =>{
-  settingsInfo.setShortbrktime(e);
+  settingsInfo.setShortbrktime(e.target.value);
 }
 let newRounds= (e) =>{
-  settingsInfo.setRounds(e);
+  settingsInfo.setRounds(e.target.value);
 }
   return (
     <div className='settings'>

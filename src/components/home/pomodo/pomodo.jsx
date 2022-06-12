@@ -4,19 +4,17 @@ import Button from '@mui/material/Button';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import ReplayIcon from '@mui/icons-material/Replay';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
-import 'react-circular-progressbar/dist/styles.css';
 import "./pomodo.css"
 import SettingContext from '../../settings/settingcontext';
 import {Howl, Howler} from 'howler';
 import { Tabtiles } from '../../GeneralFunctions';
-const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
+const soundSrc = "../src/components/sounds/Clockk.mp3"
 
 var sound = new Howl({
   src: soundSrc,
   loop: true,
   volume: 1,
-  html5: true,
-  preload:true
+  html5: true
 });
 
 export default function Pomodoro() {
@@ -118,7 +116,7 @@ if (secondsleftRef.current ===0){
   else{ 
     Tick();
     }
-  },10);
+  },1000);
   
   return ()=> clearInterval(interval);
   

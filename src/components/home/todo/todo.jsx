@@ -18,6 +18,7 @@ let doneHandler=()=>{
   if (donelist.length > 1){
     setDonelist(donelist.shift())
   }
+  
   setTodolist(todolist.filter(element=> element.id !==todo.id));
   setDonelist([...donelist, {text:todo.text, complete:true, id: todo.id}])
   setTododone(true);
