@@ -1,13 +1,11 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import Stopwatch from './stopwatch/stopwatch'
-import Todo from './todo/todo'
 import Form from './todo/form'
 import "./home.css"
 import Pomodoro from './pomodo/pomodo'
 import SettingContext from '../settings/settingcontext'
 import Todowrap from './todo/todowrap'
 import { Switch, Stack } from '@mui/material'
-import { MenuItem } from '@mui/material'
 import {styled}  from '@mui/material/styles'
 
 

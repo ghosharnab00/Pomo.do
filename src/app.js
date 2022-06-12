@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./App.css"
 import "./global.css"
 import Sidebar from "./components/sidebar/sidebar";
@@ -25,6 +25,10 @@ function App() {
   let [stateswitch, setStateswitch] = useState(false)
   let [tabseconds, setTabseconds] = useState(0)
 
+useEffect(()=>{
+  localStorage.setItem('todos',[]);
+  localStorage.setItem('dones',[]);
+},[])
   Tabtiles(`0${parseInt(tabseconds/60)}`.slice(-2)+ ":" +`0${tabseconds%60}`.slice(-2) + " ⏳ | " + "Pomo.do" )
   return (
     <div className="App">
