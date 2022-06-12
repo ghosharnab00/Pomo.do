@@ -1,6 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useEffect } from 'react'
 import "./App.css"
+=======
+import React from 'react'
+import "./app.css"
+>>>>>>> parent of f7cff65 (Update app.js)
 =======
 import React from 'react'
 import "./app.css"
