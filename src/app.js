@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react'
 import "./App.css"
+=======
+import React from 'react'
+import "./app.css"
+>>>>>>> parent of f7cff65 (Update app.js)
 import "./global.css"
 import Sidebar from "./components/sidebar/sidebar";
 import States from "./components/state/state";

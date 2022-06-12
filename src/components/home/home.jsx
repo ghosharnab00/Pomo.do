@@ -56,24 +56,14 @@ export default function Home() {
     let settingcontext = useContext(SettingContext);
     const [toggleState, setToggleState] = useState(false);
     const [input, setInput] = useState("")
-    const [todolist, setTodolist] = useState(JSON.parse(localStorage.getItem('todos')))
-    const [donelist, setDonelist] = useState(JSON.parse(localStorage.getItem('dones')))
+    const [todolist, setTodolist] = useState([JSON.parse(localStorage.getItem('todos'))])
+    const [donelist, setDonelist] = useState([JSON.parse(localStorage.getItem('dones'))])
 
     const togglestate= () => {
         let state = !toggleState ? true : false;
         setToggleState(state);
     };
     
-
-// function todoIter(item){
-//     return(
-//         <Todo item={item} />
-//     )
-// }
-
-
-
-
 
     return (
           <Stack className="home" direction="row" spacing={2}>
