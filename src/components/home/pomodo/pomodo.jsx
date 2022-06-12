@@ -8,11 +8,12 @@ import "./pomodo.css"
 import SettingContext from '../../settings/settingcontext';
 import {Howl, Howler} from 'howler';
 import { Tabtiles } from '../../GeneralFunctions';
-const soundSrc = ".../public/sounds/Clockk.mp3"
+const soundSrc = "https://www.mboxdrive.com/Clockk.mp3"
 
 var sound = new Howl({
   src: soundSrc,
   loop: true,
+  preload: true,
   volume: 1,
   html5: true
 });
