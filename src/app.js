@@ -9,7 +9,7 @@ import {
   Route
 } from "react-router-dom";
 import SettingContext from "./components/settings/settingcontext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Home from "./components/home/home";
 import Pomodoro from "./components/home/pomodo/pomodo";
 import Stopwatch from "./components/home/stopwatch/stopwatch";
@@ -25,6 +25,18 @@ function App() {
   let [stateswitch, setStateswitch] = useState(false)
   let [tabseconds, setTabseconds] = useState(0)
 
+  let checkLocalstorage = ()=>{
+    if (localStorage.length===0){
+      localStorage.setItem('todos', JSON.stringify([]));
+      localStorage.setItem('dones', JSON.stringify([]));
+    }
+    else{
+      return;
+    }
+  }
+  useEffect(()=>{
+    checkLocalstorage();
+  },[])
 
   Tabtiles(`0${parseInt(tabseconds/60)}`.slice(-2)+ ":" +`0${tabseconds%60}`.slice(-2) + " ⏳ | " + "Pomo.do" )
   return (

@@ -24,14 +24,13 @@ export default function Form({ input, setInput, todolist, setTodolist }) {
 
 
 
-  // let placeholder = (todolist.length === 5) ? "Finish this 5 tasks first. Then add new tasks. :D" : "What are you going to do today?";
-  // let readOnly = (todolist.length === 5) ? true : false;
+  let placeholder = (todolist.length === 5) ? "Finish this 5 tasks first. Then add new tasks. :D" : "What are you going to do today?";
+  let readOnly = (todolist.length === 5) ? true : false;
 
 
 
   return (
     <form onSubmit={handleSubmit}>
-      {todolist.length}
       <Paper 
       elevation={5}
         sx={{
@@ -45,8 +44,8 @@ export default function Form({ input, setInput, todolist, setTodolist }) {
 
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder={"What are you going to do today?"}
-          readOnly={false}
+          placeholder={placeholder}
+          readOnly={readOnly}
           onChange={handleChange}
           value={input}
         />
