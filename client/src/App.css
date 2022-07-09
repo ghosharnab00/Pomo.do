@@ -1,0 +1,28 @@
+body{
+    margin:2px;
+    display: block;
+    
+    
+
+}
+.left{
+    padding: 0 20px;
+    z-index: 10;
+    width: 15%;
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: var(--white);
+    box-shadow: 2em 0em 3em -1.5em var(--offwhite);
+}
+.right{
+    position: relative;
+    padding-left: 17.7%;
+    height: 100vh;
+    background-color: var(--white);
+}
+
+.home-wrap{
+  position: relative;;
+}
