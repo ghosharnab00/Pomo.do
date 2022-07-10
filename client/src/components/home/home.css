@@ -98,13 +98,4 @@
     display: block;
   }
 
-  .login{
-    position: absolute;
-    z-index: 1;
-    left: 80%;
-    top: 50px;
-
-}
-.home-wrap{
-  position: relative;;
-}
+  
