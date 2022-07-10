@@ -133,13 +133,13 @@ const totalSeconds = mode === "work"
 : mode === "longbrk" ?
 (settingcontext.longbrktime*60)
 :(settingcontext.shortbrktime*60);
-const percentage = Math.round(secondsleft / totalSeconds * 100);
+const percentage = Math.round((secondsleft / totalSeconds) * 100);
 
-Tabtiles(`0${parseInt(secondsleft/60)}`.slice(-2)+ ":" +`0${secondsleft%60}`.slice(-2) + ` ⏳ | ` + `Pomo.do` )
+Tabtiles(`0${parseInt(secondsleft/60)}`.slice(-2)+ `:` +`0${secondsleft%60}`.slice(-2) + " ⏳ | Pomo.do" )
     return (
         <div className='timer'>
           <Box position="relative" display="inline-flex">
-            
+          
       <CircularProgress variant="determinate" value={percentage}
           style={{display: "flex",
           height: "100%",

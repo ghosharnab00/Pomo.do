@@ -4,7 +4,7 @@ import './sidebar.css';
 import { BsGearFill, BsBarChartLine, BsClock } from 'react-icons/bs'
 import { useContext } from 'react';
 import SettingContext from '../settings/settingcontext';
-import { Typography , Button} from '@mui/material';
+import { Typography } from '@mui/material';
 export default function Sidebar() {
 
   let settingcontext = useContext(SettingContext);

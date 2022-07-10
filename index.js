@@ -6,22 +6,17 @@ var session = require('express-session')
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 const mongoose = require("mongoose");
 const {User} = require("./server/model/models")
-const Router = require("./server/router/auth")
+const Auth = require("./server/router/auth")
+const Todos = require("./server/router/todos")
 const cors = require("cors")
 const port = process.env.PORT || 8080
 const app = express();
-app.use(cors({
-  'allowedHeaders': ['sessionId', 'Content-Type'],
-  'exposedHeaders': ['sessionId'],
-  'origin': '*',
-  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  'preflightContinue': false
-}));
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+app.use(express.json())
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '');
+//   next();
+// });
 mongoose.connect("mongodb://localhost:27017/pomodoDB", {useNewUrlParser: true});
 
 //Cookies setup
@@ -39,11 +34,16 @@ var sess = {
   
 app.use(session(sess))
 
+
 //passport google auth setup
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.use(cors({
+  'origin': 'http://localhost:3000',
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true
+}));
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -76,7 +76,9 @@ passport.use(new GoogleStrategy({
 
 
 
-app.use(Router);
+app.use(Auth);
+// app.use(Todos);
+
 
 
 app.listen(port,()=>{console.log("server started at: "+port)})
