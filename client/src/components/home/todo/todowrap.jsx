@@ -1,61 +1,63 @@
 import React from 'react'
 import Todo from './todo'
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
+import axios from 'axios';
 
-export default function Todowrap({todolist,setTodolist,donelist, setDonelist}) {
-    let setLocalstorage = ()=>{
-        localStorage.setItem("todos", JSON.stringify(todolist));
+
+export default function Todowrap() {
+
+  const [isLoggedin,setisLoggedin] = useState(false);
+  const [dbtodos, setDbtodos]= useState([]);
+
+  async function getdbTodos() {
+    try {
+      await axios.get("http://localhost:8080/api/todos",{
+        method:"GET",
+        withCredentials: true,
+      }).then((dataa)=>{
         
-      }
-      
-      let getLocalTodos= ()=>{
-        if (localStorage.getItem("todos")===null){
-          localStorage.setItem("todos", JSON.stringify([]));
+        if(dataa.data.isLoggedin===true){
+          setisLoggedin(true)
+          setDbtodos(dataa.data.todos);
+          console.log(dataa.data.todos.length)
         }
-      else {
-       setTodolist(JSON.parse(localStorage.getItem('todos')));
-      }
-      
-      }
+        else{
+         
+        }
+        })
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-      let setLocaldone = ()=>{
-        localStorage.setItem("dones", JSON.stringify(donelist));
-      }
-      
-      useEffect(()=>{
-        setLocaldone();
-      },[donelist])
 
-      useEffect(()=>{
-        setLocalstorage();
-      },[todolist])
-      useEffect(()=>{
-        getLocalTodos();
-        //console.log(todolist)
-      },[])
+  useEffect(() => {
+    getdbTodos();
+    
+    
+  }, [])
+
+
+
+
+
+
+  //setup localstorage
+  
 
 
   return (
     <div>
       <ul className="todo-list">
-          {
-              todolist.map((todo)=>{return(
-                <Todo todo={todo} key={todo.id} todolist = {todolist} setTodolist= {setTodolist} donelist={donelist} setDonelist={setDonelist}/>
-            )})
-          }
-
       
-        
-      </ul>
-      <ul className="todo-list">
-          {
-              donelist.map((todo)=>{return(
-                <Todo todo={todo} key={todo.id} todolist = {todolist} setTodolist= {setTodolist} donelist={donelist} setDonelist={setDonelist}/>
-            )})
-          }
+        {
+          dbtodos.map((todo) => {
+            return (
+              <Todo todo={todo} key={todo._id} todolist={dbtodos} isLogged={isLoggedin} />
+            )
+          })
+        }
 
-      
-        
       </ul>
     </div>
   )

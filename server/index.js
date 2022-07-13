@@ -1,11 +1,12 @@
 require('dotenv').config()
 
 const express = require('express')
+const bodyParser = require('body-parser');
 const passport = require("passport")
 var session = require('express-session')
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 const mongoose = require("mongoose");
-//const {User} = require("./server/model/models")
+const {User} = require("./model/models")
 const Auth = require("./router/auth")
 const cors = require("cors")
 const port = process.env.PORT || 8080
@@ -22,8 +23,8 @@ mongoose.connect("mongodb://localhost:27017/pomodoDB", {useNewUrlParser: true});
 var sess = {
     secret: 'gorugadha.com',
     cookie: {},
-    saveUninitialized: false,
-    resave:false
+    resave: true,
+    saveUninitialized: true
   }
   
   if (app.get('env') === 'production') {
@@ -61,8 +62,8 @@ passport.use(new GoogleStrategy({
   },
   function(accessToken, refreshToken, profile, cb) {
    //console.log(profile)
-    User.findOrCreate({ googleId: profile.id, username:profile.displayName, picture: profile.picture }, function (err, user) {
-      //console.log(user);
+    User.findOrCreate({ googleId: profile.id, username:profile.displayName, picture: profile.picture /*todocount:0*/ }, function (err, user) {
+      console.log(user);
       return cb(err, user);
     });
   }
@@ -74,7 +75,7 @@ passport.use(new GoogleStrategy({
 
 
 
-
+app.use(bodyParser.json())
 app.use(Auth);
 // app.use(Todos);
 

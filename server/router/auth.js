@@ -7,7 +7,7 @@ const app = express();
 
 
 app.get("/api", (req, res) => {
-    console.log(req.user)
+    //console.log(req.user)
 
     if (req.isAuthenticated()) {
         res.json({
@@ -26,8 +26,13 @@ app.get("/api", (req, res) => {
 })
 
 app.get("/api/logout", (req, res) => {
-    req.logOut(() => {
+    req.logOut((err) => {
+        if (!err){
         res.redirect("http://localhost:3000/");
+    }
+    else {
+        res.redirect("http://localhost:3000/");
+    }
     });
 
 })
@@ -38,6 +43,7 @@ app.get('/api/auth/google',
     }));
 
 app.get("/api/success", (req, res) => {
+    //console.log(req.body)
     if (req.user) {
         res.status(200).json({
             error: false,
@@ -67,11 +73,7 @@ app.get('/api/auth/google/secrets',
     }));
 
 app.route('/api/todos')
-
     .get((req, res) => {
-        //console.log(req.user.usermane)
-        console.log(req.isAuthenticated())
-        console.log(req.user)
         if (req.isAuthenticated()) { 
             User.findOne({
                         googleId: req.user.googleId
@@ -80,45 +82,44 @@ app.route('/api/todos')
                             res.status(401).send(err)
                         } else {
                             res.status(200).json({
-                                todos: user.todos
+                                todos: user.todos,
+                                isLoggedin: true
                             })
                         }
                     })
         }
         else{res.json({
-            message: "User is not logged in"
+            message: "User is not logged in",
+            isLoggedin: false
         })}
     })
     .post((req, res) => {
-        //console.log(req.user)
-        //console.log(req.query.todo)
+
         if (req.isAuthenticated()) { 
-            User.findOne({googleId: req.user.googleId},(err,user)=>{
+            User.findOneAndUpdate({googleId: req.user.googleId},{$inc : {todocount : 1}},(err,user)=>{
                 if (err) {
                     console.log(err)
                     res.json({message:"err"})
-                } else {                
+                } else {     
+                    //console.log(user);           
                         let newTodo = new Todo({
-                            todo: req.query.todo,
-                            date: new Date(),
-                            todocount: 0
+                            text: req.body.todo,
+                            date: new Date()
                         })
+                    //user.todocount+=1;
                     user.todos.push(newTodo)
                     user.save();
                     //res.redirect('/api/todos')
                 }
             })
-        }
+            res.status(200).json({
+                message: "User is logged in"
+            })
+            
+       }
         else{res.status(401).json({
             message: "User is not logged in"
         })}
-
-
-
-
-
-
-        
 
     })
 
