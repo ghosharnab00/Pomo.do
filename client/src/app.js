@@ -15,7 +15,8 @@ import Pomodoro from "./components/home/pomodo/pomodo";
 import Stopwatch from "./components/home/stopwatch/stopwatch";
 import { Tabtiles } from "./components/GeneralFunctions";
 import { Grid } from "@mui/material";
-import Signin from './components/signin/signin';
+import UserDetails from './components/userdetails/userdetails';
+import Login from './components/login/login';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
   let [rounds, setRounds] = useState(3);
   let [stateswitch, setStateswitch] = useState(false)
   let [tabseconds, setTabseconds] = useState(0)
+  let [issignedin, setIssignedin]= useState(false)
 
   
 
@@ -38,12 +40,14 @@ function App() {
          rounds,
          stateswitch,
          tabseconds,
+         issignedin,
          setWorktime,
          setShortbrktime,
          setLongbrktime,
          setRounds,
          setStateswitch,
-         setTabseconds
+         setTabseconds,
+         setIssignedin
         } }>
        <Router>
        <Grid container>
@@ -52,7 +56,8 @@ function App() {
       
        </Grid>
        <Grid item xs className="right"> 
-       <Signin/>
+       <UserDetails/>
+       <Login/>
 
        <Routes>
        

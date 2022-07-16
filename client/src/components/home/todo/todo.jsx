@@ -5,7 +5,7 @@ import React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function Todo({todo, isLogged, newdbtodo, setDbtodos} ) {
+export default function Todo({todo, isLogged, dbtodos, setDbtodos} ) {
 
   let [tododone, setTododone] = useState(todo.complete)
 
@@ -22,7 +22,7 @@ export default function Todo({todo, isLogged, newdbtodo, setDbtodos} ) {
 }
 
 const deleteHandler=()=>{
-  let newdb = newdbtodo.filter(object => {
+  let newdb = dbtodos.filter(object => {
     return object._id !== todo._id;
   })
   setDbtodos(newdb);
@@ -32,10 +32,7 @@ async function doneHandler(){
   
   try{
     await axios.put(`http://localhost:8080/api/todos`, {id: todo._id }, {withCredentials: true})
-    console.log(newdbtodo);
-    newdbtodo[newdbtodo.findIndex(el => el._id === todo._id)].complete=true
-    console.log(newdbtodo);
-    setDbtodos(newdbtodo);
+    setTododone(true);
   }
   catch (error) {
     console.error(error);
@@ -69,8 +66,7 @@ let blankHandler = ()=>{
             color: 'green'
           }}
           aria-label="finished"
-          onClick={doneHandler}
-          //onClick={(!tododone) ? doneHandler : blankHandler}
+          onClick={(!tododone) ? doneHandler : blankHandler}
         >
           <DoneIcon />
         </IconButton>

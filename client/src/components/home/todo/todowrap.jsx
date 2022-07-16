@@ -35,29 +35,19 @@ export default function Todowrap() {
   useEffect(() => {
     getdbTodos();
     
-  }, [input,setDbtodos])
-
-
-
- let refresh = () => {
-    // re-renders the component
-    setValue({});
-  };
-
+  }, [input])
 
   //setup localstorage
-  
-
 
   return (
     <div >
-      <Form className="todo-container" input ={input} setInput = {setInput} />
+      <Form className="todo-container" input ={input} setInput = {setInput} dbtodos={dbtodos}/>
       <ul className="todo-list">
       
         {
           dbtodos.map((todo) => {
             return (
-              <Todo todo={todo} key={todo._id} isLogged={isLoggedin} newdbtodo={dbtodos} setDbtodos={setDbtodos}/>
+              <Todo todo={todo} key={todo._id} isLogged={isLoggedin} dbtodos={dbtodos} setDbtodos={setDbtodos}/>
             )
           })
         }

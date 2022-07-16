@@ -48,12 +48,14 @@ app.get("/api/success", (req, res) => {
         res.status(200).json({
             error: false,
             message: `You are logged in`,
-            user: req.user
+            user: req.user,
+            isLoggedin: true
         })
     } else {
         res.status(403).json({
             error: true,
-            message: "Not Authorized"
+            message: "Not Authorized",
+            isLoggedin: false
         })
 
     }

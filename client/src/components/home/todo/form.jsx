@@ -6,7 +6,7 @@ import axios from "axios"
 
 
 
-export default function Form({ input, setInput, todolist, setTodolist }) {
+export default function Form({ input, setInput, dbtodos }) {
 
 
   const handleChange = (event) => {
@@ -26,24 +26,24 @@ export default function Form({ input, setInput, todolist, setTodolist }) {
       console.log(error);
     });
 
-    // if (input && todolist.length < 5) {
-    //   setTodolist([...todolist, { text: input, complete: false, _id: (Math.random() * 1000) }]);
-
-    // }
+ 
     setInput('');
 
     
   };
 
+  let blankHandler = (e)=>{
+e.preventDefault();
+  }
 
 
-  // let placeholder = (todolist.length === 5) ? "Finish this 5 tasks first. Then add new tasks. :D" : "What are you going to do today?";
-  // let readOnly = (todolist.length === 5) ? true : false;
+  let placeholder = (dbtodos.length === 5) ? "Finish this 5 tasks first. Then add new tasks. :D" : "What are you going to do today?";
+  let readOnly = (dbtodos.length === 5) ? true : false;
 
 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(dbtodos.length === 5)? blankHandler: handleSubmit }>
       <Paper 
       elevation={5}
         sx={{
@@ -58,8 +58,8 @@ export default function Form({ input, setInput, todolist, setTodolist }) {
 
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder={"What are you going to do today?"}
-          readOnly={false}
+          placeholder={placeholder}
+          readOnly={readOnly}
           onChange={handleChange}
           value={input}
           required
