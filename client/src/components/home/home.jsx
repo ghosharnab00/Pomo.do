@@ -15,7 +15,7 @@ export default function Home() {
 
   let settingcontext = useContext(SettingContext);
   const [toggleState, setToggleState] = useState(false);
-  const [input, setInput] = useState("")
+
 
     
     // JSON.parse(localStorage.getItem('todos'))
@@ -47,11 +47,8 @@ export default function Home() {
         
         </div>
         <div className="home_right">
-        <Form className="todo-container" input ={input} setInput = {setInput}/>
-                <div >
-                    <Todowrap className="todo-container" input ={input} setInput = {setInput}/>
-      
-    </div>
+                
+                    <Todowrap className="todo-container"/>
         </div>
       </Stack>
                 

@@ -2,10 +2,12 @@ import React from 'react'
 import Todo from './todo'
 import { useEffect,useState } from 'react';
 import axios from 'axios';
+import Form from './form';
 
 
 export default function Todowrap() {
-
+  const [input, setInput] = useState("")
+  const [value, setValue] = useState();
   const [isLoggedin,setisLoggedin] = useState(false);
   const [dbtodos, setDbtodos]= useState([]);
 
@@ -19,7 +21,6 @@ export default function Todowrap() {
         if(dataa.data.isLoggedin===true){
           setisLoggedin(true)
           setDbtodos(dataa.data.todos);
-          console.log(dataa.data.todos.length)
         }
         else{
          
@@ -34,12 +35,14 @@ export default function Todowrap() {
   useEffect(() => {
     getdbTodos();
     
-    
-  }, [])
+  }, [input,setDbtodos])
 
 
 
-
+ let refresh = () => {
+    // re-renders the component
+    setValue({});
+  };
 
 
   //setup localstorage
@@ -47,13 +50,14 @@ export default function Todowrap() {
 
 
   return (
-    <div>
+    <div >
+      <Form className="todo-container" input ={input} setInput = {setInput} />
       <ul className="todo-list">
       
         {
           dbtodos.map((todo) => {
             return (
-              <Todo todo={todo} key={todo._id} todolist={dbtodos} isLogged={isLoggedin} />
+              <Todo todo={todo} key={todo._id} isLogged={isLoggedin} newdbtodo={dbtodos} setDbtodos={setDbtodos}/>
             )
           })
         }

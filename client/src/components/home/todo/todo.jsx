@@ -3,19 +3,43 @@ import DoneIcon from '@mui/icons-material/Done';
 import DeleteIcon from '@mui/icons-material/Delete';
 import React from 'react'
 import { useState } from 'react';
+import axios from 'axios';
 
-export default function Todo({todo, todolist, isLogged} ) {
+export default function Todo({todo, isLogged, newdbtodo, setDbtodos} ) {
 
   let [tododone, setTododone] = useState(todo.complete)
 
   
-let deleteHandler=()=>{
-  
+  async function deletedbHandler(){
+    
+  try{
+    await axios.delete(`http://localhost:8080/api/todos`, {data:{ id: todo._id }, withCredentials: true})
+    deleteHandler();    
+  }
+  catch (error) {
+    console.error(error);
+  }
 }
 
-let doneHandler=()=>{
+const deleteHandler=()=>{
+  let newdb = newdbtodo.filter(object => {
+    return object._id !== todo._id;
+  })
+  setDbtodos(newdb);
+}
+
+async function doneHandler(){
   
- 
+  try{
+    await axios.put(`http://localhost:8080/api/todos`, {id: todo._id }, {withCredentials: true})
+    console.log(newdbtodo);
+    newdbtodo[newdbtodo.findIndex(el => el._id === todo._id)].complete=true
+    console.log(newdbtodo);
+    setDbtodos(newdbtodo);
+  }
+  catch (error) {
+    console.error(error);
+  }
 }
 
 
@@ -45,7 +69,8 @@ let blankHandler = ()=>{
             color: 'green'
           }}
           aria-label="finished"
-          onClick={(!tododone) ? doneHandler : blankHandler}
+          onClick={doneHandler}
+          //onClick={(!tododone) ? doneHandler : blankHandler}
         >
           <DoneIcon />
         </IconButton>
@@ -56,7 +81,7 @@ let blankHandler = ()=>{
             color: 'rgba(255, 0, 0, 0.874)'
           }}
           aria-label="delete"
-          onClick={deleteHandler}
+          onClick={()=>{deletedbHandler();}}
         >
           <DeleteIcon />
         </IconButton>

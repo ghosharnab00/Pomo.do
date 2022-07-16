@@ -20,6 +20,7 @@ export default function Form({ input, setInput, todolist, setTodolist }) {
     {withCredentials: true})
     .then(function (response) {
       console.log(response);
+      
     })
     .catch(function (error) {
       console.log(error);

@@ -122,5 +122,37 @@ app.route('/api/todos')
         })}
 
     })
+    .delete((req, res)=>{
+        if (req.isAuthenticated()) { 
+            console.log(req.body.id)
+        //res.status(200).json({message:"Delete Successful"+ req.body.id})
+        User.findOneAndUpdate({googleId: req.user.googleId}, { $pull: {todos:{_id: req.body.id} }}, (err,todos)=>{
+                        if (err){console.log(err);}
+                        else{res.status(200).json({
+                            message: "todo is deleted."
+                        })}
+                    })
+        }
+        else{res.status(401).json({
+                    message: "User is not logged in"
+                })}
+    })
+    .put((req,res)=>{
+        if (req.isAuthenticated()) {
+            console.log(req.body.id)
+            User.updateOne({
+                "todos": { "$elemMatch": { "_id": req.body.id }}
+            },{
+                "$set": { "todos.$.complete": true }
+            },(err,user)=>{
+                if(err){
+                    res.status(401).json({message:err})
+                }
+                else{
+                    res.status(200).json({message:"user have completed task"})
+                }
+            })
+        }
+    })
 
 module.exports = app;
