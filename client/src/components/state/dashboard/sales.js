@@ -1,5 +1,6 @@
 import React from "react";
 import { Bar } from 'react-chartjs-2';
+import {Chart as ChhartJS} from "chart.js/auto";
 import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';

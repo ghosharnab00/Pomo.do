@@ -1,12 +1,11 @@
-import React, { useState, useContext,useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Stopwatch from './stopwatch/stopwatch'
 import "./home.css"
 import Pomodoro from './pomodo/pomodo'
 import SettingContext from '../settings/settingcontext'
 import Todowrap from './todo/todowrap'
-import { Stack } from '@mui/material'
+import { Stack, Box, Container, Grid } from '@mui/material'
 import MaterialUISwitch from "./todo/materialuiswitch"
-import Reactpip from 'react-picture-in-picture'
 
 
 
@@ -16,41 +15,71 @@ export default function Home() {
   const [toggleState, setToggleState] = useState(false);
 
 
-    
-    // JSON.parse(localStorage.getItem('todos'))
-    // JSON.parse(localStorage.getItem('dones'))
 
-    const togglestate= () => {
-        let state = !toggleState ? true : false;
-        setToggleState(state);
-    };
-    
+  // JSON.parse(localStorage.getItem('todos'))
+  // JSON.parse(localStorage.getItem('dones'))
 
-    return (
-          <Stack className='home' direction="row" spacing={3}>
-            
-        <div className="home_left">
-        <div className="bloc-tabs">
+  const togglestate = () => {
+    let state = !toggleState ? true : false;
+    setToggleState(state);
+  };
 
-                <MaterialUISwitch sx={{ m: 1 }} onChange={togglestate} disabled={settingcontext.stateswitch ? true : false}/>           
-                </div>
 
-                <div className="content-tabs">
-                    <div className ="app">
-                    {
-                        !toggleState ? <Pomodoro /> : <Stopwatch/>
-                    }
+  return (
+    <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        py:2
+      }}
+    >
+      <Container maxWidth={false}>
+        <Grid className='home' spacing={1} container justifyContent={"space-evenly"}>
+          <Grid
+          item
+            lg={4}
+            md={6}
+            xl={3}
+            xs={12}
+          >
+            <div className="bloc-tabs">
 
-                    </div>
-                </div>
-        
-        </div>
-        <div className="home_right">
-                
-                    <Todowrap className="todo-container"/>
-        </div>
-      </Stack>
-                
-        
-    )
+              <MaterialUISwitch sx={{ m: 1 }} onChange={togglestate} disabled={settingcontext.stateswitch ? true : false} />
+            </div>
+
+            <div className="content-tabs">
+              <div className="app">
+                {
+                  (!toggleState) ? <Pomodoro /> : <Stopwatch />
+                }
+
+              </div>
+            </div>
+
+          </Grid>
+          <Grid
+            item
+            lg={4}
+            md={6}
+            xl={3}
+            xs={12}
+          >
+            <Todowrap className="todo-container" />
+          </Grid>
+
+
+
+
+        </Grid>
+
+
+
+      </Container>
+
+
+    </Box>
+
+
+
+  )
 }

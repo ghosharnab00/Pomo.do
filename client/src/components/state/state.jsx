@@ -15,7 +15,7 @@ const State = () => (
       component="main"
       sx={{
         flexGrow: 1,
-        py: 8
+        py: 18
       }}
     >
       <Container maxWidth={false}>
@@ -75,7 +75,7 @@ const State = () => (
             xl={3}
             xs={12}
           >
-            <TrafficByDevice sx={{ height: '100%' }} />
+            <TrafficByDevice />
           </Grid>
           <Grid
             item
@@ -84,7 +84,7 @@ const State = () => (
             xl={3}
             xs={12}
           >
-            <LatestProducts sx={{ height: '100%' }} />
+           <LatestProducts sx={{ height: '100%' }} />
           </Grid>
           <Grid
             item

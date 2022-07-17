@@ -36,13 +36,13 @@ async function getUser() {
       method:"GET",
       withCredentials: true,
     }).then((dataa)=>{
-      console.log(dataa)
       setUser({googleId: dataa.data.user.googleId,
         picture: dataa.data.user.picture,
         username: dataa.data.user.username})
 
         if (dataa.data.isLoggedin){
           settingcontext.setIssignedin(true)
+          settingcontext.setStarttime(dataa.data.user.pomodostarttime);
         }
         else{
           settingcontext.setIssignedin(false)

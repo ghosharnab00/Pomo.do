@@ -8,6 +8,9 @@ import "./pomodo.css"
 import SettingContext from '../../settings/settingcontext';
 import {Howl} from 'howler';
 import { Tabtiles } from '../../GeneralFunctions';
+import axios from 'axios';
+
+
 const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
 
 var sound = new Howl({
@@ -36,6 +39,16 @@ let roundsRef = useRef (rounds)
 
 
 
+
+
+
+
+
+
+
+
+
+
 let Tick = ()=>{
   secondsleftRef.current--;
   setSecondsleft(secondsleftRef.current);
@@ -44,18 +57,52 @@ let Tick = ()=>{
 
     
 
-let initTicker= ()=>{
-  setIspaused(true);
-  ispausedRef.current = true;
+let initTicker= async()=>{
   
-}
-let stopTicker=()=>{
-  setIspaused(false)
-  ispausedRef.current = false;
-  //setSecondsleft(secondsleftRef.current);
+if (typeof settingcontext.starttime=="undefined"){
+  try{
+    await axios.put(`http://localhost:8080/api/pomodo`, {time: new Date() }, {withCredentials: true})
+    .then(
+      ()=>{
+        setIspaused(true);
+        ispausedRef.current = true;
+      }
+    )
+  }
+  catch (error){
+    console.error(error);
+  }
 }
 
-let resethndler = ()=>{
+else{
+    setIspaused(true);
+    ispausedRef.current = true;
+}
+  
+}
+let stopTicker=async()=>{
+  
+  try{
+    await axios.patch(`http://localhost:8080/api/pomodo`, {time: new Date() }, {withCredentials: true})
+    .then(
+      ()=>{
+        setIspaused(false)
+  ispausedRef.current = false;
+      }
+    )
+  }
+  catch (error){
+    console.error(error);
+  }
+  
+}
+
+let resethndler = async()=>{
+  try{
+    await axios.patch(`http://localhost:8080/api/pomodo`, {time: new Date() }, {withCredentials: true})
+    .then(
+      ()=>{
+       
   settingcontext.setStateswitch(false)
   setIspaused(false)
   ispausedRef.current = false;
@@ -64,6 +111,12 @@ let resethndler = ()=>{
   setRounds(settingcontext.rounds*2-1);
       roundsRef.current= settingcontext.rounds*2-1;
       settingcontext.setTabseconds(0);
+      }
+    )
+  }
+  catch (error){
+    console.error(error);
+  }
 }
 
 
@@ -126,7 +179,7 @@ if (secondsleftRef.current ===0){
 
 useEffect(()=>{
   
-},[secondsleft])
+},[])
  
 const totalSeconds = mode === "work" 
 ? (settingcontext.worktime*60) 

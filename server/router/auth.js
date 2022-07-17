@@ -43,22 +43,38 @@ app.get('/api/auth/google',
     }));
 
 app.get("/api/success", (req, res) => {
-    //console.log(req.body)
-    if (req.user) {
-        res.status(200).json({
-            error: false,
-            message: `You are logged in`,
-            user: req.user,
-            isLoggedin: true
-        })
-    } else {
-        res.status(403).json({
-            error: true,
-            message: "Not Authorized",
-            isLoggedin: false
-        })
-
+    if (req.isAuthenticated()) { 
+        User.findOne({
+                    googleId: req.user.googleId
+                }, (err, user) => {
+                    if (err) {
+                        res.status(401).send(err)
+                    } else {
+                        res.status(200).json({
+                            user:user,
+                            isLoggedin: true
+                        })
+                    }
+                })
     }
+    else{res.json({
+        message: "User is not logged in",
+        isLoggedin: false
+    })}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })
 
 app.get("/api/failed", (req, res) => {
@@ -157,4 +173,51 @@ app.route('/api/todos')
         }
     })
 
+    app.route('/api/pomodo')
+    .get((req,res)=>{
+        if (req.isAuthenticated()) { 
+            res.status(200).json({isLoggedi:true, starttime:req.user.pomodostarttime , timenow:req.user.pomodotimenow, pomodocompleted:req.user.totalpomodorocomplete})
+        }
+        else {
+            res.status(401).json({isLoggedi:false, message: "you are not logged in"})
+        }
+    })
+    .put((req,res)=>{
+        if (req.isAuthenticated()) { 
+            User.findOneAndUpdate({googleId: req.user.googleId}, {pomodostarttime: req.body.time}, (err,user)=>{
+                if(!err){
+                    res.status(200).json(user) 
+                }
+                else(
+                    res.status(401).json({message: err}) 
+                )
+            })
+        }
+        else {
+            res.status(401).json({isLoggedi:false, message: "you are not logged in"})
+        }
+    })
+    .patch((req,res)=>{
+        if (req.isAuthenticated()) { 
+            User.findOneAndUpdate({googleId: req.user.googleId}, {pomodotimenow: req.body.time}, (err,user)=>{
+                if(!err){
+                    res.status(200).json(user) 
+                }
+                else(
+                    res.status(401).json({message: err}) 
+                )
+            })
+        }
+        else {
+            res.status(401).json({isLoggedi:false, message: "you are not logged in"})
+        }
+    })
+
+
+
+
+
+
+
+    
 module.exports = app;

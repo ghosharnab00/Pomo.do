@@ -11,15 +11,17 @@ const todoSchema = new mongoose.Schema({
 })
 
 // const pomodoSchema = new mongoose.Schema({
-
+    
 // })
 const userSchema = new mongoose.Schema({
     username: String,
     googleId: String,
     picture: String,
     todocount: Number,
-    todos: [todoSchema]
-   //pomodo: [pomodoSchema]
+    todos: [todoSchema],
+    pomodostarttime: Date,
+    pomodotimenow: Date,
+    totalpomodorocomplete: Number,
 })
 
 userSchema.plugin(findOrCreate)

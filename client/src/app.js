@@ -27,7 +27,7 @@ function App() {
   let [stateswitch, setStateswitch] = useState(false)
   let [tabseconds, setTabseconds] = useState(0)
   let [issignedin, setIssignedin]= useState(false)
-
+  let[starttime, setStarttime]= useState(undefined)
   
 
   Tabtiles(`0${parseInt(tabseconds/60)}`.slice(-2)+ `:` +`0${tabseconds%60}`.slice(-2) + " ⏳ | Pomo.do" )
@@ -41,13 +41,15 @@ function App() {
          stateswitch,
          tabseconds,
          issignedin,
+         starttime,
          setWorktime,
          setShortbrktime,
          setLongbrktime,
          setRounds,
          setStateswitch,
          setTabseconds,
-         setIssignedin
+         setIssignedin,
+         setStarttime
         } }>
        <Router>
        <Grid container>

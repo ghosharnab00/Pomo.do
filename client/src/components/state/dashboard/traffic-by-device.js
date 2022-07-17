@@ -1,5 +1,6 @@
 import React from "react";
-import { Doughnut } from 'react-chartjs-2';
+import { Doughnut, Bar } from 'react-chartjs-2';
+import {Chart as ChhartJS} from "chart.js/auto";
 import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -7,7 +8,38 @@ import TabletIcon from '@mui/icons-material/Tablet';
 
 export const TrafficByDevice = (props) => {
   const theme = useTheme();
-
+  const UserData = [
+    {
+      id: 1,
+      year: 2016,
+      userGain: 80000,
+      userLost: 823,
+    },
+    {
+      id: 2,
+      year: 2017,
+      userGain: 45677,
+      userLost: 345,
+    },
+    {
+      id: 3,
+      year: 2018,
+      userGain: 78888,
+      userLost: 555,
+    },
+    {
+      id: 4,
+      year: 2019,
+      userGain: 90000,
+      userLost: 4555,
+    },
+    {
+      id: 5,
+      year: 2020,
+      userGain: 4300,
+      userLost: 234,
+    },
+  ];
   const data = {
     datasets: [
       {
@@ -75,18 +107,15 @@ export const TrafficByDevice = (props) => {
             position: 'relative'
           }}
         >
-          <Doughnut
-            data={data}
-            options={options}
-          />
+          <Doughnut data={data}
+          options={options} />
         </Box>
         <Box
           sx={{
             display: 'flex',
             justifyContent: 'center',
             pt: 2
-          }}
-        >
+          }}>
           {devices.map(({
             color,
             icon: Icon,

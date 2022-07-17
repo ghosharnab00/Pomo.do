@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import "./settings.css"
 import SettingContext from './settingcontext'
-import { Typography, Box, Slider } from '@mui/material'
+import { Typography, Box, Slider, Container,Grid } from '@mui/material'
 
 const workmarks = [
   {
@@ -65,8 +65,17 @@ let newRounds= (e) =>{
   settingsInfo.setRounds(e.target.value);
 }
   return (
-    <div className='settings'>
-      <div className="sliderwrap">
+    <Box
+      component="main"
+      sx={{
+        flexGrow: 1,
+        py:15
+      }}
+      className='settings'
+    >
+      <Container maxWidth={false}>
+        <Grid className='home' spacing={1} container justifyContent={"flex-start"} flexDirection={"column"}>
+        <div className="sliderwrap">
       <Box width={300} >
       <Typography className= "leble" fontSize={20}>Work duration</Typography>
       <Slider
@@ -139,7 +148,11 @@ let newRounds= (e) =>{
       />
     </Box>
 </div>
-    </div>
+        </Grid>
+        </Container>
+        </Box>
+  
+    
   )
 }
 
