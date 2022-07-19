@@ -59,7 +59,6 @@ async function getUser() {
 
 useEffect(()=>{
   getUser();
-  console.log(user);
 },[])
   return (
     

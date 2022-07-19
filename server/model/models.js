@@ -10,23 +10,23 @@ const todoSchema = new mongoose.Schema({
     date: Date
 })
 
-// const pomodoSchema = new mongoose.Schema({
-    
-// })
+const pomodoSchema = new mongoose.Schema({
+    starttime: Date,
+    endtime: Date,
+})
 const userSchema = new mongoose.Schema({
     username: String,
     googleId: String,
     picture: String,
     todocount: Number,
     todos: [todoSchema],
-    pomodostarttime: Date,
-    pomodotimenow: Date,
+    pomodo: [pomodoSchema],
     totalpomodorocomplete: Number,
 })
 
 userSchema.plugin(findOrCreate)
 
-const User = mongoose.model('User',userSchema )
-const Todo = mongoose.model('Todo', todoSchema )
+const User = mongoose.model('user',userSchema )
+const Todo = mongoose.model('todo', todoSchema )
 
 module.exports = {User, Todo};

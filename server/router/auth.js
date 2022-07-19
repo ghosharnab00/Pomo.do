@@ -176,10 +176,18 @@ app.route('/api/todos')
     app.route('/api/pomodo')
     .get((req,res)=>{
         if (req.isAuthenticated()) { 
-            res.status(200).json({isLoggedi:true, starttime:req.user.pomodostarttime , timenow:req.user.pomodotimenow, pomodocompleted:req.user.totalpomodorocomplete})
+            User.findOne({googleId: req.user.googleId},(err,user)=>{
+                if(!err){
+                    res.status(200).json({isLoggedin:true, starttime:user.pomodostarttime , timenow:user.pomodotimenow, pomodocompleted:user.totalpomodorocomplete})
+                }
+                else{
+                    res.status(401).json({message: err}) 
+                }
+            })
+            
         }
         else {
-            res.status(401).json({isLoggedi:false, message: "you are not logged in"})
+            res.status(401).json({isLoggedin:false, message: "you are not logged in"})
         }
     })
     .put((req,res)=>{
@@ -194,7 +202,7 @@ app.route('/api/todos')
             })
         }
         else {
-            res.status(401).json({isLoggedi:false, message: "you are not logged in"})
+            res.status(401).json({isLoggedin:false, message: "you are not logged in"})
         }
     })
     .patch((req,res)=>{
@@ -209,7 +217,7 @@ app.route('/api/todos')
             })
         }
         else {
-            res.status(401).json({isLoggedi:false, message: "you are not logged in"})
+            res.status(401).json({isLoggedin:false, message: "you are not logged in"})
         }
     })
 
