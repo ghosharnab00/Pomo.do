@@ -24,31 +24,7 @@ const State = () => {
     //  }))
     //  .catch(error => console.log(error));
 
-let getState = async()=>{
-  try {
-    await axios.get("http://localhost:8080/api/pomodo",{
-      method:"GET",
-      withCredentials: true,
-    }).then((dataa)=>{
-      setpomodoState({
-        starttime: dataa.data.starttime,
-        timenow: dataa.data.timenow
-      });
-     
 
-      
-      })
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-useEffect(()=>{
-  getState();
-  console.log(pomodostate.timenow);
-},[])
-  
-  
   return(
   <>
   <StateContext.Provider value={{
