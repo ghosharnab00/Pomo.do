@@ -1,22 +1,17 @@
 import React, { useEffect,useState } from "react";
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 import { useContext } from "react";
 import StateContext from "../statecontext";
-import axios from "axios";
 
 
-export const TotalPomodo = (props) =>{ 
+export const TodoCompleted = (props) =>{ 
 
   let statecontext =  useContext(StateContext);
   
-  console.log()
-  let seconds = Math.floor(statecontext.total/ 1000)% 60;
-  let minutes = Math.floor(statecontext.total / 60000)%60;
-  let hours = Math.floor(statecontext.total / 3600000);
-
+  let parcentage = (statecontext.todocompleted/statecontext.totaltodos)*100;
 
 
 
@@ -41,24 +36,26 @@ export const TotalPomodo = (props) =>{
             gutterBottom
             variant="overline"
           >
-            TOTAL POMODO TIME
+            TODOS COMPLETED
           </Typography>
           <Typography
             color="textPrimary"
             variant="h4"
           >
-            {`0${hours}`.slice(-2) +`:`+`0${minutes}`.slice(-2)+`:` + `0${seconds}`.slice(-2)}
+            {statecontext.todocompleted}
           </Typography>
         </Grid>
         <Grid item>
           <Avatar
             sx={{
-              backgroundColor: 'blue',
+              backgroundColor: 'transparent',
+              color:"blue",
               height: 52,
-              width: 52
+              width: 52,
+              border:"1px solid blue"
             }}
           >
-            <WbSunnyIcon />
+            <DoneAllIcon />
           </Avatar>
         </Grid>
       </Grid>
@@ -75,7 +72,7 @@ export const TotalPomodo = (props) =>{
           color="textSecondary"
           variant="caption"
         >
-          {new Date(hours).getSeconds()} hours since the beginning
+          {Math.floor(parcentage)}% todos completed till now
         </Typography>
       </Box>
     </CardContent>

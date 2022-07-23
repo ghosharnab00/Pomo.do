@@ -1,21 +1,63 @@
 import React from "react";
 import { Box, Container, Grid } from '@mui/material';
 import { TotalPomodo } from './dashboard/totalpomodo';
-import { LatestOrders } from './dashboard/latest-orders';
-import { LatestProducts } from './dashboard/latest-products';
 import { Sales } from './dashboard/sales';
-import { TasksProgress } from './dashboard/tasks-progress';
-import { TotalCustomers } from './dashboard/total-customers';
-import { TotalProfit } from './dashboard/total-profit';
+import { TodoCompleted } from './dashboard/todocompleted';
+import { TotalPomodocount } from './dashboard/totalpomodocount';
+import { TotalTodos } from './dashboard/totoaltodos';
 import { TrafficByDevice } from './dashboard/traffic-by-device';
 import { useState,useEffect } from "react";
 import axios from "axios";
 import StateContext from "./statecontext";
 
 const State = () => {
-  let [pomodostate, setpomodoState]= useState({starttime: "1",
-    timenow: ""});
+  let [total, setTotal] = useState()
+  let [pomodocount, setPomodocount]=useState();
+  let [totaltodos, setTotaltodos]=useState();
+  let [todocompleted, setTodocompleted]= useState();
 
+    let getState = async()=>{
+  
+      axios.all([axios.get("http://localhost:8080/api/pomodo",{
+       method:"GET",
+       withCredentials: true,
+     }),
+          axios.get("http://localhost:8080/api/todos",{
+           method:"GET",
+           withCredentials: true,
+         })])
+    .then(axios.spread((pomododata, tododata) => {  
+
+      setTotal(pomododata.data.pomodotime);
+      let pomodo = pomododata.data.pomodocount ? pomododata.data.pomodocount : 0;
+      setPomodocount(pomodo);
+      setTodocompleted(tododata.data.todocompleted);
+      let todo = tododata.data.todocount ? tododata.data.todocount : 0;
+      setTotaltodos(todo);
+      
+        
+    }))
+    .catch(error => console.log(error));
+   //   await axios.get("http://localhost:8080/api/pomodo",{
+   //     method:"GET",
+   //     withCredentials: true,
+   //   }).then((dataa)=>{
+   //     statecontext.setpomodoState({
+   //       starttime: dataa.data.starttime,
+   //       timenow: dataa.data.timenow
+   //     });
+   //     let time = (new Date(dataa.data.timenow).getTime() - new Date(dataa.data.starttime).getTime());
+   //     setTotal(time);
+   //     })
+   // } catch (error) {
+   //   console.error(error);
+   // }
+ }
+ 
+ useEffect(()=>{
+   getState();
+ },[])
+ 
     // axios.all([axios.get(`firstrequest`),
     //        axios.get(`secondrequest`),
     //        axios.get(`thirdrequest`)])
@@ -28,26 +70,35 @@ const State = () => {
   return(
   <>
   <StateContext.Provider value={{
-    pomodostate,
-    setpomodoState
+    total,
+    pomodocount, 
+    totaltodos, 
+    todocompleted, 
+    setTotal,
+    setPomodocount,
+    setTotaltodos,
+    setTodocompleted
+
          } }>
     <Box
       component="main"
       sx={{
         flexGrow: 1,
         py: 18
+
       }}
     >
-      <Container maxWidth={false}>
+      <Container maxWidth={false} >
         <Grid
           container
-          spacing={3}
+          spacing={6}
+          sx={{justifyContent:"center"}}
         >
           <Grid
             item
-            lg={3}
-            sm={6}
             xl={3}
+            lg={8}
+            sm={6}
             xs={12}
           >
             <TotalPomodo/>
@@ -55,31 +106,34 @@ const State = () => {
           <Grid
             item
             xl={3}
-            lg={3}
+            lg={8}
             sm={6}
             xs={12}
           >
-            <TotalCustomers />
+            <TotalPomodocount />
           </Grid>
           <Grid
             item
             xl={3}
-            lg={3}
+            lg={8}
             sm={6}
             xs={12}
           >
-            <TasksProgress />
+            <TotalTodos />
           </Grid>
           <Grid
             item
             xl={3}
-            lg={3}
+            lg={8}
             sm={6}
             xs={12}
           >
-            <TotalProfit sx={{ height: '100%' }} />
+            <TodoCompleted sx={{ height: '100%' }} />
           </Grid>
-          <Grid
+         
+         
+         
+          {/* <Grid
             item
             lg={8}
             md={12}
@@ -96,25 +150,8 @@ const State = () => {
             xs={12}
           >
             <TrafficByDevice />
-          </Grid>
-          <Grid
-            item
-            lg={4}
-            md={6}
-            xl={3}
-            xs={12}
-          >
-           <LatestProducts sx={{ height: '100%' }} />
-          </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <LatestOrders />
-          </Grid>
+          </Grid> */}
+         
         </Grid>
       </Container>
     </Box>

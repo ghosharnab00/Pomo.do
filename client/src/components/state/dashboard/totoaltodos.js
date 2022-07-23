@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import PeopleIcon from '@mui/icons-material/PeopleOutlined';
+import DoneIcon from '@mui/icons-material/Done';
 
-export const TotalCustomers = (props) => (
-  <Card {...props}>
-    <CardContent>
+import { useContext } from "react";
+import StateContext from "../statecontext";
+
+
+export const TotalTodos = (props) =>{ 
+
+  let statecontext =  useContext(StateContext);
+
+  return(
+  <Card
+    sx={{ height: '100%' }}
+    {...props}
+  >
+   <CardContent>
       <Grid
         container
         spacing={3}
@@ -17,24 +28,24 @@ export const TotalCustomers = (props) => (
             gutterBottom
             variant="overline"
           >
-            TOTAL CUSTOMERS
+            TOTAL TODOS
           </Typography>
           <Typography
             color="textPrimary"
             variant="h4"
           >
-            1,6k
+            {statecontext.totaltodos}
           </Typography>
         </Grid>
         <Grid item>
           <Avatar
             sx={{
-              backgroundColor: 'success.main',
-              height: 56,
-              width: 56
+              backgroundColor: 'blue',
+              height: 52,
+              width: 52
             }}
           >
-            <PeopleIcon />
+            <DoneIcon />
           </Avatar>
         </Grid>
       </Grid>
@@ -46,21 +57,15 @@ export const TotalCustomers = (props) => (
         }}
       >
         <ArrowUpwardIcon color="success" />
-        <Typography
-          variant="body2"
-          sx={{
-            mr: 1
-          }}
-        >
-          16%
-        </Typography>
+        
         <Typography
           color="textSecondary"
           variant="caption"
         >
-          Since last month
+          {statecontext.totaltodos} todos since the beginning
         </Typography>
       </Box>
     </CardContent>
   </Card>
 );
+}

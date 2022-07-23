@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     picture: String,
     todocount: Number,
     todos: [todoSchema],
-    pomodo: [pomodoSchema],
+    pomodos: [pomodoSchema],
     totalpomodorocomplete: Number,
 })
 
@@ -28,5 +28,6 @@ userSchema.plugin(findOrCreate)
 
 const User = mongoose.model('user',userSchema )
 const Todo = mongoose.model('todo', todoSchema )
+const Pomodo = mongoose.model("pomodo", pomodoSchema )
 
-module.exports = {User, Todo};
+module.exports = {User, Todo, Pomodo};

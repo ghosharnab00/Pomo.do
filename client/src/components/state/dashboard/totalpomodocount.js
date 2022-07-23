@@ -1,27 +1,16 @@
 import React, { useEffect,useState } from "react";
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import TimerIcon from '@mui/icons-material/Timer';
 
 import { useContext } from "react";
 import StateContext from "../statecontext";
-import axios from "axios";
 
 
-export const TotalPomodo = (props) =>{ 
+export const TotalPomodocount = (props) =>{ 
 
   let statecontext =  useContext(StateContext);
   
-  console.log()
-  let seconds = Math.floor(statecontext.total/ 1000)% 60;
-  let minutes = Math.floor(statecontext.total / 60000)%60;
-  let hours = Math.floor(statecontext.total / 3600000);
-
-
-
-
-
-
 
 
   return(
@@ -32,7 +21,7 @@ export const TotalPomodo = (props) =>{
    <CardContent>
       <Grid
         container
-        spacing={3}
+        spacing={2}
         sx={{ justifyContent: 'space-between' }}
       >
         <Grid item>
@@ -41,24 +30,26 @@ export const TotalPomodo = (props) =>{
             gutterBottom
             variant="overline"
           >
-            TOTAL POMODO TIME
+            TOTAL POMODO COUNT
           </Typography>
           <Typography
             color="textPrimary"
             variant="h4"
           >
-            {`0${hours}`.slice(-2) +`:`+`0${minutes}`.slice(-2)+`:` + `0${seconds}`.slice(-2)}
+            {statecontext.pomodocount}
           </Typography>
         </Grid>
         <Grid item>
           <Avatar
             sx={{
-              backgroundColor: 'blue',
+              backgroundColor: 'transparent',
+              color:"blue",
               height: 52,
-              width: 52
+              width: 52,
+              border:"1px solid blue"
             }}
           >
-            <WbSunnyIcon />
+            <TimerIcon />
           </Avatar>
         </Grid>
       </Grid>
@@ -75,7 +66,7 @@ export const TotalPomodo = (props) =>{
           color="textSecondary"
           variant="caption"
         >
-          {new Date(hours).getSeconds()} hours since the beginning
+          {statecontext.pomodocount} Pomodos completed till now
         </Typography>
       </Box>
     </CardContent>
