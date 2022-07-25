@@ -4,6 +4,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import SettingContext from '../settings/settingcontext';
 import {btnstyle, iconstyle,modelstyle, messageStyle } from "./loginstyle"
 const Login=()=>{
+
 const settingcontext = useContext(SettingContext);
   const [open, setOpen] = useState(true);
 

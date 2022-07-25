@@ -64,7 +64,7 @@ export default function Home() {
             xl={3}
             xs={12}
           >
-            <Todowrap className="todo-container" />
+            <Todowrap />
           </Grid>
 
 

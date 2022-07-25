@@ -50,7 +50,13 @@ e.preventDefault();
           p: '2px 4px',
           display: 'flex',
           alignItems: 'center',
-          width: 400,
+          width: {
+            xs:240,
+          sm: 240,
+          md:380,
+          lg:380,
+          xl:380
+          },
           boxShadow: '1px 1px 10px -1px #1976d2, 0px -1px 0px 0px #1976d2, 10px 5px 10px -1px #1976d2',
           borderRadius: '50px',
           

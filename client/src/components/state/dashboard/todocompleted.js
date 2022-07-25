@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React from "react";
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
@@ -42,7 +42,7 @@ export const TodoCompleted = (props) =>{
             color="textPrimary"
             variant="h4"
           >
-            {statecontext.todocompleted}
+            {Math.floor(parcentage)} %
           </Typography>
         </Grid>
         <Grid item>
@@ -72,7 +72,7 @@ export const TodoCompleted = (props) =>{
           color="textSecondary"
           variant="caption"
         >
-          {Math.floor(parcentage)}% todos completed till now
+          {statecontext.todocompleted} todos out of total {statecontext.totaltodos} todos are completed till now
         </Typography>
       </Box>
     </CardContent>

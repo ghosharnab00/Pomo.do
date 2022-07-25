@@ -3,11 +3,11 @@ import Todo from './todo'
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 import Form from './form';
+import { Box, Container } from '@mui/material';
 
 
 export default function Todowrap() {
   const [input, setInput] = useState("")
-  const [value, setValue] = useState();
   const [isLoggedin,setisLoggedin] = useState(false);
   const [dbtodos, setDbtodos]= useState([]);
 
@@ -40,11 +40,12 @@ export default function Todowrap() {
   //setup localstorage
 
   return (
-    <div >
-      <Form className="todo-container" input ={input} setInput = {setInput} dbtodos={dbtodos}/>
+    <Container>
+     
+     <Form input ={input} setInput = {setInput} dbtodos={dbtodos}/>
       <ul className="todo-list">
       
-        {
+      {
           dbtodos.map((todo) => {
             return (
               <Todo todo={todo} key={todo._id} isLogged={isLoggedin} dbtodos={dbtodos} setDbtodos={setDbtodos}/>
@@ -53,6 +54,7 @@ export default function Todowrap() {
         }
 
       </ul>
-    </div>
+      
+    </Container>
   )
 }

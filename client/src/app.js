@@ -7,21 +7,22 @@ import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from "@mui/material"
-import SettingContext from '../src/components/settings/settingcontext';
-import Pomodoro from "../src/components/home/pomodo/pomodo";
-import Stopwatch from "../src/components/home/stopwatch/stopwatch";
-import { Tabtiles } from "../src/components/GeneralFunctions"
+import SettingContext from './components/settings/settingcontext';
+import Pomodoro from "./components/home/pomodo/pomodo";
+import Stopwatch from "./components/home/stopwatch/stopwatch";
+import { Tabtiles } from "./components/GeneralFunctions"
 import { Grid } from "@mui/material";
 import {
     BrowserRouter as Router, Routes,
     Route
 } from "react-router-dom";
 import { BsGearFill, BsBarChartLine, BsClock } from 'react-icons/bs'
-import Home from '../src/components/home/home';
-import States from "../src/components/state/state";
-import Setting from "../src/components/settings/setting.jsx";
-import SidebarDrawer from '../src/components/drawer/drawer';
-import GetUser from "../src/components/userdetails/userdetails"
+import Home from './components/home/home';
+import States from "./components/state/state";
+import Setting from "./components/settings/setting.jsx";
+import SidebarDrawer from './components/drawer/drawer';
+import GetUser from "./components/userdetails/userdetails"
+import Login from './components/login/login';
 
 
 const drawerWidth = 200;
@@ -69,6 +70,24 @@ function App(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
+      <SettingContext.Provider value={{
+        worktime,
+        shortbrktime,
+        longbrktime,
+        rounds,
+        stateswitch,
+        tabseconds,
+        issignedin,
+        starttime,
+        setWorktime,
+        setShortbrktime,
+        setLongbrktime,
+        setRounds,
+        setStateswitch,
+        setTabseconds,
+        setIssignedin,
+        setStarttime
+    }}>
         <Box sx={{ display: 'flex' }}>
           <GetUser/>
             <CssBaseline />
@@ -89,7 +108,7 @@ function App(props) {
                     </Typography>
                     <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
                         {items.map((item) => (
-                            <Button key={item} sx={{ color: 'black' }} href={item.href}>
+                            <Button key={Math.random()} sx={{ color: 'black' }} href={item.href}>
                                 {item.title}
                             </Button>
                         ))}
@@ -133,27 +152,10 @@ function App(props) {
                 component="main"
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
-                <SettingContext.Provider value={{
-                    worktime,
-                    shortbrktime,
-                    longbrktime,
-                    rounds,
-                    stateswitch,
-                    tabseconds,
-                    issignedin,
-                    starttime,
-                    setWorktime,
-                    setShortbrktime,
-                    setLongbrktime,
-                    setRounds,
-                    setStateswitch,
-                    setTabseconds,
-                    setIssignedin,
-                    setStarttime
-                }}>
+                
                     <Router>
                         <Grid container>
-                           
+                        <Login/>
                             <Routes>
 
 
@@ -169,10 +171,12 @@ function App(props) {
                         </Grid>
                         {/* </Grid> */}
                     </Router>
-                </SettingContext.Provider>
+                
 
             </Box>
         </Box>
+
+        </SettingContext.Provider>
     );
 }
 

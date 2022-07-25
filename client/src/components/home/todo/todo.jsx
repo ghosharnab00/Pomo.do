@@ -54,7 +54,13 @@ let blankHandler = ()=>{
         p: '2px 4px',
         display: 'flex',
         alignItems: 'center',
-        width: 400,
+        width: {
+          xs:240,
+          sm: 240,
+          md:380,
+          lg:380,
+          xl:380
+        },
         borderRadius: '50px'
       }}
       className={!tododone ? "todo" : "todo completed"}>
