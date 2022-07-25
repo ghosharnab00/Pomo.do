@@ -137,7 +137,7 @@ else{
       else {
         Tick();
       }
-    }, 10);
+    }, 1000);
 
     return () => clearInterval(interval);
 

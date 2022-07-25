@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -29,6 +29,12 @@ export default function SidebarDrawer() {
         title: 'Settings'
     }
 ];
+
+function onLinkClick(e) {
+    e.preventDefault();
+    // further processing happens here
+ }
+
   return (
     <div>
        

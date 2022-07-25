@@ -11,7 +11,6 @@ const settingcontext = useContext(SettingContext);
   const handleOpen = () => {
     setOpen((settingcontext.issignedin)? false : true)
     // setOpen(settingcontext.issignedin)
-    console.log(settingcontext.issignedin)
   }
   
   
