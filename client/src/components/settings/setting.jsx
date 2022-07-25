@@ -71,7 +71,6 @@ let newRounds= (e) =>{
         flexGrow: 1,
         py:15
       }}
-      className='settings'
     >
       <Container maxWidth={false}>
         <Grid className='home' spacing={1} container justifyContent={"flex-start"} flexDirection={"column"}>

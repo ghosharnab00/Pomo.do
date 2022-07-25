@@ -1,11 +1,9 @@
 import React from "react";
 import { Box, Container, Grid } from '@mui/material';
 import { TotalPomodo } from './dashboard/totalpomodo';
-import { Sales } from './dashboard/sales';
 import { TodoCompleted } from './dashboard/todocompleted';
 import { TotalPomodocount } from './dashboard/totalpomodocount';
 import { TotalTodos } from './dashboard/totoaltodos';
-import { TrafficByDevice } from './dashboard/traffic-by-device';
 import { useState,useEffect } from "react";
 import axios from "axios";
 import StateContext from "./statecontext";
