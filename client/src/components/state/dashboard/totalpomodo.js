@@ -1,11 +1,11 @@
-import React, { useEffect,useState } from "react";
+import React from "react";
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 
 import { useContext } from "react";
 import StateContext from "../statecontext";
-import axios from "axios";
+
 
 
 export const TotalPomodo = (props) =>{ 
@@ -16,13 +16,6 @@ export const TotalPomodo = (props) =>{
   let seconds = Math.floor(statecontext.total/ 1000)% 60;
   let minutes = Math.floor(statecontext.total / 60000)%60;
   let hours = Math.floor(statecontext.total / 3600000);
-
-
-
-
-
-
-
 
   return(
   <Card

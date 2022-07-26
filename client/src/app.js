@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import "./global.css"
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,10 +13,11 @@ import Pomodoro from "./components/home/pomodo/pomodo";
 import Stopwatch from "./components/home/stopwatch/stopwatch";
 import { Tabtiles } from "./components/GeneralFunctions"
 import { Grid } from "@mui/material";
-import {
-    BrowserRouter as Router, Routes,
-    Route
+import { Routes,
+    Route,
+    NavLink
 } from "react-router-dom";
+import { MemoryRouter } from 'react-router-dom';
 import { BsGearFill, BsBarChartLine, BsClock } from 'react-icons/bs'
 import Home from './components/home/home';
 import States from "./components/state/state";
@@ -26,7 +27,7 @@ import GetUser from "./components/userdetails/userdetails"
 import Login from './components/login/login';
 
 
-const drawerWidth = 200;
+const drawerWidth = 220;
 
 function App(props) {
     const { window } = props;
@@ -89,6 +90,7 @@ function App(props) {
         setIssignedin,
         setStarttime
     }}>
+        <MemoryRouter>
         <Box sx={{ display: 'flex' }}>
           <GetUser/>
             <CssBaseline />
@@ -109,9 +111,10 @@ function App(props) {
                     </Typography>
                     <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
                         {items.map((item) => (
-                            <Button key={Math.random()} sx={{ color: 'black' }} href={item.href}>
-                                {item.title}
-                            </Button>
+                            
+                            <NavLink to={item.href} key={Math.random()} style={{textDecoration: "none"}}>
+                                <Button key={Math.random()} sx={{ color: 'black' }}>{item.title}</Button>
+                            </NavLink>
                         ))}
                     </Box>
                 </Toolbar>
@@ -154,7 +157,7 @@ function App(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 
-                    <Router>
+                   
                         <Grid container>
                         <Login/>
                             <Routes>
@@ -171,12 +174,12 @@ function App(props) {
 
                         </Grid>
                         {/* </Grid> */}
-                    </Router>
+                   
                 
 
             </Box>
         </Box>
-
+        </MemoryRouter>
         </SettingContext.Provider>
     );
 }

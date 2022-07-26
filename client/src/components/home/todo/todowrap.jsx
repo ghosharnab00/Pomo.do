@@ -3,7 +3,7 @@ import Todo from './todo'
 import { useEffect,useState } from 'react';
 import axios from 'axios';
 import Form from './form';
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 
 
 export default function Todowrap() {
@@ -40,7 +40,7 @@ export default function Todowrap() {
   //setup localstorage
 
   return (
-    <Container>
+    <Box>
      
      <Form input ={input} setInput = {setInput} dbtodos={dbtodos}/>
       <ul className="todo-list">
@@ -55,6 +55,6 @@ export default function Todowrap() {
 
       </ul>
       
-    </Container>
+    </Box>
   )
 }

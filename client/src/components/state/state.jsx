@@ -89,67 +89,45 @@ const State = () => {
       <Container maxWidth={false} >
         <Grid
           container
-          spacing={6}
+          spacing={8}
           sx={{justifyContent:"center"}}
         >
           <Grid
-            item
-            xl={3}
-            lg={8}
-            sm={6}
-            xs={12}
-          >
-            <TotalPomodo/>
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={8}
-            sm={6}
-            xs={12}
-          >
-            <TotalPomodocount />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={8}
-            sm={6}
-            xs={12}
-          >
-            <TotalTodos />
-          </Grid>
-          <Grid
-            item
-            xl={3}
-            lg={8}
-            sm={6}
-            xs={12}
-          >
-            <TodoCompleted sx={{ height: '100%' }} />
-          </Grid>
-         
-         
-         
-          {/* <Grid
             item
             lg={8}
             md={12}
             xl={9}
             xs={12}
           >
-            <Sales />
+            <TotalPomodo/>
           </Grid>
           <Grid
             item
-            lg={4}
-            md={6}
-            xl={3}
+            lg={8}
+            md={12}
+            xl={9}
             xs={12}
           >
-            <TrafficByDevice />
-          </Grid> */}
-         
+           <TotalPomodocount />
+          </Grid>
+          <Grid
+            item
+            lg={8}
+            md={12}
+            xl={9}
+            xs={12}
+          >
+           <TotalTodos />
+          </Grid>
+          <Grid
+            item
+            lg={8}
+            md={12}
+            xl={9}
+            xs={12}
+          >
+            <TodoCompleted sx={{ height: '100%' }} />
+          </Grid>
         </Grid>
       </Container>
     </Box>

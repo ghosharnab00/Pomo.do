@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import {Button, Avatar, Menu, MenuItem} from "@mui/material"
+import {Avatar, Menu, MenuItem} from "@mui/material"
 import SettingContext from '../settings/settingcontext'
 import axios from "axios"
 import "./userdetails.css"

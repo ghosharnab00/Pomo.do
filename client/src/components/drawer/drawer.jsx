@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -9,36 +9,36 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import SettingContext from '../settings/settingcontext';
 import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function SidebarDrawer() {
     let settingcontext = useContext(SettingContext);
+ 
   const items = [
     {
         href: '/',
         icon: (<BsGearFill fontSize="large" />),
-        title: 'Pomodo'
+        title: 'Pomodo',
+        prop:0
     },
     {
         href: '/state',
         icon: (<BsBarChartLine fontSize="large" />),
-        title: 'State'
+        title: 'State',
+        prop:1
     },
     {
         href: '/settings',
         icon: (<BsClock fontSize="large" />),
-        title: 'Settings'
+        title: 'Settings',
+        prop:2
     }
 ];
 
-function onLinkClick(e) {
-    e.preventDefault();
-    // further processing happens here
- }
 
   return (
     <div>
-       
-            <Toolbar sx={{}} >
+            <Toolbar >
 
                 <Typography
                     variant="h4"
@@ -50,23 +50,24 @@ function onLinkClick(e) {
             </Toolbar>
             <List display={"flex"}>
                 {items.map((item) => (
+                    <ListItemButton key={Math.random()} component={NavLink} to={item.href}>
+                    
                     <ListItem
                         key={item.title}
-                        href={item.href}
                         disablePadding
                         sx={settingcontext.stateswitch ?
                              {color:"var(--offwhite)",padding:"20px 0"} : {color:"black", padding:"20px 0"}}>
 
-                        <ListItemButton href={item.href} sx={settingcontext.stateswitch ?
-                             {pointerEvents:"none"} : {pointerEvents:"auto"}}>
+                        
                             <ListItemIcon sx={settingcontext.stateswitch ?
-                             {color:"var(--offwhite)",padding:"10px 0",justifyContent:"center"} : {color:"black", padding:"10px 0", justifyContent:"center"}}>
+                             {color:"var(--offwhite)",padding:"10px 0",justifyContent:"flex-end"} : {color:"black", padding:"10px 0", justifyContent:"flex-end"}}>
                                 {item.icon}
                             </ListItemIcon>
-                            <ListItemText primary={item.title} />
-                        </ListItemButton>
+                            <ListItemText primary={item.title}  sx={{padding:"0px 0px 0px 12px"}}/>
+                        
 
                     </ListItem>
+                    </ListItemButton>
                 ))}
             </List>
         </div>
