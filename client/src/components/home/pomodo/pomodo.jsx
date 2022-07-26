@@ -34,6 +34,7 @@ export default function Pomodoro() {
   let modedRef = useRef(mode);
   let roundsRef = useRef(rounds);
   let starttimeRef = useRef("");
+  let endtimeRef = useRef("");
 
 
   let Tick = () => {
@@ -45,14 +46,19 @@ export default function Pomodoro() {
   let initTicker = async () => {
     setIspaused(true);
     ispausedRef.current = true;
-    starttimeRef.current= new Date();
+    starttimeRef.current = new Date();
     console.log(starttimeRef.current)
+   
   }
 
 
   let stopTicker = async () => {
     setIspaused(false)
     ispausedRef.current = false;
+    if (modedRef.current=== "work"){
+      await axios.post(`http://localhost:8080/api/pomodo`, { starttime: starttimeRef.current, endtime: new Date() }, { withCredentials: true })
+      .then(console.log("done")).catch(error => console.log(error));
+    }
 
   }
 
@@ -66,62 +72,68 @@ export default function Pomodoro() {
     settingcontext.setTabseconds(0);
   }
 
+  let switchMode = () => {
+    
+    let nextmode = modedRef.current === "work"
+      ? roundsRef.current > 0 ? "shortbrk" : "longbrk"
+      : "work";
+    setMode(nextmode);
+    modedRef.current = nextmode;
+
+    let nextSesson = nextmode === "work"
+      ? (settingcontext.worktime * 60)
+      : nextmode === "longbrk" ?
+        (settingcontext.longbrktime * 60)
+        : (settingcontext.shortbrktime * 60);
+    // console.log("State is: ", nextmode);
+    setSecondsleft(nextSesson);
+    secondsleftRef.current = nextSesson;
+
+
+  }
+
+  let countRound = () => {
+
+    roundsRef.current--;
+    setRounds(roundsRef.current);
+
+    if (roundsRef.current < 0) {
+      setRounds(settingcontext.rounds * 2 - 1);
+      roundsRef.current = settingcontext.rounds * 2 - 1;
+    }
+
+  }
+
+
+let pomodoCounthandler =async()=>{
+  if (modedRef.current === "shortbrk" || modedRef.current === "longbrk") {
+  axios.get("http://localhost:8080/api/pomodo/increament", { method: "GET", withCredentials: true })
+  }
+  else {
+    // starttimeRef.current = new Date();
+    console.log(starttimeRef.current)
+  }
+}
+
+
+
+  let pomodotimeHandler = async () => {
+    if (modedRef.current === "shortbrk" || modedRef.current === "longbrk") {
+
+      await axios.post(`http://localhost:8080/api/pomodo`, { starttime: starttimeRef.current, endtime: new Date() }, { withCredentials: true })
+      .then(console.log("done")).catch(error => console.log(error));
+    }
+
+    else {
+      starttimeRef.current = new Date();
+      console.log(starttimeRef.current)
+    }
+  }
+
 
   useEffect(() => {
-
-    let switchMode = () => {
-      // console.log("switchmode : ", roundsRef.current);
-      let nextmode = modedRef.current === "work"
-        ? roundsRef.current > 0 ? "shortbrk" : "longbrk"
-        : "work";
-      setMode(nextmode);
-      modedRef.current = nextmode;
-
-      let nextSesson = nextmode === "work"
-        ? (settingcontext.worktime * 60)
-        : nextmode === "longbrk" ?
-          (settingcontext.longbrktime * 60)
-          : (settingcontext.shortbrktime * 60);
-      // console.log("State is: ", nextmode);
-      setSecondsleft(nextSesson);
-      secondsleftRef.current = nextSesson;
-
-
-    }
-    
-    let countRound = () => {
-
-      roundsRef.current--;
-      setRounds(roundsRef.current);
-
-      if (roundsRef.current < 0) {
-        setRounds(settingcontext.rounds * 2 - 1);
-        roundsRef.current = settingcontext.rounds * 2 - 1;
-      }
-
-    }
-let pomocounthandler= async()=>{
-  if (modedRef.current==="shortbrk" || modedRef.current==="longbrk" ){
-
-    await axios.all([axios.post(`http://localhost:8080/api/pomodo`, { starttime: starttimeRef.current, endtime: new Date() }, { withCredentials: true }),
-    axios.get("http://localhost:8080/api/pomodo/increament",{method:"GET", withCredentials:true})])
-   .then(axios.spread((pomododata, increament) => {  
-       console.log(pomododata.data,increament.data);
-   }))
-   .catch(error => console.log(error));
-  }
-//     await axios.post(`http://localhost:8080/api/pomodo`, { starttime: starttime, endtime: new Date() }, { withCredentials: true })
-//   await axios.get("http://localhost:8080/api/pomodo/increament",{method:"GET", withCredentials:true})
-//   .then(response=>{console.log(response)}).catch((err)=>[console.error(err)])
-// }
-else{
-  starttimeRef.current= new Date();
-  console.log(starttimeRef.current)
-}
-}
     secondsleftRef.current = settingcontext.worktime * 60;
     setSecondsleft(settingcontext.worktime * 60);
-
 
     let interval = setInterval(() => {
       if (!ispausedRef.current) {
@@ -131,13 +143,13 @@ else{
         sound.playing() ? sound.stop() : sound.play();
         countRound();
         switchMode();
-        pomocounthandler();
-
+        pomodoCounthandler();
+        pomodotimeHandler();
       }
       else {
         Tick();
       }
-    }, 1000);
+    }, 10);
 
     return () => clearInterval(interval);
 

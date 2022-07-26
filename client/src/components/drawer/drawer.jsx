@@ -50,7 +50,8 @@ export default function SidebarDrawer() {
             </Toolbar>
             <List display={"flex"}>
                 {items.map((item) => (
-                    <ListItemButton key={Math.random()} component={NavLink} to={item.href}>
+                    <ListItemButton key={Math.random()} component={NavLink} to={item.href} sx={settingcontext.stateswitch ?
+                        {pointerEvents:"none"} : {pointerEvents:"click"}}>
                     
                     <ListItem
                         key={item.title}

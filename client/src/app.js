@@ -112,8 +112,9 @@ function App(props) {
                     <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
                         {items.map((item) => (
                             
-                            <NavLink to={item.href} key={Math.random()} style={{textDecoration: "none"}}>
-                                <Button key={Math.random()} sx={{ color: 'black' }}>{item.title}</Button>
+                            <NavLink to={item.href} key={Math.random()} style={stateswitch?{textDecoration: "none",pointerEvents:"none"}: {textDecoration: "none"}}>
+                                <Button key={Math.random()} sx={stateswitch ?
+                             {color:"var(--offwhite)"} : {color:"black"}}>{item.title}</Button>
                             </NavLink>
                         ))}
                     </Box>

@@ -11,8 +11,7 @@ const app = express();
 
 
 app.get("/api", (req, res) => {
-    //console.log(req.user)
-console.log(req)
+    
     if (req.isAuthenticated()) {
         res.json({
             message: `You are logged in`,
@@ -32,9 +31,9 @@ console.log(req)
 app.get("/api/logout", (req, res) => {
     req.logOut((err) => {
         if (!err) {
-            res.redirect("http://localhost:3000/");
+            res.redirect("/api/");
         } else {
-            res.redirect("http://localhost:3000/");
+            res.redirect("/api/");
         }
     });
 
@@ -76,7 +75,7 @@ app.get("/api/failed", (req, res) => {
 
 app.get('/api/auth/google/secrets',
     passport.authenticate('google', {
-        successRedirect: "http://localhost:3000/",
+        successRedirect: "/api/success",
         failureRedirect: '/api/failed'
     }));
 

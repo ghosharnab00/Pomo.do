@@ -12,16 +12,17 @@ const cors = require("cors")
 const port = process.env.PORT || 8080
 const app = express();
 
+
 app.use(express.json())
 // app.use((req, res, next) => {
 //   res.header('Access-Control-Allow-Origin', '');
 //   next();
 // });
-mongoose.connect("mongodb://localhost:27017/pomodoDB", {useNewUrlParser: true});
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_UID}:${process.env.MONGODB_PASS}@cluster0.akq99.mongodb.net/pomodoDB`, {useNewUrlParser: true});
 
 //Cookies setup
 var sess = {
-    secret: 'gorugadha.com',
+    secret: process.env.COOKIE_SECRET,
     cookie: {},
     resave: true,
     saveUninitialized: true
@@ -39,11 +40,11 @@ app.use(session(sess))
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors({
-  'origin': 'http://localhost:3000',
-  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true
-}));
+// app.use(cors({
+//   'origin': 'http://localhost:3000',
+//   'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true
+// }));
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -57,8 +58,9 @@ passport.deserializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:8080/api/auth/google/secrets",
-    userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
+    callbackURL: process.env.CALL_BACK_URL,
+    userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
+    scope: ['profile', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {
    
@@ -80,4 +82,4 @@ app.use(Auth);
 
 
 
-app.listen(port,()=>{console.log("server started at: "+port)})
+app.listen(port,()=>{console.log("server started at: "+ port)})
