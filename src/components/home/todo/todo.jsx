@@ -3,31 +3,45 @@ import DoneIcon from '@mui/icons-material/Done';
 import DeleteIcon from '@mui/icons-material/Delete';
 import React from 'react'
 import { useState } from 'react';
+import axios from 'axios';
 
-export default function Todo({todo, todolist, setTodolist, donelist, setDonelist} ) {
+export default function Todo({todo, isLogged, dbtodos, setDbtodos} ) {
 
   let [tododone, setTododone] = useState(todo.complete)
 
   
-let deleteHandler=()=>{
-  setTodolist(todolist.filter(element=> element.id !==todo.id))
-  setDonelist(donelist.filter(element=> element.id !==todo.id))
+  async function deletedbHandler(){
+    
+  try{
+    await axios.delete(`http://localhost:8080/api/todos`, {data:{ id: todo._id }, withCredentials: true})
+    deleteHandler();    
+  }
+  catch (error) {
+    console.error(error);
+  }
 }
 
-let doneHandler=()=>{
-  if (donelist.length > 1){
-    setDonelist(donelist.shift())
-  }
+const deleteHandler=()=>{
+  let newdb = dbtodos.filter(object => {
+    return object._id !== todo._id;
+  })
+  setDbtodos(newdb);
+}
+
+async function doneHandler(){
   
-  setTodolist(todolist.filter(element=> element.id !==todo.id));
-  setDonelist([...donelist, {text:todo.text, complete:true, id: todo.id}])
-  setTododone(true);
- 
+  try{
+    await axios.put(`http://localhost:8080/api/todos`, {id: todo._id }, {withCredentials: true})
+    setTododone(true);
+  }
+  catch (error) {
+    console.error(error);
+  }
 }
 
 
 let blankHandler = ()=>{
-return;
+
 }
 
 
@@ -40,7 +54,13 @@ return;
         p: '2px 4px',
         display: 'flex',
         alignItems: 'center',
-        width: 400,
+        width: {
+          xs:240,
+          sm: 240,
+          md:380,
+          lg:380,
+          xl:380
+        },
         borderRadius: '50px'
       }}
       className={!tododone ? "todo" : "todo completed"}>
@@ -63,7 +83,7 @@ return;
             color: 'rgba(255, 0, 0, 0.874)'
           }}
           aria-label="delete"
-          onClick={deleteHandler}
+          onClick={()=>{deletedbHandler();}}
         >
           <DeleteIcon />
         </IconButton>

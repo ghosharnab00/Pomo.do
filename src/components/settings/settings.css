@@ -30,7 +30,7 @@ display: block;
     box-shadow: var(--color1);
 }
 .sliderwrap{
-    padding-bottom: 40px;
+    padding-bottom: 10px;
     display: flex;
     justify-content: center;
 }
