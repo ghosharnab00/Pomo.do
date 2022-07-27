@@ -1,6 +1,5 @@
 const express = require('express');
 const passport = require("passport");
-const mongoose = require("mongoose");
 const {
     User,
     Todo,
@@ -31,9 +30,9 @@ app.get("/api", (req, res) => {
 app.get("/api/logout", (req, res) => {
     req.logOut((err) => {
         if (!err) {
-            res.redirect("/api/");
+            res.redirect("https://domopo.netlify.app/");
         } else {
-            res.redirect("/api/");
+            res.redirect("https://domopo.netlify.app/");
         }
     });
 
@@ -75,8 +74,8 @@ app.get("/api/failed", (req, res) => {
 
 app.get('/api/auth/google/secrets',
     passport.authenticate('google', {
-        successRedirect: "/api/success",
-        failureRedirect: '/api/failed'
+        successRedirect: "https://domopo.netlify.app/",
+        failureRedirect: 'https://domopo.netlify.app/'
     }));
 
 app.route('/api/todos')
