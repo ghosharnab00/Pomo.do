@@ -18,7 +18,7 @@ app.use(express.json())
 //   res.header('Access-Control-Allow-Origin', '');
 //   next();
 // });
-mongoose.connect(`mongodb://localhost:27017/pomodoDB`, {useNewUrlParser: true});
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_UID}:${process.env.MONGODB_PASS}@cluster0.akq99.mongodb.net/pomodoDB`, {useNewUrlParser: true});
 
 //Cookies setup
 var sess = {
@@ -41,7 +41,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(cors({
-  'origin': 'http://localhost:3000',
+  'origin': 'https://domopo.netlify.app',
   'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 }));
