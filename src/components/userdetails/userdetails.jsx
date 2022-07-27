@@ -14,7 +14,7 @@ const [anchorEl, setAnchorEl] = useState(null)
 
 
 let signOut = async(e)=>{
-  window.open("http://localhost:8080/api/logout/","_self")
+  window.open("https://pomo-do.herokuapp.com/api/logout/","_self")
   setUser({googleId: null,
     picture: null,
     username: null})
@@ -32,7 +32,7 @@ const openMenu = (event) => {
 
 async function getUser() {
   try {
-    await axios.get("http://localhost:8080/api/success",{
+    await axios.get("https://pomo-do.herokuapp.com/api/success",{
       method:"GET",
       withCredentials: true,
     }).then((dataa)=>{
