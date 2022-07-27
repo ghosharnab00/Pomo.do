@@ -15,7 +15,7 @@ const settingcontext = useContext(SettingContext);
   
   
   let googleAuth = async(event)=>{
-    window.open("http://localhost:8080/api/auth/google","_self")
+    window.open("https://pomo-do.herokuapp.com/api/auth/google","_self")
     }
 
     

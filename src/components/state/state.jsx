@@ -16,11 +16,11 @@ const State = () => {
 
     let getState = async()=>{
   
-      axios.all([axios.get("http://localhost:8080/api/pomodo",{
+      axios.all([axios.get("https://pomo-do.herokuapp.com/api/pomodo",{
        method:"GET",
        withCredentials: true,
      }),
-          axios.get("http://localhost:8080/api/todos",{
+          axios.get("https://pomo-do.herokuapp.com/api/todos",{
            method:"GET",
            withCredentials: true,
          })])
