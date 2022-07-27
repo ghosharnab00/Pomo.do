@@ -99,8 +99,8 @@ let newRounds= (e) =>{
         py:4
       }}
     >
-      <Container maxWidth={false}>
-        <Grid className='home' spacing={1} container justifyContent={"flex-start"} flexDirection={"column"}>
+      <Container maxWidth={false} >
+        <Grid className='home' spacing={1} container justifyContent={"center"} flexDirection={"column"}>
         <div className="sliderwrap">
       <Box width={300} >
       <Typography className= "leble" fontSize={20}>Work duration</Typography>
