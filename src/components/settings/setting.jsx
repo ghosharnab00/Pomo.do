@@ -49,6 +49,33 @@ const longbrkmarks = [
   }
 ];
 
+const rounds = [
+  {
+    value: 1,
+    label: '1',
+  },
+  {
+    value: 5,
+    label: '5',
+  },
+  {
+    value: 13,
+    label: '13',
+  },
+  {
+    value: 15,
+    label: '15',
+  },
+  {
+    value: 30,
+    label: '30',
+  },
+  {
+    value: 20,
+    label: '20',
+  }
+]
+
 function Setting() {
   let settingsInfo = useContext(SettingContext);
   
@@ -141,7 +168,7 @@ let newRounds= (e) =>{
         min={1}
         max={13}
         onChange={newRounds}
-        marks={longbrkmarks}
+        marks={rounds}
         step={1}
         key={Math.random(0,100)}
       />
