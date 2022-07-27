@@ -13,7 +13,7 @@ export default function Todowrap() {
 
   async function getdbTodos() {
     try {
-      await axios.get("http://localhost:8080/api/todos",{
+      await axios.get("https://pomo-do.herokuapp.com/api/todos",{
         method:"GET",
         withCredentials: true,
       }).then((dataa)=>{
