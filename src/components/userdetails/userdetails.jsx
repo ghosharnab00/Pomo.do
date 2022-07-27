@@ -14,7 +14,7 @@ const [anchorEl, setAnchorEl] = useState(null)
 
 
 let signOut = async(e)=>{
-  window.open("https://pomo-do.herokuapp.com/api/logout/","_self")
+  window.open("https://pomo-do.herokuapp.com/api/logout","_self")
   setUser({googleId: null,
     picture: null,
     username: null})
@@ -36,6 +36,7 @@ async function getUser() {
       method:"GET",
       withCredentials: true,
     }).then((dataa)=>{
+      console.log(dataa.data)
       setUser({googleId: dataa.data.user.googleId,
         picture: dataa.data.user.picture,
         username: dataa.data.user.username})
