@@ -69,7 +69,7 @@ let newRounds= (e) =>{
       component="main"
       sx={{
         flexGrow: 1,
-        py:15
+        py:4
       }}
     >
       <Container maxWidth={false}>
