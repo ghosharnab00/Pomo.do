@@ -31,7 +31,7 @@ const deleteHandler=()=>{
 async function doneHandler(){
   
   try{
-    await axios.put(`http://localhost:8080/api/todos`, {id: todo._id }, {withCredentials: true})
+    await axios.put(`https://pomo-do.herokuapp.com/api/todos`, {id: todo._id }, {withCredentials: true})
     setTododone(true);
   }
   catch (error) {
