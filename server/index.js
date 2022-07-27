@@ -21,16 +21,22 @@ app.use(express.json())
 mongoose.connect(`mongodb+srv://${process.env.MONGODB_UID}:${process.env.MONGODB_PASS}@cluster0.akq99.mongodb.net/pomodoDB`, {useNewUrlParser: true});
 
 //Cookies setup
+var expiryDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
 var sess = {
     secret: process.env.COOKIE_SECRET,
-    cookie: {},
+    cookie: { },
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    sameSite: "none"
+    
   }
   
   if (app.get('env') === 'production') {
     app.set('trust proxy', 1) // trust first proxy
     sess.cookie.secure = true // serve secure cookies
+    sess.cookie.httpOnly = false
+    sess.cookie.maxAge = expiryDate
+    sess.cookie.sameSite = "none"
   }
   
 app.use(session(sess))
