@@ -40,11 +40,11 @@ app.use(session(sess))
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(cors({
-//   'origin': 'http://localhost:3000',
-//   'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   credentials: true
-// }));
+app.use(cors({
+  'origin': 'http://localhost:3000',
+  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true
+}));
 
 passport.serializeUser(function(user, done) {
     done(null, user);
