@@ -13,7 +13,7 @@ export default function Todo({todo, isLogged, dbtodos, setDbtodos} ) {
   async function deletedbHandler(){
     
   try{
-    await axios.delete(`http://localhost:8080/api/todos`, {data:{ id: todo._id }, withCredentials: true})
+    await axios.delete(`https://pomo-do.herokuapp.com/api/todos`, {data:{ id: todo._id }, withCredentials: true})
     deleteHandler();    
   }
   catch (error) {

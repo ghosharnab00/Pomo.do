@@ -16,7 +16,7 @@ export default function Form({ input, setInput, dbtodos }) {
   const handleSubmit = async(event) => {
     event.preventDefault();
     console.log(input);
-    await axios.post(`http://localhost:8080/api/todos`,{todo:input},
+    await axios.post(`https://pomo-do.herokuapp.com/api/todos`,{todo:input},
     {withCredentials: true})
     .then(function (response) {
       console.log(response);
