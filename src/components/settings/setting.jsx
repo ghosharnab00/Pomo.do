@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import "./settings.css"
 import SettingContext from './settingcontext'
 import { Typography, Box, Slider, Container,Grid } from '@mui/material'
+import { useEffect } from 'react';
 
 const workmarks = [
   {
@@ -76,11 +77,15 @@ const rounds = [
   }
 ]
 
+
+
+
 function Setting() {
   let settingsInfo = useContext(SettingContext);
-  
+
+
 let newWrokduration = (e) =>{
-  settingsInfo.setWorktime(e.target.value);
+  settingsInfo.setWorktime(e.target.value);  
 }
 let newLongbrkduration= (e) =>{
   settingsInfo.setLongbrktime(e.target.value);
@@ -91,6 +96,11 @@ let newShortbrkduration= (e) =>{
 let newRounds= (e) =>{
   settingsInfo.setRounds(e.target.value);
 }
+
+useEffect(()=>{
+  localStorage.setItem('settings', JSON.stringify({worktime:settingsInfo.worktime, longbrktime:settingsInfo.longbrktime, shortbrktime:settingsInfo.shortbrktime, rounds:settingsInfo.rounds }));
+},[settingsInfo.worktime,settingsInfo.longbrktime, settingsInfo.rounds,settingsInfo.shortbrktime])
+
   return (
     <Box
       component="main"

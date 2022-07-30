@@ -34,6 +34,7 @@ export default function Pomodoro() {
   let modedRef = useRef(mode);
   let roundsRef = useRef(rounds);
   let starttimeRef = useRef("");
+  let workState = JSON.parse(localStorage.getItem('settings'));
 
 
   let Tick = () => {
@@ -64,10 +65,10 @@ export default function Pomodoro() {
   let resethndler = async () => {
     stopTicker();
     settingcontext.setStateswitch(false);
-    secondsleftRef.current = settingcontext.worktime * 60;
-    setSecondsleft(settingcontext.worktime * 60);
-    setRounds(settingcontext.rounds * 2 - 1);
-    roundsRef.current = settingcontext.rounds * 2 - 1;
+    secondsleftRef.current = workState.worktime * 60;
+    setSecondsleft(workState.worktime * 60);
+    setRounds(workState.rounds * 2 - 1);
+    roundsRef.current = workState.rounds * 2 - 1;
     settingcontext.setTabseconds(0);
   }
 
@@ -80,10 +81,10 @@ export default function Pomodoro() {
     modedRef.current = nextmode;
 
     let nextSesson = nextmode === "work"
-      ? (settingcontext.worktime * 60)
+      ? (workState.worktime * 60)
       : nextmode === "longbrk" ?
-        (settingcontext.longbrktime * 60)
-        : (settingcontext.shortbrktime * 60);
+        (workState.longbrktime * 60)
+        : (workState.shortbrktime * 60);
     // console.log("State is: ", nextmode);
     setSecondsleft(nextSesson);
     secondsleftRef.current = nextSesson;
@@ -97,8 +98,8 @@ export default function Pomodoro() {
     setRounds(roundsRef.current);
 
     if (roundsRef.current < 0) {
-      setRounds(settingcontext.rounds * 2 - 1);
-      roundsRef.current = settingcontext.rounds * 2 - 1;
+      setRounds(workState.rounds * 2 - 1);
+      roundsRef.current = workState.rounds * 2 - 1;
     }
 
   }
@@ -131,8 +132,8 @@ let pomodoCounthandler =async()=>{
 
 
   useEffect(() => {
-    secondsleftRef.current = settingcontext.worktime * 60;
-    setSecondsleft(settingcontext.worktime * 60);
+    secondsleftRef.current = workState.worktime * 60;
+    setSecondsleft(workState.worktime * 60);
 
     let interval = setInterval(() => {
       if (!ispausedRef.current) {
@@ -155,6 +156,9 @@ let pomodoCounthandler =async()=>{
 
   }, [settingcontext])
 
+  useEffect(()=>{
+    console.log(workState);
+  },[])
 
 
   const totalSeconds = mode === "work"

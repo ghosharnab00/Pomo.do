@@ -33,18 +33,21 @@ import Login from './components/login/login';
 const drawerWidth = 220;
 
 function App(props) {
+    const workState=JSON.parse(localStorage.getItem('settings'));
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
-    const [worktime, setWorktime] = useState(30);
-    let [shortbrktime, setShortbrktime] = useState(5);
-    let [longbrktime, setLongbrktime] = useState(20);
-    let [rounds, setRounds] = useState(3);
+    const [worktime, setWorktime] = useState(workState.worktime);
+    let [shortbrktime, setShortbrktime] = useState(workState.shortbrktime);
+    let [longbrktime, setLongbrktime] = useState(workState.longbrktime);
+    let [rounds, setRounds] = useState(workState.rounds);
     let [stateswitch, setStateswitch] = useState(false)
     let [tabseconds, setTabseconds] = useState(0)
     let [issignedin, setIssignedin] = useState(false)
     let [starttime, setStarttime] = useState(undefined)
 
 
+
+    
     Tabtiles(`0${parseInt(tabseconds / 60)}`.slice(-2) + `:` + `0${tabseconds % 60}`.slice(-2) + " ⏳ | Pomo.do")
 
   
@@ -71,6 +74,12 @@ function App(props) {
       }
   ];
    
+  React.useEffect(()=>{
+    if (!localStorage.hasOwnProperty('settings')){
+        localStorage.setItem('settings', JSON.stringify({worktime:25, longbrktime:15, shortbrktime:5, rounds:3 }));
+    }
+},[])
+
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
