@@ -48,7 +48,7 @@ export default function Todowrap() {
 
   return (
     <Box>
-    { (isLogged)?<Toaster
+    { (isLoggedin)?<Toaster
   position="top-center"
   reverseOrder={false}
 /> :<></>}
