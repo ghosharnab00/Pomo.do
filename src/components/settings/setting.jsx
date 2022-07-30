@@ -106,11 +106,12 @@ useEffect(()=>{
       component="main"
       sx={{
         flexGrow: 1,
-        py:4
+        py:18,
+        paddingBottom:"11%"
       }}
     >
       <Container maxWidth={false} >
-        <Grid className='home' spacing={1} container justifyContent={"center"} flexDirection={"column"}>
+        <Grid spacing={1} container justifyContent={"center"} flexDirection={"column"}>
         <div className="sliderwrap">
       <Box width={300} >
       <Typography className= "leble" fontSize={20}>Work duration</Typography>

@@ -1,15 +1,4 @@
-.home{
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    height: 100vh;
-    vertical-align: center;
-    width: 85%;
-    margin:0 auto;
-    text-align: center;
-    flex-direction: row;
-    
-}
+
 
 .home_left{
     display: flex;

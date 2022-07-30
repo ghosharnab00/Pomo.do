@@ -67,7 +67,8 @@ const State = () => {
       component="main"
       sx={{
         flexGrow: 1,
-        py: 18
+        py: 15,
+        paddingBottom:"0"
 
       }}
     >
@@ -111,7 +112,7 @@ const State = () => {
             xl={9}
             xs={12}
           >
-            <TodoCompleted sx={{ height: '100%' }} />
+            <TodoCompleted/>
           </Grid>
         </Grid>
       </Container>

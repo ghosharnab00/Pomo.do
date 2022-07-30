@@ -25,6 +25,7 @@ import Setting from "./components/settings/setting.jsx";
 import SidebarDrawer from './components/drawer/drawer';
 import GetUser from "./components/userdetails/userdetails"
 import Login from './components/login/login';
+import {Footer} from './components/footer/footer';
 
 
 
@@ -165,12 +166,12 @@ function App(props) {
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                sx={{ flexGrow: 1, p: 0, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 
                    
-                        <Grid container>
-                        <Login/>
+                        <Grid container >
+                        {/* <Login/> */}
                             <Routes>
 
 
@@ -182,13 +183,17 @@ function App(props) {
 
 
                             </Routes>
-
+                            
+                        </Grid>
+                        <Grid item flex={true} justifyContent="center">
+                        <Footer/>
                         </Grid>
                         {/* </Grid> */}
                    
                 
 
             </Box>
+            
         </Box>
         </MemoryRouter>
         </SettingContext.Provider>

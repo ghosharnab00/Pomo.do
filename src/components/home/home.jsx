@@ -30,11 +30,12 @@ export default function Home() {
       component="main"
       sx={{
         flexGrow: 1,
-        py:3
+        py:18,
+        paddingBottom:"6%"
       }}
     >
       <Container maxWidth={false}>
-        <Grid className='home' spacing={6} container justifyContent={"space-evenly"}>
+        <Grid spacing={6} container justifyContent={"space-evenly"}>
           <Grid
           item
             lg={4}
