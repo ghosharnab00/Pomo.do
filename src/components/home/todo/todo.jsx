@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Todo({todo, isLogged, dbtodos, setDbtodos} ) {
 
@@ -39,6 +40,13 @@ async function doneHandler(){
   }
 }
 
+const myPromise = doneHandler();
+
+toast.promise(myPromise, {
+  loading: 'Doning...',
+  success: 'Task successfully done',
+  error: 'Could not tick off todo',
+});
 
 let blankHandler = ()=>{
 
@@ -49,6 +57,12 @@ let blankHandler = ()=>{
     <Box
     display="flex"
     justifyContent='center' >
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
+
+
       <Paper 
       sx={{
         p: '2px 4px',
