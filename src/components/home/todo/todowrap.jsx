@@ -33,13 +33,12 @@ export default function Todowrap() {
  
 
   useEffect(() => {
-    if(isLoggedin){
     toast.promise(getdbTodos(), {
       loading: 'Getting todos...',
       success: 'Tasks successfully retrived',
       error: 'Could not get todo',
     });
-  }
+  
   }, [])
 
   useEffect(()=>{
@@ -49,10 +48,10 @@ export default function Todowrap() {
 
   return (
     <Box>
-     <Toaster
+    { (isLogged)?<Toaster
   position="top-center"
   reverseOrder={false}
-/>
+/> :<></>}
      <Form input ={input} setInput = {setInput} dbtodos={dbtodos}/>
       <ul className="todo-list">
       
