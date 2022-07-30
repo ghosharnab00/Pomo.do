@@ -33,6 +33,9 @@ import Login from './components/login/login';
 const drawerWidth = 220;
 
 function App(props) {
+    if (!localStorage.hasOwnProperty('settings')){
+        localStorage.setItem('settings', JSON.stringify({worktime:25, longbrktime:15, shortbrktime:5, rounds:3 }));
+    }
     const workState=JSON.parse(localStorage.getItem('settings'));
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -74,12 +77,6 @@ function App(props) {
       }
   ];
    
-  React.useEffect(()=>{
-    if (!localStorage.hasOwnProperty('settings')){
-        localStorage.setItem('settings', JSON.stringify({worktime:25, longbrktime:15, shortbrktime:5, rounds:3 }));
-    }
-},[])
-
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
