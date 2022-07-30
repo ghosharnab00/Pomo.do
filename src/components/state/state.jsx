@@ -7,6 +7,7 @@ import { TotalTodos } from './dashboard/totoaltodos';
 import { useState,useEffect } from "react";
 import axios from "axios";
 import StateContext from "./statecontext";
+import toast, { Toaster } from 'react-hot-toast';
 
 const State = () => {
   let [total, setTotal] = useState()
@@ -53,7 +54,11 @@ const State = () => {
  }
  
  useEffect(()=>{
-   getState();
+  toast.promise(getState(), {
+    loading: 'Getting todos...',
+    success: 'Tasks successfully retrived',
+    error: 'Could not get todo',
+  });
  },[])
  
     // axios.all([axios.get(`firstrequest`),
@@ -78,6 +83,7 @@ const State = () => {
     setTodocompleted
 
          } }>
+          <Toaster/>
     <Box
       component="main"
       sx={{

@@ -34,7 +34,6 @@ export default function Pomodoro() {
   let modedRef = useRef(mode);
   let roundsRef = useRef(rounds);
   let starttimeRef = useRef("");
-  let endtimeRef = useRef("");
 
 
   let Tick = () => {

@@ -30,19 +30,20 @@ export default function Todowrap() {
       console.error(error);
     }
   }
-  const myPromise = getdbTodos();
-
  
 
   useEffect(() => {
-    toast.promise(myPromise, {
+    toast.promise(getdbTodos(), {
       loading: 'Getting todos...',
       success: 'Tasks successfully retrived',
       error: 'Could not get todo',
     });
     
-  }, [input])
+  }, [])
 
+  useEffect(()=>{
+    getdbTodos();
+  },[input])
   //setup localstorage
 
   return (

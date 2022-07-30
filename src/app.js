@@ -25,9 +25,7 @@ import Setting from "./components/settings/setting.jsx";
 import SidebarDrawer from './components/drawer/drawer';
 import GetUser from "./components/userdetails/userdetails"
 import Login from './components/login/login';
-import toast, { Toaster } from 'react-hot-toast';
 
-const notify = () => toast('Here is your toast.');
 
 
 
