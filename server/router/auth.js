@@ -19,7 +19,7 @@ app.get("/api", (req, res) => {
             isLoggedin: true
         })
     } else {
-        res.json({
+        res.status(401).json({
             message: "You are not logged in",
             isLoggedin: false
         })
@@ -30,9 +30,9 @@ app.get("/api", (req, res) => {
 app.get("/api/logout", (req, res) => {
     req.logOut((err) => {
         if (!err) {
-            res.redirect("https://domopo.netlify.app/");
+            res.redirect("https://pomo.arnabghosh.me/");
         } else {
-            res.redirect("https://domopo.netlify.app/");
+            res.redirect("https://pomo.arnabghosh.me/");
         }
     });
 
@@ -58,7 +58,7 @@ app.get("/api/success", (req, res) => {
             }
         })
     } else {
-        res.json({
+        res.status(401).json({
             message: "User is not logged in",
             isLoggedin: false
         })
@@ -74,8 +74,8 @@ app.get("/api/failed", (req, res) => {
 
 app.get('/api/auth/google/secrets',
     passport.authenticate('google', {
-        successRedirect: "https://domopo.netlify.app/",
-        failureRedirect: 'https://domopo.netlify.app/'
+        successRedirect: "https://pomo.arnabghosh.me/",
+        failureRedirect: 'https://pomo.arnabghosh.me/'
     }));
 
 app.route('/api/todos')
@@ -103,7 +103,7 @@ app.route('/api/todos')
                 }
             })
         } else {
-            res.json({
+            res.status(401).json({
                 message: "User is not logged in",
                 isLoggedin: false
             })

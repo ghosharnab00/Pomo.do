@@ -33,11 +33,13 @@ export default function Todowrap() {
  
 
   useEffect(() => {
+    if(isLoggedin){
     toast.promise(getdbTodos(), {
       loading: 'Getting todos...',
       success: 'Tasks successfully retrived',
       error: 'Could not get todo',
     });
+  }
     
   }, [])
 

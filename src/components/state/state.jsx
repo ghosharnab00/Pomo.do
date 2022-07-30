@@ -47,13 +47,6 @@ const State = () => {
   });
  },[])
  
-    // axios.all([axios.get(`firstrequest`),
-    //        axios.get(`secondrequest`),
-    //        axios.get(`thirdrequest`)])
-    //  .then(axios.spread((firstResponse, secondResponse, thirdResponse) => {  
-    //      console.log(firstResponse.data,secondResponse.data, thirdResponse.data);
-    //  }))
-    //  .catch(error => console.log(error));
 
 
   return(
