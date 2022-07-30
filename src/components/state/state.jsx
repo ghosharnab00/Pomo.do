@@ -37,27 +37,13 @@ const State = () => {
         
     }))
     .catch(error => console.log(error));
-   //   await axios.get("http://localhost:8080/api/pomodo",{
-   //     method:"GET",
-   //     withCredentials: true,
-   //   }).then((dataa)=>{
-   //     statecontext.setpomodoState({
-   //       starttime: dataa.data.starttime,
-   //       timenow: dataa.data.timenow
-   //     });
-   //     let time = (new Date(dataa.data.timenow).getTime() - new Date(dataa.data.starttime).getTime());
-   //     setTotal(time);
-   //     })
-   // } catch (error) {
-   //   console.error(error);
-   // }
  }
  
  useEffect(()=>{
   toast.promise(getState(), {
-    loading: 'Getting todos...',
-    success: 'Tasks successfully retrived',
-    error: 'Could not get todo',
+    loading: 'Getting Stats...',
+    success: 'Stats successfully retrived',
+    error: 'Could not get Stats',
   });
  },[])
  
