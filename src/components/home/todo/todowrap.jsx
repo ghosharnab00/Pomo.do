@@ -4,7 +4,7 @@ import { useEffect,useState } from 'react';
 import axios from 'axios';
 import Form from './form';
 import { Box } from '@mui/material';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Todowrap() {
   const [input, setInput] = useState("")
@@ -30,18 +30,27 @@ export default function Todowrap() {
       console.error(error);
     }
   }
+  const myPromise = getdbTodos();
 
+  toast.promise(myPromise, {
+    loading: 'Getting todos...',
+    success: 'Tasks successfully retrived',
+    error: 'Could not get todo',
+  });
 
-  useEffect(() => {
-    getdbTodos();
+  // useEffect(() => {
+  //   getdbTodos();
     
-  }, [input])
+  // }, [input])
 
   //setup localstorage
 
   return (
     <Box>
-     
+     <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
      <Form input ={input} setInput = {setInput} dbtodos={dbtodos}/>
       <ul className="todo-list">
       
