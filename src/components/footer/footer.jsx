@@ -5,10 +5,9 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import coffee from './coffee.jpg'
-import zIndex from '@mui/material/styles/zIndex'
 
 export const Footer = () => {
-  const theme = useTheme()
+  
 
   return (
     <Container width>
