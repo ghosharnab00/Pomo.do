@@ -40,7 +40,6 @@ export default function Todowrap() {
       error: 'Could not get todo',
     });
   }
-    
   }, [])
 
   useEffect(()=>{
