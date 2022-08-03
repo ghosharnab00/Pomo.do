@@ -1,4 +1,4 @@
-# Money Tracker
+# POMO.DO
 
 [![Money Tracker](https://github.com/ghosharnab00/Pomo.do/blob/main/public/images/thumb.png)](https://pomo.arnabghosh.me)
 
