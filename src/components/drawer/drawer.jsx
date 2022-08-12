@@ -10,9 +10,20 @@ import Typography from '@mui/material/Typography';
 import SettingContext from '../settings/settingcontext';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Button } from '@mui/material';
+
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { useTheme } from '@emotion/react';
 
 export default function SidebarDrawer() {
+    const theme = useTheme();
     let settingcontext = useContext(SettingContext);
+    const toggle = settingcontext.toggle;
+
+    const handleToggle=()=>{
+        settingcontext.setToggle( toggle ? false :true)
+    }
  
   const items = [
     {
@@ -70,6 +81,14 @@ export default function SidebarDrawer() {
                     </ListItem>
                     </ListItemButton>
                 ))}
+                <ListItemButton onClick={handleToggle}  sx={{textDecoration:'none',
+            textTransform:'none',
+            display:'flex',
+            }}>
+                <ListItemIcon sx={{color:"black", padding:"10px 0", justifyContent:"flex-end"}}>
+                                {(toggle)?<WbSunnyIcon fontSize="large" />:<DarkModeIcon fontSize="large" />}
+                            </ListItemIcon>
+                            <ListItemText primary={toggle ? "Light" : 'Dark'}  sx={{padding:"0px 0px 0px 12px"}}/></ListItemButton>
             </List>
         </div>
   )

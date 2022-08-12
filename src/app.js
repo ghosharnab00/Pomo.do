@@ -26,7 +26,18 @@ import SidebarDrawer from './components/drawer/drawer';
 import GetUser from "./components/userdetails/userdetails"
 import Login from './components/login/login';
 import {Footer} from './components/footer/footer';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+const dark = {
+  palette: {
+    mode: "dark",
+  },
+};
 
+const light = {
+  palette: {
+    mode: "light",
+  },
+};
 
 
 
@@ -40,6 +51,7 @@ function App(props) {
     const workState=JSON.parse(localStorage.getItem('settings'));
     const { window } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [toggle, setToggle] = useState(false);
     const [worktime, setWorktime] = useState(workState.worktime);
     let [shortbrktime, setShortbrktime] = useState(workState.shortbrktime);
     let [longbrktime, setLongbrktime] = useState(workState.longbrktime);
@@ -91,6 +103,7 @@ function App(props) {
         tabseconds,
         issignedin,
         starttime,
+        toggle,
         setWorktime,
         setShortbrktime,
         setLongbrktime,
@@ -98,8 +111,10 @@ function App(props) {
         setStateswitch,
         setTabseconds,
         setIssignedin,
-        setStarttime
+        setStarttime,
+        setToggle
     }}>
+        <ThemeProvider theme={toggle ? createTheme(dark) : createTheme(light)}>
         <MemoryRouter>
         <Box sx={{ display: 'flex' }}>
           <GetUser/>
@@ -171,7 +186,7 @@ function App(props) {
                 
                    
                         <Grid container >
-                        <Login/>
+                        {/* <Login/> */}
                             <Routes>
 
 
@@ -196,6 +211,7 @@ function App(props) {
             
         </Box>
         </MemoryRouter>
+        </ThemeProvider>
         </SettingContext.Provider>
     );
 }
