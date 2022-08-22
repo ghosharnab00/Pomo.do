@@ -3,6 +3,7 @@ import {Avatar, Menu, MenuItem} from "@mui/material"
 import SettingContext from '../settings/settingcontext'
 import axios from "axios"
 import "./userdetails.css"
+import { api } from '../../data/axiosConfig'
 
 export default function Signin() {
   const settingcontext = useContext(SettingContext);
@@ -14,7 +15,7 @@ const [anchorEl, setAnchorEl] = useState(null)
 
 
 let signOut = async(e)=>{
-  window.open("https://pomo-do.herokuapp.com/api/logout","_self")
+  window.open(api+"/logout","_self")
   setUser({googleId: null,
     picture: null,
     username: null})
@@ -32,7 +33,7 @@ const openMenu = (event) => {
 
 async function getUser() {
   try {
-    await axios.get("https://pomo-do.herokuapp.com/api/success",{
+    await axios.get(api+"/success",{
       method:"GET",
       withCredentials: true,
     }).then((dataa)=>{

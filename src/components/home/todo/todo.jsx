@@ -4,6 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import React from 'react'
 import { useState } from 'react';
 import axios from 'axios';
+import { api } from '../../../data/axiosConfig'
 
 
 export default function Todo({todo, isLogged, dbtodos, setDbtodos} ) {
@@ -14,7 +15,7 @@ export default function Todo({todo, isLogged, dbtodos, setDbtodos} ) {
   async function deletedbHandler(){
     
   try{
-    await axios.delete(`https://pomo-do.herokuapp.com/api/todos`, {data:{ id: todo._id }, withCredentials: true})
+    await axios.delete(api+`/todos`, {data:{ id: todo._id }, withCredentials: true})
     deleteHandler();    
   }
   catch (error) {

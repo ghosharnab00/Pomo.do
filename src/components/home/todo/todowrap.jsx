@@ -5,6 +5,7 @@ import axios from 'axios';
 import Form from './form';
 import { Box } from '@mui/material';
 import toast, { Toaster } from 'react-hot-toast';
+import { api } from '../../../data/axiosConfig'
 
 export default function Todowrap() {
   const [input, setInput] = useState("")
@@ -13,7 +14,7 @@ export default function Todowrap() {
 
   async function getdbTodos() {
     try {
-      await axios.get("https://pomo-do.herokuapp.com/api/todos",{
+      await axios.get(api+"/todos",{
         method:"GET",
         withCredentials: true,
       }).then((dataa)=>{

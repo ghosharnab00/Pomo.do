@@ -8,6 +8,7 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 import StateContext from "./statecontext";
 import toast, { Toaster } from 'react-hot-toast';
+import { api } from '../../data/axiosConfig'
 
 const State = () => {
   let [total, setTotal] = useState()
@@ -17,11 +18,11 @@ const State = () => {
 
     let getState = async()=>{
   
-      axios.all([axios.get("https://pomo-do.herokuapp.com/api/pomodo",{
+      axios.all([axios.get(api+"/pomodo",{
        method:"GET",
        withCredentials: true,
      }),
-          axios.get("https://pomo-do.herokuapp.com/api/todos",{
+          axios.get(api+"/todos",{
            method:"GET",
            withCredentials: true,
          })])

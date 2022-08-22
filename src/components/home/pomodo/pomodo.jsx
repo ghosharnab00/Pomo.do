@@ -9,6 +9,7 @@ import SettingContext from '../../settings/settingcontext';
 import { Howl } from 'howler';
 import { Tabtiles } from '../../GeneralFunctions';
 import axios from 'axios';
+import { api } from '../../../data/axiosConfig';
 
 
 const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
@@ -55,7 +56,7 @@ export default function Pomodoro() {
     setIspaused(false)
     ispausedRef.current = false;
     if (modedRef.current=== "work"){
-      await axios.post(`https://pomo-do.herokuapp.com/api/pomodo`, { starttime: starttimeRef.current, endtime: new Date() }, { withCredentials: true })
+      await axios.post(`${api}/pomodo`, { starttime: starttimeRef.current, endtime: new Date() }, { withCredentials: true })
       .then(console.log("done")).catch(error => console.log(error));
     }
 

@@ -2,7 +2,8 @@ import React, {useEffect, useState, useContext} from 'react'
 import {  Button, Typography, Modal, Box } from "@mui/material";
 import GoogleIcon from '@mui/icons-material/Google';
 import SettingContext from '../settings/settingcontext';
-import {btnstyle, iconstyle,modelstyle, messageStyle } from "./loginstyle"
+import {btnstyle, iconstyle,modelstyle, messageStyle } from "./loginstyle";
+import { api } from '../../data/axiosConfig'
 const Login=()=>{
 
 const settingcontext = useContext(SettingContext);
@@ -15,7 +16,7 @@ const settingcontext = useContext(SettingContext);
   
   
   let googleAuth = async(event)=>{
-    window.open("https://pomo-do.herokuapp.com/api/auth/google","_self")
+    window.open(api+"/auth/google","_self")
     }
 
     
