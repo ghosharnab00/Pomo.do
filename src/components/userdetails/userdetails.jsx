@@ -50,8 +50,6 @@ async function getUser() {
           settingcontext.setIssignedin(false)
         }
       })
-      // settingcontext.setIssignedin(true)
-    //console.log(user)
   } catch (error) {
     console.error(error);
   }
