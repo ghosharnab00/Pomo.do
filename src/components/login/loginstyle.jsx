@@ -1,7 +1,7 @@
 
     export const btnstyle={
         margin:'8px 0',
-        border: "2px solid black",
+        border: "1px solid gray",
         borderRadius:"50px",
          width: "325px",
          maxWidth: "400px",
@@ -35,6 +35,7 @@ export const modelstyle = {
     position: 'absolute',
     top: '50%',
     left: '50%',
+    width:"400px",
     transform: 'translate(-50%, -50%)',
     bgcolor: 'background.paper',
     border: '0px solid transparent',

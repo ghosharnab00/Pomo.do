@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react'
-import {  Button, Typography, Modal, Box, Divider } from "@mui/material";
+import {  Button, Typography, Modal, Box, Divider, FormControl , InputLabel, OutlinedInput} from "@mui/material";
 import GoogleIcon from '@mui/icons-material/Google';
 import SettingContext from '../settings/settingcontext';
 import {btnstyle, iconstyle,modelstyle, messageStyle } from "./loginstyle";
@@ -11,15 +11,10 @@ const settingcontext = useContext(SettingContext);
 
   const handleOpen = () => {
     setOpen((settingcontext.issignedin)? false : true)
-    // setOpen(settingcontext.issignedin)
   }
   
   
-  let googleAuth = async(event)=>{
-    window.open(api+"/auth/google","_self")
-    }
 
-    
   useEffect(()=>{
     handleOpen();
   },[settingcontext.issignedin])
@@ -29,9 +24,55 @@ const settingcontext = useContext(SettingContext);
         <Modal
         open={open}>
         <Box sx={modelstyle}>
-   <Button type='submit' color='primary' variant="outlined"  style={btnstyle} startIcon={<GoogleIcon style={iconstyle}/>} onClick={googleAuth} > Sign in With Google Account</Button>
-   <Typography style={messageStyle}>Log in to start using the tool now! <span role="img" aria-label='emoji'>😃</span></Typography>
-   <Divider/>
+          <form 
+          noValidate 
+          style={{flexDirection:'column'}}
+          // onSubmit={handleSubmit}
+          >
+            <Typography style={messageStyle}>Log in/Register to start using the tool now! <span role="img" aria-label='emoji'>😃</span></Typography>
+            <FormControl>
+            <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
+            <OutlinedInput
+                  id="outlined-adornment-email-login"
+                  type="email"
+                  name="email"
+                  label="Email Address / Username"
+                  value=""
+                  onChange
+                  style={btnstyle}
+                  />                                                               
+            </FormControl>
+            <FormControl>
+            <InputLabel htmlFor="outlined-adornment-email-login">PassWord</InputLabel>
+            <OutlinedInput
+                  id="outlined-adornment-email-login"
+                  type="Password"
+                  name="Password"
+                  label="Password"
+                  value=""
+                  onChange
+                  style={btnstyle}
+                  />             
+            </FormControl>
+            <Button
+                        disableElevation
+                        // disabled={isSubmitting}
+                        fullWidth
+                        size="large"
+                        type="submit"
+                        variant="contained"
+                        color="secondary"
+                        sx={{border: "1px solid grey",
+                        borderRadius:"50px",
+                         width: "325px",
+                         maxWidth: "400px",
+                         minWidth: "min-content"}}
+                    >
+                        Sign in
+                    </Button>
+          </form>
+  
+   <Divider sx={{paddingTop:'10px'}}/>
    <Button color='secondary'  style={btnstyle} onClick={()=>setOpen(false)} > Use as A Guest </Button>
    <Typography color="red" style={messageStyle}>You can't use the ToDo and Stats if you use Guest Mode</Typography>
    </Box>
