@@ -1,16 +1,60 @@
 import React, {useEffect, useState, useContext} from 'react'
-import {  Button, Typography, Modal, Box, Divider, FormControl , InputLabel, OutlinedInput} from "@mui/material";
+import {  Button, Typography, Modal, Box, Divider, FormControl , InputLabel, OutlinedInput, InputAdornment, IconButton} from "@mui/material";
 import GoogleIcon from '@mui/icons-material/Google';
 import SettingContext from '../settings/settingcontext';
 import {btnstyle, iconstyle,modelstyle, messageStyle } from "./loginstyle";
 import { api } from '../../data/axiosConfig'
+import axios from 'axios';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const Login=()=>{
 
 const settingcontext = useContext(SettingContext);
   const [open, setOpen] = useState(true);
+  const [userdata, setUserdata]=useState({
+    email:"",
+    pass:""
+  })
+  const [passVisibility, setPassVisibility] = useState({
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setPassVisibility({
+      ...passVisibility, showPassword: !passVisibility.showPassword 
+    });
+      
+  }
+    const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+  };
+
+  const handleSubmit = async(e)=>{
+    e.preventDefault();
+    console.log(userdata);
+    
+     await axios.post(api+'/register',null, {params:{
+      username: userdata.email,
+      password: userdata.pass,
+      }},
+      { withCredentials: true })
+      .then(function (response) {
+        console.log(response);
+        localStorage.setItem('access_token', JSON.stringify(response.data.token));
+        localStorage.setItem('isLoggedIn', JSON.stringify(true))
+        setOpen(false)
+        
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      
+  }
+
 
   const handleOpen = () => {
     setOpen((settingcontext.issignedin)? false : true)
+
   }
   
   
@@ -18,6 +62,15 @@ const settingcontext = useContext(SettingContext);
   useEffect(()=>{
     handleOpen();
   },[settingcontext.issignedin])
+
+  useEffect(()=>{
+    if(localStorage.isLoggedIn===undefined){
+    }
+    else{
+      console.log(JSON.parse(localStorage.isLoggedIn))
+      setOpen(!JSON.parse(localStorage.isLoggedIn))
+    }
+  },[])
 
     return(
         <div >
@@ -27,7 +80,7 @@ const settingcontext = useContext(SettingContext);
           <form 
           noValidate 
           style={{flexDirection:'column'}}
-          // onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
           >
             <Typography style={messageStyle}>Log in/Register to start using the tool now! <span role="img" aria-label='emoji'>😃</span></Typography>
             <FormControl>
@@ -37,8 +90,11 @@ const settingcontext = useContext(SettingContext);
                   type="email"
                   name="email"
                   label="Email Address / Username"
-                  value=""
-                  onChange
+                  value={userdata.email}
+                  onChange={(e)=>{
+                    setUserdata({...userdata,
+                      email:e.target.value
+                    })}}
                   style={btnstyle}
                   />                                                               
             </FormControl>
@@ -46,18 +102,34 @@ const settingcontext = useContext(SettingContext);
             <InputLabel htmlFor="outlined-adornment-email-login">PassWord</InputLabel>
             <OutlinedInput
                   id="outlined-adornment-email-login"
-                  type="Password"
+                  type={passVisibility.showPassword ? 'text' : 'password'}
                   name="Password"
                   label="Password"
-                  value=""
-                  onChange
+                  value={userdata.pass}
+                  onChange={(e)=>{
+                    setUserdata({...userdata,
+                      pass:e.target.value
+                    })}}
+                    endAdornment={
+                      <InputAdornment position="end">
+                          <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={handleClickShowPassword}
+                              onMouseDown={handleMouseDownPassword}
+                              edge="end"
+                              size="large"
+                          >
+                              {passVisibility.showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                      </InputAdornment>
+                  }
                   style={btnstyle}
+                  inputProps={{}}
                   />             
             </FormControl>
             <Button
                         disableElevation
                         // disabled={isSubmitting}
-                        fullWidth
                         size="large"
                         type="submit"
                         variant="contained"

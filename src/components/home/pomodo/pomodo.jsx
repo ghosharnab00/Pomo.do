@@ -156,9 +156,9 @@ let pomodoCounthandler =async()=>{
 
   }, [settingcontext])
 
-  useEffect(()=>{
-    console.log(JSON.parse(localStorage.getItem('settings')))
-  },[])
+  // useEffect(()=>{
+  //   console.log(JSON.parse(localStorage.getItem('settings')))
+  // },[])
 
 
   const totalSeconds = mode === "work"
