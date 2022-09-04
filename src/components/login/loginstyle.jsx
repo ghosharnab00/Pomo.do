@@ -47,6 +47,7 @@ export const modelstyle = {
   };
 
 export const messageStyle={
-    fontSize: "12px",
+    fontSize: "13px",
     textAlign:"center",
+    marginBottom:"20px"
 }
