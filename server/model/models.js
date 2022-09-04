@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-var findOrCreate = require('mongoose-findorcreate')
+var findOrCreate = require('mongoose-findorcreate');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const todoSchema = new mongoose.Schema({
     text: {
@@ -17,14 +18,15 @@ const pomodoSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
     username: String,
     googleId: String,
-    picture: String,
     todocount: Number,
+    todocompleted:Number,
     todos: [todoSchema],
     pomodos: [pomodoSchema],
     totalpomodorocomplete: Number,
 })
 
-userSchema.plugin(findOrCreate)
+userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
 
 const User = mongoose.model('user',userSchema )
 const Todo = mongoose.model('todo', todoSchema )
