@@ -13,6 +13,7 @@ import Pomodoro from "./components/home/pomodo/pomodo";
 import Stopwatch from "./components/home/stopwatch/stopwatch";
 import { Tabtiles } from "./components/GeneralFunctions"
 import { Grid } from "@mui/material";
+import { request } from './data/axiosConfig';
 import { Routes,
     Route,
     NavLink
@@ -71,7 +72,9 @@ function App(props) {
         setMobileOpen(!mobileOpen);
     };
 
-    
+    React.useEffect(()=>{
+        setInterval(request({url:'/success'}).then(res=>console.log(res)), 30000);
+    },[])
     const items = [
       {
           href: '/',
