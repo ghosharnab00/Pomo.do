@@ -32,7 +32,7 @@ const settingcontext = useContext(SettingContext);
   const handleSubmit = async(e)=>{
     e.preventDefault();
 
-     await axios.post(`http://localhost:3000/api/register?username=${userdata.email}&password=${userdata.pass}`)
+     await axios.post(`${api}/register?username=${userdata.email}&password=${userdata.pass}`)
       .then(function (response) {
         console.log(response.data.token);
         localStorage.setItem('access_token', JSON.stringify(response.data.token));
