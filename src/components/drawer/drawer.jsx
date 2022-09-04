@@ -24,7 +24,12 @@ export default function SidebarDrawer() {
     const handleToggle=()=>{
         settingcontext.setToggle( toggle ? false :true)
     }
- 
+
+
+    console.log(toggle)
+    
+    console.log(settingcontext)
+    
   const items = [
     {
         href: '/',
@@ -67,11 +72,11 @@ export default function SidebarDrawer() {
                     <ListItem
                         key={item.title}
                         disablePadding
-                        sx={settingcontext.stateswitch ?
+                        sx={ toggle ?
                              {color:"var(--offwhite)",padding:"20px 0"} : {color:"black", padding:"20px 0"}}>
 
                         
-                            <ListItemIcon sx={settingcontext.stateswitch ?
+                            <ListItemIcon sx={ toggle ?
                              {color:"var(--offwhite)",padding:"10px 0",justifyContent:"flex-end"} : {color:"black", padding:"10px 0", justifyContent:"flex-end"}}>
                                 {item.icon}
                             </ListItemIcon>
@@ -85,7 +90,7 @@ export default function SidebarDrawer() {
             textTransform:'none',
             display:'flex',
             }}>
-                <ListItemIcon sx={{color:"black", padding:"10px 0", justifyContent:"flex-end"}}>
+                <ListItemIcon sx={{color:toggle ? "white" : "black", padding:"10px 0", justifyContent:"flex-end"}}>
                                 {(toggle)?<WbSunnyIcon fontSize="large" />:<DarkModeIcon fontSize="large" />}
                             </ListItemIcon>
                             <ListItemText primary={toggle ? "Light" : 'Dark'}  sx={{padding:"0px 0px 0px 12px"}}/></ListItemButton>
