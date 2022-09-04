@@ -169,6 +169,8 @@ let pomodoCounthandler =async()=>{
   const percentage = Math.round((secondsleft / totalSeconds) * 100);
 
   Tabtiles(`0${parseInt(secondsleft / 60)}`.slice(-2) + `:` + `0${secondsleft % 60}`.slice(-2) + " ⏳ | Pomo.do")
+
+
   return (
     <div className='timer'>
       <Box position="relative" display="inline-flex">
@@ -195,16 +197,16 @@ let pomodoCounthandler =async()=>{
             component="div"
             fontSize="40px"
             fontWeight="800"
-            color="var(--black)"
+            color={settingcontext.toggle ? "white" : "black"}
           >{`0${parseInt(secondsleft / 60)}`.slice(-2) + ":" + `0${secondsleft % 60}`.slice(-2)}</Typography>
           <Typography
             variant="caption"
             component="div"
             fontSize="20px"
             fontWeight="800"
-            color="var(--black)"
+            color={settingcontext.toggle ? "white" : "var(--black)"}
           >{mode === "work" ? "Focus" : "Break"}</Typography>
-          <Typography color="var(--liteblack)" fontSize="12px" >Pomo.do</Typography>
+          <Typography color= {settingcontext.toggle ? "var(--offwhite)" : "var(--liteblack)"} fontSize="12px" >Pomo.do</Typography>
         </Box>
       </Box>
 
@@ -235,7 +237,7 @@ let pomodoCounthandler =async()=>{
             Pause
           </Button>}
       </div>
-      <Typography color="var(--liteblack)">{Math.floor((rounds + 1) / 2)} of {settingcontext.rounds} sessions left</Typography>
+      <Typography color= {settingcontext.toggle ? "var(--offwhite)" : "var(--liteblack)"}>{Math.floor((rounds + 1) / 2)} of {settingcontext.rounds} sessions left</Typography>
 
 
     </div>

@@ -92,16 +92,16 @@ let percantage = ((seconds%60)/60)*100
           component="div"
           fontSize="40px"
           fontWeight="800"
-          color="var(--black)"
+          color={settingcontext.toggle ? "var(--offwhite)" : "var(--black)"}
         >{`0${parseInt(seconds/60)}`.slice(-2)+ ":" +`0${seconds%60}`.slice(-2)}</Typography>
          <Typography
           variant="caption"
           component="div"
           fontSize="20px"
           fontWeight="800"
-          color="var(--black)"
+          color={settingcontext.toggle ? "var(--offwhite)" : "var(--black)"}
         >{"tick tick.."}</Typography>
-         <Typography color="var(--liteblack)" fontSize="12px" >Stopwatch</Typography>
+         <Typography color={settingcontext.toggle ? "var(--offwhite)" : "var(--liteblack)"} fontSize="12px" >Stopwatch</Typography>
       </Box>
     </Box>
           <div className="btnwrap">
