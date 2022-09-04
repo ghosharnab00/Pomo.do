@@ -73,7 +73,7 @@ function App(props) {
     };
 
     React.useEffect(()=>{
-        setInterval(request({url:'/success'}).then(res=>console.log(res)), 30000);
+        setInterval(()=>{request({url:'/success'}).then(res=>{console.log(res)})}, 60000);
     },[])
     const items = [
       {
