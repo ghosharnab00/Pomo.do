@@ -111,7 +111,12 @@ export default function Pomodoro() {
 
 let pomodoCounthandler =async()=>{
   if (modedRef.current === "shortbrk" || modedRef.current === "longbrk") {
-  axios.get("https://pomo-do.herokuapp.com/api/pomodo/increament", { method: "GET", withCredentials: true })
+    await request({
+      url:`/pomodo/increament`,
+      method:'get'
+      
+    })
+  // axios.get("https://pomo-do.herokuapp.com/api/pomodo/increament", { method: "GET", withCredentials: true })
   }
   else {
     // starttimeRef.current = new Date();
@@ -123,8 +128,12 @@ let pomodoCounthandler =async()=>{
 
   let pomodotimeHandler = async () => {
     if (modedRef.current === "shortbrk" || modedRef.current === "longbrk") {
-
-      await axios.post(`https://pomo-do.herokuapp.com/api/pomodo`, { starttime: starttimeRef.current, endtime: new Date() }, { withCredentials: true })
+      await request({
+        url:`/pomodo?starttime=${starttimeRef.current}&endtime=${new Date()}`,
+        method:'post'
+        
+      })
+      // await axios.post(`https://pomo-do.herokuapp.com/api/pomodo`, { starttime: starttimeRef.current, endtime: new Date() }, { withCredentials: true })
       .then(console.log("done")).catch(error => console.log(error));
     }
 
