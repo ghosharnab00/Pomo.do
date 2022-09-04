@@ -3,7 +3,7 @@ import "./todo.css"
 import { Paper, InputBase, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import axios from "axios";
-import { api } from '../../../data/axiosConfig'
+import { api, axiosconfig, request } from '../../../data/axiosConfig'
 
 
 
@@ -17,8 +17,10 @@ export default function Form({ input, setInput, dbtodos }) {
   const handleSubmit = async(event) => {
     event.preventDefault();
     console.log(input);
-    await axios.post(api+"/todos",{todo:input},
-    {withCredentials: true})
+    await request({
+      url:`/todos?todo=${input}`,
+      method:'post'
+    })
     .then(function (response) {
       console.log(response);
       

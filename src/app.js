@@ -114,7 +114,7 @@ function App(props) {
         setStarttime,
         setToggle
     }}>
-        <ThemeProvider theme={toggle ? createTheme(dark) : createTheme(light)}>
+        
         <MemoryRouter>
         <Box sx={{ display: 'flex' }}>
           <GetUser/>
@@ -211,7 +211,7 @@ function App(props) {
             
         </Box>
         </MemoryRouter>
-        </ThemeProvider>
+        
         </SettingContext.Provider>
     );
 }

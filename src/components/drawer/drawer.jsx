@@ -81,14 +81,7 @@ export default function SidebarDrawer() {
                     </ListItem>
                     </ListItemButton>
                 ))}
-                <ListItemButton onClick={handleToggle}  sx={{textDecoration:'none',
-            textTransform:'none',
-            display:'flex',
-            }}>
-                <ListItemIcon sx={{color:"black", padding:"10px 0", justifyContent:"flex-end"}}>
-                                {(toggle)?<WbSunnyIcon fontSize="large" />:<DarkModeIcon fontSize="large" />}
-                            </ListItemIcon>
-                            <ListItemText primary={toggle ? "Light" : 'Dark'}  sx={{padding:"0px 0px 0px 12px"}}/></ListItemButton>
+                
             </List>
         </div>
   )

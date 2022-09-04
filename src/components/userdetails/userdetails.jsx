@@ -3,7 +3,7 @@ import {Avatar, Menu, MenuItem} from "@mui/material"
 import SettingContext from '../settings/settingcontext'
 import axios from "axios"
 import "./userdetails.css"
-import { api, axiosconfig } from '../../data/axiosConfig'
+import { api, axiosconfig, request } from '../../data/axiosConfig'
 
 export default function Signin() {
   const settingcontext = useContext(SettingContext);
@@ -34,10 +34,14 @@ function stringAvatar(name) {
 
 
 let signOut = async(e)=>{
-  window.open(api+"/logout","_self")
-  // setUser({googleId: null,
-  //   picture: null,
-  //   username: null})
+  await request({ url:'/logout', method:'get'})
+  .then(()=>{
+    localStorage.setItem('access_token', '');
+    localStorage.setItem('isLoggedIn', '')
+    settingcontext.setIssignedin(false)
+
+  })
+  .then(()=>window.location.reload(true))
     settingcontext.setIssignedin(false)
 }
 
@@ -60,7 +64,7 @@ async function getUser() {
 
         if (dataa.data.isLoggedin){
           settingcontext.setIssignedin(true)
-          settingcontext.setStarttime(dataa.data.user.pomodostarttime);
+          // settingcontext.setStarttime(dataa.data.user.pomodostarttime);
         }
         else{
           settingcontext.setIssignedin(false)
@@ -76,6 +80,9 @@ async function getUser() {
 useEffect(()=>{
   getUser();
 },[])
+useEffect(()=>{
+  getUser();
+},[settingcontext.issignedin])
   return (
     
       <form className="login">

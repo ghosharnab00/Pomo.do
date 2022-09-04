@@ -167,12 +167,14 @@ app.route('/api/todos')
                     })
                 }
             })
-        } else {
+        } 
+        else {
             res.status(401).json({
                 message: "User is not logged in"
             })
         }
-    })
+    }
+    )
     .put((req, res) => {
         if (req.isAuthenticated()) {
             User.updateOne({

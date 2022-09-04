@@ -5,7 +5,7 @@ import axios from 'axios';
 import Form from './form';
 import { Box } from '@mui/material';
 import toast, { Toaster } from 'react-hot-toast';
-import { api } from '../../../data/axiosConfig'
+import { api , axiosconfig} from '../../../data/axiosConfig'
 
 export default function Todowrap() {
   const [input, setInput] = useState("")
@@ -14,11 +14,7 @@ export default function Todowrap() {
 
   async function getdbTodos() {
     try {
-      await axios.get(api+"/todos",{
-        method:"GET",
-        withCredentials: true,
-      }).then((dataa)=>{
-        
+      await axios.get(api+"/todos",axiosconfig).then((dataa)=>{
         if(dataa.data.isLoggedin===true){
           setisLoggedin(true)
           setDbtodos(dataa.data.todos);

@@ -8,7 +8,7 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 import StateContext from "./statecontext";
 import toast, { Toaster } from 'react-hot-toast';
-import { api } from '../../data/axiosConfig'
+import { api, axiosconfig } from '../../data/axiosConfig'
 
 const State = () => {
   let [total, setTotal] = useState()
@@ -18,14 +18,8 @@ const State = () => {
 
     let getState = async()=>{
   
-      axios.all([axios.get(api+"/pomodo",{
-       method:"GET",
-       withCredentials: true,
-     }),
-          axios.get(api+"/todos",{
-           method:"GET",
-           withCredentials: true,
-         })])
+      axios.all([axios.get(api+"/pomodo", axiosconfig),
+          axios.get(api+"/todos",axiosconfig)])
     .then(axios.spread((pomododata, tododata) => {  
 
       setTotal(pomododata.data.pomodotime);

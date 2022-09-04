@@ -3,7 +3,7 @@ import {  Button, Typography, Modal, Box, Divider, FormControl , InputLabel, Out
 import GoogleIcon from '@mui/icons-material/Google';
 import SettingContext from '../settings/settingcontext';
 import {btnstyle, iconstyle,modelstyle, messageStyle } from "./loginstyle";
-import { api } from '../../data/axiosConfig'
+import { api, request } from '../../data/axiosConfig'
 import axios from 'axios';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -31,23 +31,20 @@ const settingcontext = useContext(SettingContext);
 
   const handleSubmit = async(e)=>{
     e.preventDefault();
-    console.log(userdata);
-    
-     await axios.post(api+'/register',null, {params:{
-      username: userdata.email,
-      password: userdata.pass,
-      }},
-      { withCredentials: true })
+
+     await axios.post(`http://localhost:3000/api/register?username=${userdata.email}&password=${userdata.pass}`)
       .then(function (response) {
-        console.log(response);
+        console.log(response.data.token);
         localStorage.setItem('access_token', JSON.stringify(response.data.token));
         localStorage.setItem('isLoggedIn', JSON.stringify(true))
         setOpen(false)
-        
       })
+      .then(()=>window.location.reload(true))
       .catch(function (error) {
         console.log(error);
       })
+
+      
       
   }
 
@@ -64,12 +61,17 @@ const settingcontext = useContext(SettingContext);
   },[settingcontext.issignedin])
 
   useEffect(()=>{
-    if(localStorage.isLoggedIn===undefined){
+    if(typeof(localStorage.isLoggedIn)===undefined || localStorage.isLoggedIn===""){
+
+    }
+    else if(localStorage.isLoggedIn===undefined){
+      
+      
     }
     else{
-      console.log(JSON.parse(localStorage.isLoggedIn))
       setOpen(!JSON.parse(localStorage.isLoggedIn))
     }
+    
   },[])
 
     return(
@@ -96,6 +98,7 @@ const settingcontext = useContext(SettingContext);
                       email:e.target.value
                     })}}
                   style={btnstyle}
+                  required
                   />                                                               
             </FormControl>
             <FormControl>
@@ -125,6 +128,7 @@ const settingcontext = useContext(SettingContext);
                   }
                   style={btnstyle}
                   inputProps={{}}
+                  required
                   />             
             </FormControl>
             <Button
