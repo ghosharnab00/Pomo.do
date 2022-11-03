@@ -18,7 +18,7 @@ var sound = new Howl({
   src: soundSrc,
   loop: true,
   preload: true,
-  volume: 1,
+  volume: 0,
   html5: true
 });
 
