@@ -12,7 +12,7 @@ import SettingContext from './components/settings/settingcontext';
 import Pomodoro from "./components/home/pomodo/pomodo";
 import Stopwatch from "./components/home/stopwatch/stopwatch";
 import { Tabtiles } from "./components/GeneralFunctions"
-import { Grid } from "@mui/material";
+import { Grid , Container, Card} from "@mui/material";
 import { request } from './data/axiosConfig';
 import { Routes,
     Route,
@@ -206,7 +206,25 @@ function App(props) {
                         <Grid item flex={true} justifyContent="center">
                         <Footer/>
                         </Grid>
-                        {/* </Grid> */}
+                        <Box display="flex" flexDirection="column" minHeight={"100vh"} justifyContent="center" bgcolor={""} sx={{paddingTop:'50px'}} >
+                                <Card sx={{ margin:"auto", display:"flex", minHeight:"80vh", width: "800px", borderRadius:"10px" }}>
+                                <Grid width={"750px"} margin="auto" container>
+                <Grid item sx={{ mb: 3 }}>
+<Typography> lorem40q3rn3qr3rq3q3q3t3qtq3tq3
+</Typography>
+                    </Grid>
+                    </Grid>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            </Card>
+        
+      </Box>
+                        
                    
                 
 
