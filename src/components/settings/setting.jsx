@@ -114,7 +114,7 @@ useEffect(()=>{
         <Grid spacing={1} container justifyContent={"center"} flexDirection={"column"}>
         <div className="sliderwrap">
       <Box width={300} >
-      <Typography className= "leble" fontSize={20}>Work duration</Typography>
+      <Typography className= "leble" fontSize={20}>Work Duration</Typography>
       <Slider
         size="small"
         defaultValue={settingsInfo.worktime}
@@ -133,7 +133,7 @@ useEffect(()=>{
       </div>
 <div className="sliderwrap">
       <Box width={300} >
-      <Typography className= "leble" fontSize={20}>Long Brake duration</Typography>
+      <Typography className= "leble" fontSize={20}>Long Break Duration</Typography>
       <Slider
         size="small"
         defaultValue={settingsInfo.longbrktime}
@@ -152,7 +152,7 @@ useEffect(()=>{
       </div>
 <div className="sliderwrap">
 <Box width={300} >
-      <Typography className= "leble" fontSize={20}>Short Brake duration</Typography>
+      <Typography className= "leble" fontSize={20}>Short Break Duration</Typography>
       <Slider
         size="small"
         defaultValue={settingsInfo.shortbrktime}
