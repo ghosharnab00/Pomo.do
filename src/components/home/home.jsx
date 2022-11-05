@@ -47,8 +47,7 @@ export default function Home() {
       component="main"
       sx={{
         flexGrow: 1,
-        py:18,
-        paddingBottom:"6%"
+        py:14,
       }}
     >
       <Container maxWidth={false}>
