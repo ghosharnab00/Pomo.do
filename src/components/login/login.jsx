@@ -149,7 +149,7 @@ const settingcontext = useContext(SettingContext);
           </form>
   
    <Divider sx={{paddingTop:'10px'}}/>
-   <Button color='secondary'  style={btnstyle} onClick={()=>setOpen(false)} > Use as A Guest </Button>
+   <Button color='primary'  style={btnstyle} onClick={()=>setOpen(false)} > Use as A Guest </Button>
    <Typography color="red" style={messageStyle}>You can't use the ToDo and Stats if you use Guest Mode</Typography>
    </Box>
    </Modal>
