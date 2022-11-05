@@ -7,7 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Button } from "@mui/material"
+import { Button, Divider } from "@mui/material"
 import SettingContext from './components/settings/settingcontext';
 import Pomodoro from "./components/home/pomodo/pomodo";
 import Stopwatch from "./components/home/stopwatch/stopwatch";
@@ -209,7 +209,7 @@ function App(props) {
                         <Grid item flex={true} justifyContent="center">
                             <Footer />
                         </Grid>
-
+<Divider sx={{borderColor:'black', opacity:0.4}}/>
                         <Grid maxWidth={"750px"} margin="auto" container flexDirection={'column'} paddingBottom={'20px'}>
                                     <br />
                                     <Typography component={'h1'} variant="h3"  > Best Pomodoro Timer for ADHD Students to Boost Study Retention
