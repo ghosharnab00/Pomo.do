@@ -54,7 +54,7 @@ export default function SidebarDrawer() {
                 <Typography
                     variant="h4"
                     component="h1"
-                    sx={{ display: { xs: 'none', sm: 'flex' }, padding:"0 50px 0 0"}}
+                    sx={{ display: { xs: 'none', sm: 'flex' }, padding:"0 50px 0 0", color:'#0000FF'}}
                 >
                     POMO.DO
                 </Typography>

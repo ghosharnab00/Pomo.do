@@ -41,7 +41,22 @@ const dark = {
 const light = {
     palette: {
         mode: "light",
-    },
+    
+    primary:{
+        main:'#0000FF',
+        light200:"#b39ddb",
+        light800:"#4527a0",
+        dark:'#5e35b1',
+        darker: "#008b00",
+        darkest:"#007300",
+        contrastText:'#fff',
+        heading:'#f46524',
+        subheader:"#4a5e72",
+        darksub:'#334960',
+        litesub:"#aeb7bf",
+        lightback:'#ebedef'
+      }
+    }
 };
 
 
@@ -101,6 +116,7 @@ function App(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
+        <ThemeProvider theme={toggle ? createTheme(dark) : createTheme(light)}>
         <SettingContext.Provider value={{
             worktime,
             shortbrktime,
@@ -349,6 +365,7 @@ function App(props) {
             {/* </MemoryRouter> */}
 </BrowserRouter>
         </SettingContext.Provider>
+        </ThemeProvider>
     );
 }
 

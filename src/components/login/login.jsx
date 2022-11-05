@@ -137,7 +137,7 @@ const settingcontext = useContext(SettingContext);
                         size="large"
                         type="submit"
                         variant="contained"
-                        color="secondary"
+                        color="primary"
                         sx={{border: "1px solid grey",
                         borderRadius:"50px",
                          width: "325px",

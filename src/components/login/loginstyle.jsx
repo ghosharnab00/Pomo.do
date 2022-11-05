@@ -6,7 +6,7 @@
          width: "325px",
          maxWidth: "400px",
          minWidth: "min-content",
-         color: "#3c4043",
+         color: "#0000FF",
          cursor: "pointer",
          fontFamily: '"Google Sans",arial,sans-serif',
          fontSize: "14px",

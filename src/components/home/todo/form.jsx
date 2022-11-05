@@ -2,8 +2,8 @@ import React from 'react'
 import "./todo.css"
 import { Paper, InputBase, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import axios from "axios";
-import { api, axiosconfig, request } from '../../../data/axiosConfig'
+// import axios from "axios";
+import { request } from '../../../data/axiosConfig'
 
 
 
@@ -61,7 +61,7 @@ e.preventDefault();
           xl:400,
           xxl:400
           },
-          boxShadow: '1px 1px 10px -1px #1976d2, 0px -1px 0px 0px #1976d2, 10px 5px 10px -1px #1976d2',
+          boxShadow: '1px 1px 10px -1px #0000FF, 0px -1px 0px 0px #0000FF, 10px 5px 10px -1px #0000FF',
           borderRadius: '50px',
           
         }}>
@@ -78,7 +78,7 @@ e.preventDefault();
           type="submit"
           sx={{
             p: "5px",
-            color: '#1976d2'
+            color: 'primary'
           }}
           aria-label="add"
         >
