@@ -209,9 +209,8 @@ function App(props) {
                         <Grid item flex={true} justifyContent="center">
                             <Footer />
                         </Grid>
-                        <Box display="flex" flexDirection="column" minHeight={"100vh"} justifyContent="center" bgcolor={""} sx={{ paddingTop: '50px' }} >
-                            <Card sx={{ margin: "auto", display: "flex", minHeight: "80vh", width: "900px", borderRadius: "10px" }}>
-                                <Grid width={"750px"} margin="auto" container flexDirection={'column'} paddingBottom={'20px'}>
+
+                        <Grid maxWidth={"750px"} margin="auto" container flexDirection={'column'} paddingBottom={'20px'}>
                                     <br />
                                     <Typography component={'h1'} variant="h3"  > Best Pomodoro Timer for ADHD Students to Boost Study Retention
                                     </Typography>
@@ -238,11 +237,11 @@ function App(props) {
                                             </Typography>
                                         </li>
                                         <li>
-                                            <Typography > Some people use mini Pomodoro to use short bursts of focus on tasks, such as 10 minutes focus - 3 minutes breaks.
+                                            <Typography > Some people use mini Pomodoro to use short bursts of focus on tasks, such as <strong>10 minutes focus - 3 minutes breaks.</strong>
                                             </Typography>
                                         </li>
                                         <li>
-                                            <Typography > One can also use reverse Pomodoro, such as 10 minutes of work and 30 minutes break.
+                                            <Typography > One can also use reverse Pomodoro, such as <strong>10 minutes of work and 30 minutes break.</strong>
                                             </Typography>
                                         </li>
                                     </ul>
@@ -255,7 +254,7 @@ function App(props) {
 
                                     <ul>
                                         <li>
-                                            <Typography > Log in to your account
+                                            <Typography bold> Log in to your account
                                             </Typography>
                                         </li>
                                         <li>
@@ -283,17 +282,17 @@ function App(props) {
                                     <Typography component={'h2'} variant="h4"> Frequently Asked Questions
                                     </Typography>
 
-
+<br/>
 
 
                                     <Typography component={'h3'} variant="h5"> Is Pomodoro always 25 minutes?
                                     </Typography>
                                     <br />
-                                    <Typography > The general idea of Pomodoro is to have a focus session of 25 minutes followed by a 5 minutes break. But it may not be suited for students with ADHD. </Typography>
+                                    <Typography > The general idea of Pomodoro is to have a focus session of <strong>25 minutes followed by a 5 minutes break</strong>. But it may not be suited for students with ADHD. </Typography>
 
                                     <br />
                                     <Typography >
-                                        You can shorten the focus time to only 10 minutes, followed by a 10 minute break, and slowly increase the focus time to 15, 20, 30 and so on.
+                                        You can shorten the focus time to only <strong>10 minutes</strong>, followed by a 10 minute break, and slowly increase the focus time to <strong>15, 20, 30 and so on.</strong>
                                         So you can choose your own focus timing and work on the tool,
 
                                     </Typography>
@@ -310,7 +309,7 @@ function App(props) {
                                     <Typography component={'h3'} variant="h5"> Can Pomodoro be 30 minutes?
                                     </Typography>
                                     <br />
-                                    <Typography > Yes, Pomodoro can be 30 minutes, 40 minutes, or any time you want. On our tool, you can use a maximum of 60 minutes of Pomodoro.
+                                    <Typography > Yes, Pomodoro can be <strong>30 minutes, 40 minutes, or any time you want.</strong> On our tool, you can use a maximum of 60 minutes of Pomodoro.
                                     </Typography>
                                     <br />
                                     <Typography component={'h3'} variant="h5"> Is Pomodoro good for studying?
@@ -331,7 +330,7 @@ function App(props) {
                                     <Typography component={'h3'} variant="h5"> How many Pomodoros should you do in a day?
                                     </Typography>
                                     <br />
-                                    <Typography > One of the biggests mistakes people do is focus on multiple tasks in a day, and get overwhelmed. The key is to focus on only 3 tasks per day, and 3-4 pomodoros of 25 minutes for each tasks. Not more than that. <br />
+                                    <Typography > One of the biggests mistakes people do is focus on multiple tasks in a day, and get overwhelmed. The key is to focus on only <strong>3 tasks per day</strong>, and <strong>3-4 pomodoros of 25 minutes for each tasks</strong>. Not more than that. <br />
 
                                         If the tasks need more than that, it’s better to break that task to different smaller ones.
 
@@ -339,16 +338,6 @@ function App(props) {
 
 
                                 </Grid>
-
-
-
-
-
-
-
-                            </Card>
-
-                        </Box>
 
 
 
