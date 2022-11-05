@@ -12,15 +12,15 @@ import axios from 'axios';
 import { api, request } from '../../../data/axiosConfig';
 
 
-const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
+// const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
 
-var sound = new Howl({
-  src: soundSrc,
-  loop: true,
-  preload: true,
-  volume: 0,
-  html5: true
-});
+// var sound = new Howl({
+//   src: soundSrc,
+//   loop: true,
+//   preload: true,
+//   volume: 0,
+//   html5: true
+// });
 
 export default function Pomodoro() {
 
@@ -151,7 +151,7 @@ let pomodoCounthandler =async()=>{
         return;
       }
       if (secondsleftRef.current === 0) {
-        sound.playing() ? sound.stop() : sound.play();
+        // sound.playing() ? sound.stop() : sound.play();
         countRound();
         switchMode();
         pomodoCounthandler();
@@ -226,7 +226,9 @@ let pomodoCounthandler =async()=>{
           className='button'
           variant="outlined"
           startIcon={<ReplayIcon />}
-          onClick={() => { sound.stop(); resethndler(); settingcontext.setStateswitch(false) }}
+          onClick={() => { 
+            // sound.stop(); 
+            resethndler(); settingcontext.setStateswitch(false) }}
         >
           Reset
         </Button>
@@ -234,14 +236,18 @@ let pomodoCounthandler =async()=>{
           <Button
             className='button'
             variant="contained"
-            onClick={() => { sound.play(); initTicker(); settingcontext.setStateswitch(true) }}
+            onClick={() => { 
+              // sound.play(); 
+              initTicker(); settingcontext.setStateswitch(true) }}
             endIcon={<PlayCircleOutlineIcon />}>
             Start
           </Button>
           : <Button
             className='button'
             variant="contained"
-            onClick={() => { sound.stop(); stopTicker(); }}
+            onClick={() => { 
+              // sound.stop(); 
+              stopTicker(); }}
             endIcon={<PauseCircleOutlineIcon />}>
             Pause
           </Button>}

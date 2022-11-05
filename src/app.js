@@ -17,7 +17,8 @@ import { request } from './data/axiosConfig';
 import {
     Routes,
     Route,
-    NavLink
+    NavLink,
+    BrowserRouter
 } from "react-router-dom";
 import { MemoryRouter } from 'react-router-dom';
 import { BsGearFill, BsBarChartLine, BsClock } from 'react-icons/bs'
@@ -121,7 +122,7 @@ function App(props) {
             setToggle
         }}>
 
-            <MemoryRouter>
+            <BrowserRouter>
                 <Box sx={{ display: 'flex' }}>
                     <GetUser />
                     <CssBaseline />
@@ -345,8 +346,8 @@ function App(props) {
                     </Box>
 
                 </Box>
-            </MemoryRouter>
-
+            {/* </MemoryRouter> */}
+</BrowserRouter>
         </SettingContext.Provider>
     );
 }
