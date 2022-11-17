@@ -10,17 +10,14 @@ import { Howl } from 'howler';
 import { Tabtiles } from '../../GeneralFunctions';
 import axios from 'axios';
 import { api, request } from '../../../data/axiosConfig';
+import startSound from '../../../sounds/start_ntofication.mp3'
+import endSound from '../../../sounds/end_notification.mp3'
+import addNotification from 'react-push-notification';
 
 
-// const soundSrc = "https://www.soundjay.com/clock/clock-ticking-2.mp3"
+const startNotification = new Audio(startSound);
+const endNotification = new Audio(endSound);
 
-// var sound = new Howl({
-//   src: soundSrc,
-//   loop: true,
-//   preload: true,
-//   volume: 0,
-//   html5: true
-// });
 
 export default function Pomodoro() {
 
@@ -92,8 +89,6 @@ export default function Pomodoro() {
     // console.log("State is: ", nextmode);
     setSecondsleft(nextSesson);
     secondsleftRef.current = nextSesson;
-
-
   }
 
   let countRound = () => {
@@ -107,6 +102,16 @@ export default function Pomodoro() {
     }
 
   }
+
+  const buttonClick = () => {
+    addNotification({
+        title: 'Warning',
+        subtitle: 'This is a subtitle',
+        message: 'This is a very long message',
+        theme: 'darkblue',
+        native: true // when using native, your OS will handle theming.
+    });
+};
 
 
 let pomodoCounthandler =async()=>{
@@ -152,6 +157,7 @@ let pomodoCounthandler =async()=>{
       }
       if (secondsleftRef.current === 0) {
         // sound.playing() ? sound.stop() : sound.play();
+        modedRef.current === 'work' ? endNotification.play() : startNotification.play();
         countRound();
         switchMode();
         pomodoCounthandler();
@@ -167,9 +173,6 @@ let pomodoCounthandler =async()=>{
 
   }, [settingcontext])
 
-  // useEffect(()=>{
-  //   console.log(JSON.parse(localStorage.getItem('settings')))
-  // },[])
 
 
   const totalSeconds = mode === "work"
@@ -237,7 +240,8 @@ let pomodoCounthandler =async()=>{
             className='button'
             variant="contained"
             onClick={() => { 
-              // sound.play(); 
+              startNotification.play();
+              
               initTicker(); settingcontext.setStateswitch(true) }}
             endIcon={<PlayCircleOutlineIcon />}>
             Start

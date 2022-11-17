@@ -18,6 +18,7 @@ const Rain = new Audio(RainASMR);
 const Ocean = new Audio(OceanASMR);
 const whiteNoise = new Audio(whiteNoiseASMR);
 
+
 export default function Home() {
 
   let settingcontext = useContext(SettingContext);
@@ -27,6 +28,10 @@ export default function Home() {
   const [whiteNoiseVolume, setWhiteNoiseVolume] = useState(0);
 
 
+  Rain.loop = true;
+  Ocean.loop = true;
+  whiteNoise.loop = true;
+  
   Ocean.volume = oceanVolume;
   Rain.volume = rainVolume;
   whiteNoise.volume = whiteNoiseVolume;
