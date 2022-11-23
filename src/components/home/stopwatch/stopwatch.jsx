@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState,useContext } from 'react'
-import { Howl } from 'howler';
 import SettingContext from '../../settings/settingcontext';
 import { CircularProgress, Box, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -7,17 +6,7 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import ReplayIcon from '@mui/icons-material/Replay';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import "./stopwatch.css"
-const soundSrc = "https://www.mboxdrive.com/Clockk.mp3"
 
-
-
-var sound = new Howl({
-  src: soundSrc,
-  loop: true,
-  volume: 1,
-  html5: true,
-  preload:true
-});
 
 export default function Stopwatch() {
   let settingcontext = useContext(SettingContext);
@@ -109,7 +98,7 @@ let percantage = ((seconds%60)/60)*100
           className='button' 
           variant="outlined" 
           startIcon={<ReplayIcon />} 
-          onClick={()=>{sound.stop();resethndler();settingcontext.setStateswitch(false)}}
+          onClick={()=>{resethndler();settingcontext.setStateswitch(false)}}
           >
             Reset
           </Button>
@@ -117,14 +106,14 @@ let percantage = ((seconds%60)/60)*100
             <Button 
             className='button' 
             variant="contained" 
-            onClick={()=>{sound.play(); initTicker(); settingcontext.setStateswitch(true)}} 
+            onClick={()=>{ initTicker(); settingcontext.setStateswitch(true)}} 
             endIcon={<PlayCircleOutlineIcon />}>
             Start
           </Button>
             : <Button 
             className='button' 
             variant="contained" 
-            onClick={()=>{sound.stop(); stopTicker();}} 
+            onClick={()=>{stopTicker();}} 
             endIcon={<PauseCircleOutlineIcon />}>
             Pause
           </Button>}
