@@ -11,7 +11,6 @@ import { Tabtiles } from '../../GeneralFunctions';
 import { request } from '../../../data/axiosConfig';
 import startSound from '../../../sounds/start_ntofication.mp3'
 import endSound from '../../../sounds/end_notification.mp3'
-import addNotification from 'react-push-notification';
 
 
 const startNotification = new Audio(startSound);
