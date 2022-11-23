@@ -29,7 +29,7 @@ import SidebarDrawer from './components/drawer/drawer';
 import GetUser from "./components/userdetails/userdetails"
 import Login from './components/login/login';
 import { Footer } from './components/footer/footer';
-import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 const dark = {
@@ -92,7 +92,7 @@ function App(props) {
     };
 
     React.useEffect(() => {
-        setInterval(() => { request({ url: '/success' }).then(res => { console.log(res) }) }, 60000);
+        setInterval(() => { request({ url: '/success' }).then(res => { console.log(res) }) }, 300000);
     }, [])
     const items = [
         {
