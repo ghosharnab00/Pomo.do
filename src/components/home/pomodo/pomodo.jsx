@@ -101,16 +101,7 @@ export default function Pomodoro() {
 
   }
 
-  const buttonClick = () => {
-    addNotification({
-        title: 'Warning',
-        subtitle: 'This is a subtitle',
-        message: 'This is a very long message',
-        theme: 'darkblue',
-        native: true // when using native, your OS will handle theming.
-    });
-};
-
+  
 
 let pomodoCounthandler =async()=>{
   if (modedRef.current === "shortbrk" || modedRef.current === "longbrk") {
